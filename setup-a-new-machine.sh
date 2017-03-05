@@ -113,8 +113,9 @@ fi
 ### homebrew!
 
 # (if your machine has /usr/local locked down (like google's), you can do this to place everything in ~/.homebrew
-mkdir $HOME/.homebrew && curl -L https://github.com/mxcl/homebrew/tarball/master | tar xz --strip 1 -C $HOME/.homebrew
-export PATH=$HOME/.homebrew/bin:$HOME/.homebrew/sbin:$PATH
+# mkdir $HOME/.homebrew && curl -L https://github.com/mxcl/homebrew/tarball/master | tar xz --strip 1 -C $HOME/.homebrew
+# export PATH=$HOME/.homebrew/bin:$HOME/.homebrew/sbin:$PATH
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # install all the things
 ./brew.sh
@@ -136,38 +137,20 @@ bash < <( curl https://raw.github.com/jamiew/git-friendly/master/install.sh)
 
 
 # Type `git open` to open the GitHub page or website for a repository.
-npm install -g git-open
+# npm install -g git-open
 
 # fancy listing of recent branches
-npm install -g git-recent
+# npm install -g git-recent
 
 # sexy git diffs
 npm install -g diff-so-fancy
 
 # trash as the safe `rm` alternative
-npm install --global trash-cli
+# npm install --global trash-cli
 
 # install better nanorc config
 # https://github.com/scopatz/nanorc
-curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
-
-# github.com/rupa/z   - oh how i love you
-git clone https://github.com/rupa/z.git ~/code/z
-# consider reusing your current .z file if possible. it's painful to rebuild :)
-# z is hooked up in .bash_profile
-
-
-# github.com/thebitguru/play-button-itunes-patch
-# disable itunes opening on media keys
-git clone https://github.com/thebitguru/play-button-itunes-patch ~/code/play-button-itunes-patch
-
-
-# my magic photobooth symlink -> dropbox. I love it.
-# 	 + first move Photo Booth folder out of Pictures
-# 	 + then start Photo Booth. It'll ask where to put the library.
-# 	 + put it in Dropbox/public
-# 	* Now… you can record photobooth videos quickly and they upload to dropbox DURING RECORDING
-# 	* then you grab public URL and send off your video message in a heartbeat.
+# curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
 
 
 # for the c alias (syntax highlighted cat)
@@ -187,10 +170,6 @@ echo $BASH_VERSION # should be 4.x not the old 3.2.X
 #   (admittedly not as easy to maintain)
 
 
-# setting up the sublime symlink
-ln -sf "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
-
-
 ###
 ##############################################################################################################
 
@@ -199,12 +178,12 @@ ln -sf "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/su
 # improve perf of git inside of chromium checkout
 # https://chromium.googlesource.com/chromium/src/+/master/docs/mac_build_instructions.md
 
-sudo sysctl kern.maxvnodes=$((512*1024))
-echo kern.maxvnodes=$((512*1024)) | sudo tee -a /etc/sysctl.conf
+# sudo sysctl kern.maxvnodes=$((512*1024))
+# echo kern.maxvnodes=$((512*1024)) | sudo tee -a /etc/sysctl.conf
 
 # speed up git status
-git config status.showuntrackedfiles no
-git update-index --untracked-cache
+# git config status.showuntrackedfiles no
+# git update-index --untracked-cache
 
 
 ##############################################################################################################

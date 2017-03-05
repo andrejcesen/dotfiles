@@ -142,9 +142,22 @@ print_success() {
 #
 
 
+declare -a FILES_TO_SYMLINK=(
+    ".aliases"
+    ".bash_profile"
+    ".bashrc"
+    ".exports"
+    ".functions"
+    ".gitattributes"
+    ".gitconfig"
+    ".gitignore"
+    ".hushlogin"
+    ".inputrc"
+    ".vimrc"
+)
 # finds all .dotfiles in this folder
-declare -a FILES_TO_SYMLINK=$(find . -type f -maxdepth 1 -name ".*" -not -name .DS_Store -not -name .git -not -name .osx | sed -e 's|//|/|' | sed -e 's|./.|.|')
-FILES_TO_SYMLINK="$FILES_TO_SYMLINK .vim bin .config/fish" # add in vim and the binaries
+# declare -a FILES_TO_SYMLINK=$(find . -type f -maxdepth 1 -name ".*" -not -name .DS_Store -not -name .git -not -name .osx | sed -e 's|//|/|' | sed -e 's|./.|.|')
+# FILES_TO_SYMLINK="$FILES_TO_SYMLINK .vim bin .config/fish" # add in vim and the binaries
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
