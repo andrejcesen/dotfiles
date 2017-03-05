@@ -31,29 +31,82 @@ end
 make_completion g 'git'
 
 
-# Readline colors
-set -g fish_color_autosuggestion 555 yellow
-set -g fish_color_command 5f87d7
-set -g fish_color_comment 808080
-set -g fish_color_cwd 87af5f
-set -g fish_color_cwd_root 5f0000
-set -g fish_color_error 870000 --bold
-set -g fish_color_escape af5f5f
-set -g fish_color_history_current 87afd7
-set -g fish_color_host 5f87af
-set -g fish_color_match d7d7d7 --background=303030
-set -g fish_color_normal normal
-set -g fish_color_operator d7d7d7
-set -g fish_color_param 5f87af
-set -g fish_color_quote d7af5f
-set -g fish_color_redirection normal
-set -g fish_color_search_match --background=purple
-set -g fish_color_status 5f0000
-set -g fish_color_user 5f875f
-set -g fish_color_valid_path --underline
+# http://ethanschoonover.com/solarized#the-values
 
-set -g fish_color_dimmed 555
-set -g fish_color_separator 999
+# Use these settings if you've applied a Solarized theme to your terminal (for
+# example, if "ls -G" produces Solarized output). i.e. if "blue" is #268bd2, not
+# whatever the default is. (See "../etc/Solarized Dark.terminal" for OS X.)
+
+set -l base03  "--bold black"
+set -l base02  "black"
+set -l base01  "--bold green"
+set -l base00  "--bold yellow"
+set -l base0   "--bold blue"
+set -l base1   "--bold cyan"
+set -l base2   "white"
+set -l base3   "--bold white"
+set -l yellow  "yellow"
+set -l orange  "--bold red"
+set -l red     "red"
+set -l magenta "magenta"
+set -l violet  "--bold magenta"
+set -l blue    "blue"
+set -l cyan    "cyan"
+set -l green   "green"
+
+
+# Used by fish's completion; see
+# http://fishshell.com/docs/2.0/index.html#variables-color
+
+set -g fish_color_normal      $base0
+set -g fish_color_command     $base0
+set -g fish_color_quote       $cyan
+set -g fish_color_redirection $base0
+set -g fish_color_end         $base0
+set -g fish_color_error       $red
+set -g fish_color_param       $blue
+set -g fish_color_comment     $base01
+set -g fish_color_match       $cyan
+set -g fish_color_search_match "--background=$base02"
+set -g fish_color_operator    $orange
+set -g fish_color_escape      $cyan
+
+# Used by fish_prompt
+
+set -g fish_color_hostname    $cyan
+set -g fish_color_cwd         $yellow
+set -g fish_color_git         $green
+
+
+# set -g fish_pager_color_completion  normal
+set -g fish_pager_color_description $base0
+set -g fish_pager_color_prefix      $base2
+
+
+
+# Readline colors
+# set -g fish_color_autosuggestion 555 yellow
+# set -g fish_color_command 5f87d7
+# set -g fish_color_comment 808080
+# set -g fish_color_cwd 87af5f
+# set -g fish_color_cwd_root 5f0000
+# set -g fish_color_error 870000 --bold
+# set -g fish_color_escape af5f5f
+# set -g fish_color_history_current 87afd7
+# set -g fish_color_host 5f87af
+# set -g fish_color_match d7d7d7 --background=303030
+# set -g fish_color_normal normal
+# set -g fish_color_operator d7d7d7
+# set -g fish_color_param 5f87af
+# set -g fish_color_quote d7af5f
+# set -g fish_color_redirection normal
+# set -g fish_color_search_match --background=purple
+# set -g fish_color_status 5f0000
+# set -g fish_color_user 5f875f
+# set -g fish_color_valid_path --underline
+
+# set -g fish_color_dimmed 555
+# set -g fish_color_separator 999
 
 # Git prompt status
 set -g __fish_git_prompt_showdirtystate 'yes'
@@ -73,12 +126,6 @@ set __fish_git_prompt_color_upstream_behind blue
 
 # Local prompt customization
 set -e fish_greeting
-
-
-set -g fish_pager_color_completion normal
-set -g fish_pager_color_description 555 yellow
-set -g fish_pager_color_prefix cyan
-set -g fish_pager_color_progress cyan
 
 
 # highlighting inside manpages and elsewhere
