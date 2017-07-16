@@ -10,7 +10,7 @@
 * fork this to your own acct
 * clone that repo
 * read and run parts of `setup-a-new-machine.sh`
-* read and run `symlink-setup.sh`
+* read and run `link_dotfiles.sh`
   * git config needs attention, read the notes.
 * use it. yay!
 
@@ -72,8 +72,8 @@ Lastly, I use `open .` to open Finder from this path. (That's just available nor
 
 #### manual run
 * `setup-a-new-machine.sh` - random apps i need installed
-* `symlink-setup.sh`  - sets up symlinks for all dotfiles and vim config.
-* `.osx` - run on a fresh osx setup
+* `link_dotfiles.sh`  - sets up symlinks for all dotfiles and vim config.
+* `.macos` - run on a fresh osx setup
 * `brew.sh` & `brew-cask.sh` - homebrew initialization
 
 #### git, brah
@@ -111,7 +111,7 @@ export PATH
 Mathias's repo is the canonical for this, but you should probably run his or mine after reviewing it.
 
 ```bash
-./.osx
+./.macos
 ```
 
 ### `~/bin`

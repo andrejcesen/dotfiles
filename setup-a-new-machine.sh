@@ -27,9 +27,6 @@ cp ~/.z ~/migration/home
 cp -R ~/.ssh ~/migration/home
 cp -R ~/.gnupg ~/migration/home
 
-cp /Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist ~/migration  # wifi
-
-cp ~/Library/Preferences/net.limechat.LimeChat.plist ~/migration
 cp ~/Library/Preferences/com.tinyspeck.slackmacgap.plist ~/migration
 
 cp -R ~/Library/Services ~/migration # automator stuff
@@ -41,24 +38,6 @@ cp ~/.bash_history ~/migration # back it up for fun?
 cp ~/.gitconfig.local ~/migration
 
 cp ~/.z ~/migration # z history file.
-
-# sublime text settings
-cp "~/Library/Application Support/Sublime Text 3/Packages" ~/migration
-
-
-# iTerm settings.
-  # Prefs, General, Use settings from Folder
-
-# Finder settings and TotalFinder settings
-#   Not sure how to do this yet. Really want to.
-
-# Timestats chrome extension stats
-#   chrome-extension://ejifodhjoeeenihgfpjijjmpomaphmah/options.html#_options
-# 	gotta export into JSON through devtools:
-#     copy(JSON.stringify(localStorage, null, '  '))
-#     pbpaste > timestats-canary.json.txt
-
-# Current Chrome tabs via OneTab
 
 # software licenses like sublimetext
 
@@ -157,12 +136,16 @@ npm install -g diff-so-fancy
 sudo easy_install Pygments
 
 
-# change to bash 4 (installed by homebrew)
+# add bash 4 (installed by homebrew)
 BASHPATH=$(brew --prefix)/bin/bash
-#sudo echo $BASHPATH >> /etc/shells
-sudo bash -c 'echo $(brew --prefix)/bin/bash >> /etc/shells'
-chsh -s $BASHPATH # will set for current user only.
-echo $BASH_VERSION # should be 4.x not the old 3.2.X
+sudo bash -c "echo $BASHPATH >> /etc/shells"
+
+# add fish shell and set as default (installed by homebrew)
+FISHPATH=$(brew --prefix)/bin/fish
+sudo bash -c "echo $FISHPATH >> /etc/shells"
+chsh -s $FISHPATH # will set for current user only.
+
+# echo $BASH_VERSION # should be 4.x not the old 3.2.X
 # Later, confirm iterm settings aren't conflicting.
 
 
@@ -197,13 +180,28 @@ echo $BASH_VERSION # should be 4.x not the old 3.2.X
 
 # set up osx defaults
 #   maybe something else in here https://github.com/hjuutilainen/dotfiles/blob/master/bin/osx-user-defaults.sh
-sh .osx
+sh .macos
 
 # setup and run Rescuetime!
 
 ###
 ##############################################################################################################
 
+
+# Network Location Changer (https://github.com/rimar/wifi-location-changer)
+# first create network locations, then:
+cp init/locationchanger /usr/local/bin && chmod +x /usr/local/bin/locationchanger
+cp init/LocationChanger.plist ~/Library/LaunchAgents/
+# launch daemon
+launchctl load ~/Library/LaunchAgents/LocationChanger.plist
+
+
+# Force RGB mode in MacOS (for external display) (http://www.mathewinkson.com/2013/03/force-rgb-mode-in-mac-os-x-to-fix-the-picture-quality-of-an-external-monitor/comment-page-13#comment-15886)
+# 1. Connect with external display
+# 2. Close the MacBook's lid (so only external display is active)
+cp init/patch-edid.rb ~ && ruby patch-edid.rb
+# 3. boot into recovery mode (Cmd+R during boot)
+cp -r /Volumes/Macintosh\ HD/Users/andrejcesen/EDID-Fix/DisplayVendorID-* /Volumes/Macintosh\ HD/System/Library/Displays/Contents/Resources/Overrides/
 
 
 ##############################################################################################################
@@ -214,9 +212,10 @@ sh .osx
 #   now .gitconfig can be shared across all machines and only the .local changes
 
 # symlink it up!
-./symlink-setup.sh
+./link_dotfiles.sh
 
-# add manual symlink for .ssh/config and probably .config/fish
+# Fish completions
+curl -Lo ~/.config/fish/completions/docker.fish --create-dirs https://raw.github.com/barnybug/docker-fish-completion/master/docker.fish
 
 ###
 ##############################################################################################################
