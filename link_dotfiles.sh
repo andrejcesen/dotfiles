@@ -171,18 +171,18 @@ link_dotfiles() {
   local dotfiles=$(find . -type d \
     -name bin -prune -o \
     -name docs -prune -o \
+    -name init -prune -o \
     -name .git -prune -o \
     -not -name $script_name \
     -not -name 'brew-cask.sh' \
     -not -name 'brew.sh' \
     -not -name 'README.md' \
     -not -name 'setup-a-new-machine.sh' \
-    -not -name 'SolarizedDarkYosemite.terminal' \
-    -not -name 'symlink-setup.sh' \
     -not -name '.DS_Store' \
     -not -name '.gitmodules' \
     -not -name '.gitignore' \
-    -not -name '.osx' \
+    -not -name '.gitkeep' \
+    -not -name '.macos' \
     -not -name '.' \
     -print)
 

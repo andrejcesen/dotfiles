@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# automatically change configuration of MacOS based on location
+
+# redirect stdout and stderr
+# exec &>/usr/local/var/log/locationchanger.log
+exec &>/dev/null
+
+# get a little breather before we get data for things to settle down
+sleep 2
+
+# get various system information
+SSID=`/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I\
+ | grep ' SSID:' | cut -d ':' -f 2 | tr -d ' '`
+
+# basic pattern matching to get all location names (trimmed without spaces), each separated by spaces
+LOCATION_NAMES=`scselect | tail -n +2 | cut -d "(" -f 2 | cut -d ")" -f 1`
+CURRENT_LOCATION=`scselect | grep " \* " | cut -d "(" -f 2 | cut -d ")" -f 1`
+
+# no brackets as we the grep will return a status code depending on whether the SSID has an own Location
+if echo "$LOCATION_NAMES" | egrep -q "^$SSID$"; then
+  NEW_LOCATION="$SSID"
+else
+  # 'Automatic' works on MacOS 10.7 and greater
+  if echo Automatic | grep -q "$LOCATION_NAMES"; then
+    NEW_LOCATION=Automatic
+  elif echo auto | grep -q "$LOCATION_NAMES"; then
+    NEW_LOCATION=auto
+  else
+    echo "Automatic location was not found!"
+    echo "The following locations are known:"
+    echo "$LOCATION_NAMES"
+  fi
+fi
+
+# if a new location is found and is different than the current
+if [ -n "$NEW_LOCATION" -a "$NEW_LOCATION" != "$CURRENT_LOCATION" ]; then
+    echo "Changing to $NEW_LOCATION"
+    scselect "$NEW_LOCATION"
+fi
+
