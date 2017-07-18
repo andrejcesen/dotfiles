@@ -1,4 +1,4 @@
-export PATH=$PATH:$HOME/.local/bin
+export PATH="$HOME/.local/bin:$PATH"
 
 # set JAVA_HOME to a preferred JVM
 export JAVA_HOME=$(/usr/libexec/java_home)

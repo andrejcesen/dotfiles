@@ -1,4 +1,4 @@
-set -x PATH $PATH "$HOME/.local/bin"
+set -x PATH "$HOME/.local/bin" $PATH
 
 # set JAVA_HOME to a preferred JVM
 set -x JAVA_HOME (/usr/libexec/java_home)
