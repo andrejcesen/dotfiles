@@ -134,10 +134,6 @@ function nullify() {
   "$@" >/dev/null 2>&1
 }
 
-# visual studio code. a la `subl`
-function code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCodeInsiders" --args $*; }
-
-
 # XQuartz configuration
 xquartz_if_not_running() {
   v_nolisten_tcp=$(defaults read org.macosforge.xquartz.X11 nolisten_tcp)
