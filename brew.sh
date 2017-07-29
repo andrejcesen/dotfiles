@@ -24,7 +24,7 @@ brew install bash
 
 brew install bash-completion
 
-brew install homebrew/completions/brew-cask-completion
+brew install brew-cask-completion
 
 # generic colouriser  http://kassiopeia.juls.savba.sk/~garabik/software/grc/
 brew install grc
@@ -60,7 +60,7 @@ brew install z
 
 # Install other useful binaries
 # brew install the_silver_searcher
-# brew install fzf
+brew install fzf
 
 brew install git
 # brew install imagemagick --with-webp

@@ -7,4 +7,5 @@
 
 brew cask install vlc
 brew cask install transmission
-
+brew cask install google-chrome
+brew cask install caskroom/versions/firefox-esr

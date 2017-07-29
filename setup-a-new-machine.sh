@@ -112,20 +112,20 @@ fi
 
 # github.com/jamiew/git-friendly
 # the `push` command which copies the github compare URL to my clipboard is heaven
-bash < <( curl https://raw.github.com/jamiew/git-friendly/master/install.sh)
+bash < <( curl https://raw.githubusercontent.com/jamiew/git-friendly/master/install.sh)
 
 
 # Type `git open` to open the GitHub page or website for a repository.
-# npm install -g git-open
+npm install -g git-open
 
 # fancy listing of recent branches
-# npm install -g git-recent
+npm install -g git-recent
 
 # sexy git diffs
 npm install -g diff-so-fancy
 
 # trash as the safe `rm` alternative
-# npm install --global trash-cli
+npm install --global trash-cli
 
 # install better nanorc config
 # https://github.com/scopatz/nanorc
@@ -191,6 +191,7 @@ sh .macos
 # Network Location Changer (https://github.com/rimar/wifi-location-changer)
 # first create network locations, then:
 cp init/locationchanger /usr/local/bin && chmod +x /usr/local/bin/locationchanger
+mkdir ~/Library/LaunchAgents
 cp init/LocationChanger.plist ~/Library/LaunchAgents/
 # launch daemon
 launchctl load ~/Library/LaunchAgents/LocationChanger.plist
