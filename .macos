@@ -351,7 +351,7 @@ file=/Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns
 # defaults write com.apple.dock mineffect -string "scale"
 
 # Minimize windows into their application’s icon
-defaults write com.apple.dock minimize-to-application -bool true
+# defaults write com.apple.dock minimize-to-application -bool true
 
 # Enable spring loading for all Dock items
 # defaults write com.apple.dock enable-spring-load-actions-on-all-items -bool true
@@ -428,8 +428,8 @@ defaults write com.apple.dock autohide-delay -float 0
 # 11: Launchpad
 # 12: Notification Center
 # Top left screen corner → Mission Control
-# defaults write com.apple.dock wvous-tl-corner -int 2
-# defaults write com.apple.dock wvous-tl-modifier -int 0
+defaults write com.apple.dock wvous-tl-corner -int 2
+defaults write com.apple.dock wvous-tl-modifier -int 0
 # Top right screen corner → Desktop
 defaults write com.apple.dock wvous-tr-corner -int 4
 defaults write com.apple.dock wvous-tr-modifier -int 0
@@ -437,8 +437,8 @@ defaults write com.apple.dock wvous-tr-modifier -int 0
 defaults write com.apple.dock wvous-bl-corner -int 5
 defaults write com.apple.dock wvous-bl-modifier -int 0
 # Bottom right screen corner → Display sleep
-defaults write com.apple.dock wvous-bl-corner -int 10
-defaults write com.apple.dock wvous-bl-modifier -int 0
+defaults write com.apple.dock wvous-br-corner -int 10
+defaults write com.apple.dock wvous-br-modifier -int 0
 
 ###############################################################################
 # Safari & WebKit                                                             #
@@ -662,7 +662,7 @@ EOD
 
 # Enable Secure Keyboard Entry in Terminal.app
 # See: https://security.stackexchange.com/a/47786/8918
-defaults write com.apple.terminal SecureKeyboardEntry -bool true
+# defaults write com.apple.terminal SecureKeyboardEntry -bool true
 
 # Disable the annoying line marks
 defaults write com.apple.Terminal ShowLineMarks -int 0
@@ -846,11 +846,20 @@ defaults write org.m0k.transmission DownloadFolder -string "/Volumes/Storage/Tor
 defaults write org.m0k.transmission DownloadAsk -bool false
 defaults write org.m0k.transmission MagnetOpenAsk -bool false
 
-# Don’t prompt for confirmation before removing non-downloading active transfers
+# Don’t prompt for confirmation before removing/quitting non-downloading active transfers
 defaults write org.m0k.transmission CheckRemoveDownloading -bool true
+defaults write org.m0k.transmission CheckQuitDownloading -bool true
+
+# Auto import torrents in ~/Downloads
+defaults write org.m0k.transmission AutoImport -bool true
+defaults write org.m0k.transmission AutoImportDirectory -string "$HOME/Downloads"
 
 # Trash original torrent files
 defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
+
+# Call script on completed download
+defaults write org.m0k.transmission DoneScriptEnabled -bool true
+defaults write org.m0k.transmission DoneScriptPath -string "$HOME/.local/bin/srt_torrent"
 
 # Hide the donate message
 defaults write org.m0k.transmission WarningDonate -bool false

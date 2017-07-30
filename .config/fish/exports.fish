@@ -1,7 +1,7 @@
 set -x PATH "$HOME/.local/bin" $PATH
 
 # set JAVA_HOME to a preferred JVM
-set -x JAVA_HOME (/usr/libexec/java_home)
+set -x JAVA_HOME (/usr/libexec/java_home ^/dev/null)
 
 # vim as default
 set -x EDITOR vim

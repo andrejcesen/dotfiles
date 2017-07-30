@@ -30,20 +30,20 @@ brew install brew-cask-completion
 brew install grc
 
 # Install wget with IRI support
-# brew install wget --with-iri
+brew install wget --with-iri
 
 # Install more recent versions of some OS X tools
-# brew install vim --with-override-system-vi
+brew install vim --with-override-system-vi
 # brew install homebrew/dupes/nano
-# brew install homebrew/dupes/grep
-# brew install homebrew/dupes/openssh
-# brew install homebrew/dupes/screen
+brew install homebrew/dupes/grep
+brew install homebrew/dupes/openssh
+brew install homebrew/dupes/screen
 
 # z hopping around folders
 brew install z
 
 # run this script when this file changes guy.
-# brew install entr
+brew install entr
 
 # github util. gotta love `hub fork`, `hub create`, `hub checkout <PRurl>`
 # brew install hub
@@ -59,15 +59,15 @@ brew install z
 
 
 # Install other useful binaries
-# brew install the_silver_searcher
+brew install the_silver_searcher
 brew install fzf
 
 brew install git
 # brew install imagemagick --with-webp
 brew install node # This installs `npm` too using the recommended installation method
 # brew install pv
-# brew install rename
-# brew install tree
+brew install rename
+brew install tree
 # brew install zopfli
 # brew install ffmpeg --with-libvpx
 
