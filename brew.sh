@@ -36,7 +36,7 @@ brew install wget --with-iri
 brew install vim --with-override-system-vi
 # brew install homebrew/dupes/nano
 brew install homebrew/dupes/grep
-brew install homebrew/dupes/openssh
+# brew install homebrew/dupes/openssh
 brew install homebrew/dupes/screen
 
 # z hopping around folders
