@@ -16,6 +16,8 @@ brew cask install caskroom/versions/dash3
 brew cask install jetbrains-toolbox
 brew cask install paw
 brew cask install visual-studio-code
+brew cask install docker
+brew cask install xquartz
 
 # General
 brew cask install alfred
