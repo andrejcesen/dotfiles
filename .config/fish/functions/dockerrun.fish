@@ -1,6 +1,6 @@
 function dockerrun --description 'Run Docker Container'
 
-	switch $argv[1]
+  switch $argv[1]
 
     # automatically update running Docker containers
     case watchtower
