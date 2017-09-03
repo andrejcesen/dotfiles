@@ -1,7 +1,7 @@
 export PATH="$HOME/.local/bin:$PATH"
 
 # set JAVA_HOME to a preferred JVM
-export JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME=$(/usr/libexec/java_home 2> /dev/null)
 
 # vim as default
 export EDITOR="vim"

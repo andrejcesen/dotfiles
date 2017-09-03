@@ -14,6 +14,7 @@ cd ~/migration
 brew leaves      		> brew-list.txt    # all top-level brew installs
 brew cask list 			> cask-list.txt
 npm list -g --depth=0 	> npm-g-list.txt
+code --list-extensions  > vscode-list.txt
 
 
 # then compare brew-list to what's in `brew.sh`
