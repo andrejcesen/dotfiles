@@ -14,9 +14,10 @@ function grep     ; command grep --color=auto $argv ; end
 
 
 # mv, rm, cp
-alias mv 'command gmv --interactive --verbose'
-alias rm 'command grm --interactive --verbose'
-alias cp 'command gcp --interactive --verbose'
+# with alias there's not autocomplete for filenames, only folders, so comment for now
+# alias mv 'command gmv --interactive --verbose'
+# alias rm 'command grm --interactive --verbose'
+# alias cp 'command gcp --interactive --verbose'
 
 alias chmox='chmod +x'
 

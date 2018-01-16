@@ -9,7 +9,7 @@ source ~/.config/fish/functions.fish
 
 # for things not checked into git..
 if test -d "~/.extra.fish"; 
-	source ~/.extra.fish
+    source ~/.extra.fish
 end
 
 # THEME PURE #

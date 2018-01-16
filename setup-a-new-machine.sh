@@ -190,7 +190,7 @@ sh .macos
 
 
 # Network Location Changer (https://github.com/rimar/wifi-location-changer)
-# first create network locations, then:
+# first create network locations as WiFi names without spaces i.e. SomeNetwork, then:
 cp init/locationchanger /usr/local/bin && chmod +x /usr/local/bin/locationchanger
 mkdir ~/Library/LaunchAgents
 cp init/LocationChanger.plist ~/Library/LaunchAgents/

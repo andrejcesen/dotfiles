@@ -10,3 +10,4 @@ set -x EDITOR vim
 set -x MANPAGER "less -X"
 
 set -x HOMEBREW_CASK_OPTS "--appdir=/Applications"
+# set -x NVM_DIR "$HOME/.nvm"
