@@ -176,6 +176,7 @@ link_dotfiles() {
     -not -name $script_name \
     -not -name 'brew-cask.sh' \
     -not -name 'brew.sh' \
+    -not -name 'mas.sh' \
     -not -name 'README.md' \
     -not -name 'setup-a-new-machine.sh' \
     -not -name '.DS_Store' \
