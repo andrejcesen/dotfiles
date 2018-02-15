@@ -84,5 +84,8 @@ brew install ncdu # find where your diskspace went
 # brew install zsh
 brew install fish
 
+# Mac App Store CLI
+brew install mas
+
 # Remove outdated versions from the cellar
 brew cleanup
