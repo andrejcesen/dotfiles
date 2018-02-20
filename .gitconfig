@@ -1,9 +1,11 @@
 [alias]
 	c = commit -am
-	up = pull
-	p = push
+	fpush = push --force
 	s = status
 	sclone = clone --depth=1
+	amend = commit --amend --all
+	undocommit = reset HEAD~
+	hreset = reset --hard
 	co = checkout
 	df = diff --color --color-words --abbrev
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
@@ -12,6 +14,7 @@
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
 	reup = rebase-update # depot_tools specific
+	git = !exec git
 
 [core]
 	excludesfile = ~/.gitignore
@@ -28,7 +31,7 @@
 
 # so much color
 [color]
-	ui = always
+	ui = auto
 [color "diff"]
 	meta = yellow bold
 	commit = green bold
@@ -53,6 +56,7 @@
 # git mergetool
 [merge]
 	tool = opendiff
+	renameLimit = 0
 
 # rewrites of repo paths
 [url "git@github.com:"]
@@ -78,6 +82,7 @@
 # push easily. http://stackoverflow.com/a/23918418/89484
 [push]
 	default = current
+	followTags = true
 
 # use separate file for username / github token / etc
 [include]
@@ -95,3 +100,9 @@
 	prune = true
 [diff]
 	compactionHeuristic = true
+[remote "origin"]
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[stash]
+	showPatch = true
+[log]
+	date = relative
