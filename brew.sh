@@ -26,6 +26,9 @@ brew install bash-completion
 
 brew install brew-cask-completion
 
+# correct previous command
+brew install thefuck
+
 # generic colouriser  http://kassiopeia.juls.savba.sk/~garabik/software/grc/
 brew install grc
 
