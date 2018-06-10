@@ -41,4 +41,5 @@ set title " Show the filename in the window titlebar
 set ttyfast " Send more characters at a given time
 set ttymouse=xterm " Set mouse type to xterm
 set wildmenu " Hitting TAB in command mode will show possible completions above command line
+set hlsearch " Search highlighting
 " }}}
