@@ -27,6 +27,8 @@ cp ~/.z ~/migration/home
 
 cp -R ~/.ssh ~/migration/home
 cp -R ~/.gnupg ~/migration/home
+# leave only subkeys in ~/.gnupg/private-keys-v1.d
+# info - https://gist.github.com/bcomnes/647477a3a143774069755d672cb395ca
 
 cp ~/Library/Preferences/com.tinyspeck.slackmacgap.plist ~/migration
 

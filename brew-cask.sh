@@ -23,6 +23,7 @@ brew cask install visual-studio-code
 brew cask install atom
 brew cask install docker
 brew cask install xquartz
+brew cask install gpg-suite
 
 # General
 brew cask install alfred
