@@ -66,6 +66,7 @@ brew install the_silver_searcher
 brew install fzf
 
 brew install git
+brew install gnupg pinentry-mac
 brew install imagemagick --with-webp
 # brew install nvm # Node enVironment Manager
 # brew install yarn --without-node # to use nvm's node
