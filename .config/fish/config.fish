@@ -1,21 +1,20 @@
 set default_user "andrejcesen"
 set default_machine "Andrejs-MacBook-Pro"
 
+
 # source ~/.config/fish/path.fish
-source ~/.config/fish/exports.fish
 source ~/.config/fish/aliases.fish
 source ~/.config/fish/chpwd.fish
 source ~/.config/fish/functions.fish
 
 # for things not checked into git..
-if test -d "~/.extra.fish"; 
-    source ~/.extra.fish
+if test -e "$HOME/.extra.fish";
+	source ~/.extra.fish
 end
 
 # THEME PURE #
-set fish_function_path ~/.config/fish/functions/pure $fish_function_path
-
-# export GOPATH=$HOME/.go/
+set fish_function_path ~/.config/fish/functions/theme-pure/functions/ $fish_function_path
+source ~/.config/fish/functions/theme-pure/conf.d/pure.fish
 
 # Completions
 function make_completion --argument-names alias command
@@ -113,6 +112,13 @@ set -g fish_color_autosuggestion    $base01
 set -g __fish_git_prompt_showdirtystate 'yes'
 set -g __fish_git_prompt_showupstream auto
 set -g pure_git_untracked_dirty false
+
+# pure
+# set pure_threshold_command_duration 1
+# set pure_separate_prompt_on_error true
+# set pure_begin_prompt_with_current_directory false
+# set -U pure_color_success (set_color green)
+# set -U pure_color_git_dirty (set_color cyan)
 
 # Status Chars
 #set __fish_git_prompt_char_dirtystate '*'

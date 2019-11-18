@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# https://github.com/mas-cli/mas
+# $ mas list
+# $ mas search Xcode
+
+# Xcode
+mas install 497799835
+
 # Slack
 mas install 803453959
 

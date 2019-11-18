@@ -29,9 +29,6 @@ brew install brew-cask-completion
 # correct previous command
 brew install thefuck
 
-# generic colouriser  http://kassiopeia.juls.savba.sk/~garabik/software/grc/
-brew install grc
-
 # Install wget with IRI support
 brew install wget --with-iri
 
@@ -68,8 +65,6 @@ brew install fzf
 brew install git
 brew install gnupg pinentry-mac
 brew install imagemagick --with-webp
-# brew install nvm # Node enVironment Manager
-# brew install yarn --without-node # to use nvm's node
 brew install node # This installs `npm` too using the recommended installation method
 brew install yarn
 brew install pv
@@ -80,12 +75,6 @@ brew install ffmpeg --with-libvpx
 
 brew install terminal-notifier
 
-# brew install android-platform-tools
-# brew install pidcat   # colored logcat guy
-
-brew install ncdu # find where your diskspace went
-
-# brew install zsh
 brew install fish
 
 # Mac App Store CLI

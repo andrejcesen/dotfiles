@@ -1,9 +1,3 @@
-# alias to Unmount External Drives
-alias ejectdsk='diskutil eject disk3; diskutil eject disk2'
-
-# alias to compute the size of directories in the current folder
-alias lssize='find . -maxdepth 1 -type d -mindepth 1 -exec du -hs {} \;'
-
 # Easier navigation: .., ..., ~ and -
 alias ..="cd .."
 alias cd..="cd .."
@@ -18,9 +12,15 @@ alias mv='mv -v'
 alias rm='rm -i -v'
 alias cp='cp -v'
 
+alias chmox='chmod -x'
+
+alias cask='brew cask' # i <3 u cask
+alias where=which # sometimes i forget
 alias brwe=brew  #typos
 
 alias hosts='sudo $EDITOR /etc/hosts'   # yes I occasionally 127.0.0.1 twitter.com ;)
+
+alias ag='ag -f --hidden'
 
 ###
 # time to upgrade `ls`
@@ -39,8 +39,6 @@ alias lsd='ls -l | grep "^d"' # only directories
 ###
 
 
-# `cat` with beautiful colors. requires: sudo easy_install -U Pygments
-alias c='pygmentize -O style=monokai -f console256 -g'
 
 ###
 # GIT STUFF
@@ -61,15 +59,20 @@ alias master="git checkout master"
 
 # Networking. IP address, dig, DNS
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+# alias dig="dig +nocmd any +multiline +noall +answer"
+# wget sucks with certificates. Let's keep it simple.
+alias wget="curl -O"
 
 # Recursively delete `.DS_Store` files
 alias cleanup_dsstore="find . -name '*.DS_Store' -type f -ls -delete"
 
 alias diskspace_report="df -P -kHl"
+alias free_diskspace_report="diskspace_report"
 
 # Shortcuts
 alias g="git"
 alias v="vim"
+alias ungz="gunzip -k"
 
 # File size
 alias fs="stat -f \"%z bytes\""
@@ -79,6 +82,8 @@ alias emptytrash=" \
     sudo rm -rfv /Volumes/*/.Trashes; \
     rm -rfv ~/.Trash/*; \
     sudo rm -v /private/var/vm/sleepimage; \
+    rm -rv \"/Users/andrejcesen/Library/Application Support/stremio/Cache\";  \
+    rm -rv \"/Users/andrejcesen/Library/Application Support/stremio/stremio-cache\" \
 "
 
 # Update installed Ruby gems, Homebrew, npm, and their installed packages

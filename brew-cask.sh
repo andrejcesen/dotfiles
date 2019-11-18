@@ -4,9 +4,8 @@
 # to maintain cask ....
 #     brew update && brew upgrade brew-cask && brew cleanup && brew cask cleanup`
 
-# upgrade outdated apps
-#     brew cu
-brew tap buo/cask-upgrade
+
+# Install native apps
 
 
 # Entertainment
@@ -22,7 +21,6 @@ brew cask install paw
 brew cask install visual-studio-code
 brew cask install atom
 brew cask install docker
-brew cask install xquartz
 brew cask install fork
 
 # General

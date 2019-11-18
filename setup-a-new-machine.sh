@@ -7,43 +7,81 @@
 ##############################################################################################################
 ###  backup old machine's key items
 
-mkdir -p ~/migration/home
+mkdir -p ~/migration/home/
+mkdir -p ~/migration/Library/"Application Support"/
+mkdir -p ~/migration/Library/Preferences/
+mkdir -p ~/migration/Library/Application Support/
+mkdir -p ~/migration/rootLibrary/Preferences/SystemConfiguration/
+
 cd ~/migration
 
 # what is worth reinstalling?
-brew leaves      		> brew-list.txt    # all top-level brew installs
-brew cask list 			> cask-list.txt
-npm list -g --depth=0 	> npm-g-list.txt
-code --list-extensions  > vscode-list.txt
-
+brew leaves              > brew-list.txt    # all top-level brew installs
+brew cask list           > cask-list.txt
+npm list -g --depth=0    > npm-g-list.txt
+yarn global list --depth=0 > yarn-g-list.txt
 
 # then compare brew-list to what's in `brew.sh`
 #   comm <(sort brew-list.txt) <(sort brew.sh-cleaned-up)
 
-# let's hold on to these
+# backup some dotfiles likely not under source control
+cp -Rp \
+    ~/.bash_history \
+    ~/.extra ~/.extra.fish \
+    ~/.gitconfig.local \
+    ~/.gnupg \
+    ~/.nano \
+    ~/.nanorc \
+    ~/.netrc \
+    ~/.ssh \
+    ~/.z   \
+        ~/migration/home
 
-cp ~/.extra ~/migration/home
-cp ~/.z ~/migration/home
-
-cp -R ~/.ssh ~/migration/home
-cp -R ~/.gnupg ~/migration/home
-# leave only subkeys in ~/.gnupg/private-keys-v1.d
+## GPG
+# on non-primary computer: leave only subkeys in ~/.gnupg/private-keys-v1.d
+# otherwise, just copy over everything
 # info - https://gist.github.com/bcomnes/647477a3a143774069755d672cb395ca
 
-cp ~/Library/Preferences/com.tinyspeck.slackmacgap.plist ~/migration
+cp -Rp ~/Documents ~/migration
 
-cp -R ~/Library/Services ~/migration # automator stuff
+cp -Rp /Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist ~/migration/rootLibrary/Preferences/SystemConfiguration/ # wifi
 
-cp -R ~/Documents ~/migration
+cp -Rp ~/Library/Preferences/net.limechat.LimeChat.plist ~/migration/Library/Preferences/
+cp -Rp ~/Library/Preferences/com.tinyspeck.slackmacgap.plist ~/migration/Library/Preferences/
 
-cp ~/.bash_history ~/migration # back it up for fun?
+cp -Rp ~/Library/Services ~/migration/Library/ # automator stuff
+cp -Rp ~/Library/Fonts ~/migration/Library/ # all those fonts you've installed
 
-cp ~/.gitconfig.local ~/migration
+# editor settings & plugins
+cp -Rp ~/Library/Application\ Support/Sublime\ Text\ * ~/migration/Library/"Application Support"
+cp -Rp ~/Library/Application\ Support/Code\ -\ Insider* ~/migration/Library/"Application Support"
 
-cp ~/.z ~/migration # z history file.
+# also consider...
+# random git branches you never pushed anywhere?
+# git untracked files (or local gitignored stuff). stuff you never added, but probably want..
 
-# software licenses like sublimetext
 
+# OneTab history pages, because chrome tabs are valuable.
+
+# usage logs you've been keeping.
+
+# iTerm settings.
+  # Prefs, General, Use settings from Folder
+
+# Finder settings and TotalFinder settings
+#   Not sure how to do this yet. Really want to.
+
+# Timestats chrome extension stats
+#   chrome-extension://ejifodhjoeeenihgfpjijjmpomaphmah/options.html#_options
+# 	gotta export into JSON through devtools:
+#     copy(JSON.stringify(localStorage))
+#     pbpaste > timestats-canary.json.txt
+
+# software licenses.
+#   sublimetext's is in its Application Support folder
+
+# maybe ~/Pictures and such
+cp -Rp ~/Pictures ~/migration
 
 ### end of old machine backup
 ##############################################################################################################
@@ -116,8 +154,10 @@ fi
 
 # github.com/jamiew/git-friendly
 # the `push` command which copies the github compare URL to my clipboard is heaven
-bash < <( curl https://raw.githubusercontent.com/jamiew/git-friendly/master/install.sh)
+curl -sS https://raw.githubusercontent.com/jamiew/git-friendly/master/install.sh | bash
 
+# autocompletion for git branch names https://git-scm.com/book/en/v1/Git-Basics-Tips-and-Tricks
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 
 # Type `git open` to open the GitHub page or website for a repository.
 npm install -g git-open
@@ -137,19 +177,19 @@ npm install --global trash-cli
 
 
 # for the c alias (syntax highlighted cat)
-sudo easy_install Pygments
+# sudo easy_install Pygments
 
 
-# add bash 4 (installed by homebrew)
+# change to bash 4 (installed by homebrew)
 BASHPATH=$(brew --prefix)/bin/bash
-sudo bash -c "echo $BASHPATH >> /etc/shells"
+#sudo echo $BASHPATH >> /etc/shells
+sudo bash -c 'echo $(brew --prefix)/bin/bash >> /etc/shells'
 
 # add fish shell and set as default (installed by homebrew)
 FISHPATH=$(brew --prefix)/bin/fish
 sudo bash -c "echo $FISHPATH >> /etc/shells"
 chsh -s $FISHPATH # will set for current user only.
 
-# echo $BASH_VERSION # should be 4.x not the old 3.2.X
 # Later, confirm iterm settings aren't conflicting.
 
 
@@ -160,17 +200,6 @@ chsh -s $FISHPATH # will set for current user only.
 ###
 ##############################################################################################################
 
-
-
-# improve perf of git inside of chromium checkout
-# https://chromium.googlesource.com/chromium/src/+/master/docs/mac_build_instructions.md
-
-# sudo sysctl kern.maxvnodes=$((512*1024))
-# echo kern.maxvnodes=$((512*1024)) | sudo tee -a /etc/sysctl.conf
-
-# speed up git status
-# git config status.showuntrackedfiles no
-# git update-index --untracked-cache
 
 
 ##############################################################################################################
@@ -201,13 +230,6 @@ cp init/LocationChanger.plist ~/Library/LaunchAgents/
 launchctl load ~/Library/LaunchAgents/LocationChanger.plist
 
 
-# Force RGB mode in MacOS (for external display) (http://www.mathewinkson.com/2013/03/force-rgb-mode-in-mac-os-x-to-fix-the-picture-quality-of-an-external-monitor/comment-page-13#comment-15886)
-# 1. Connect with external display
-# 2. Close the MacBook's lid (so only external display is active)
-cp init/patch-edid.rb ~ && ruby patch-edid.rb
-# 3. boot into recovery mode (Cmd+R during boot)
-cp -r /Volumes/Macintosh\ HD/Users/andrejcesen/EDID-Fix/DisplayVendorID-* /Volumes/Macintosh\ HD/System/Library/Displays/Contents/Resources/Overrides/
-
 
 ##############################################################################################################
 ### symlinks to link dotfiles into ~/
@@ -219,8 +241,14 @@ cp -r /Volumes/Macintosh\ HD/Users/andrejcesen/EDID-Fix/DisplayVendorID-* /Volum
 # symlink it up!
 ./link_dotfiles.sh
 
+# Install THEME PURE: https://github.com/rafaelrinaldi/pure
+# Download the installer to `/tmp`
+curl git.io/pure-fish --output /tmp/pure_installer.fish --location --silent
+# Source and trigger the installer - installs to 
+fish -c "source /tmp/pure_installer.fish; and install_pure"
+
 # Fish completions
-curl -Lo ~/.config/fish/completions/docker.fish --create-dirs https://raw.github.com/barnybug/docker-fish-completion/master/docker.fish
+# curl -Lo ~/.config/fish/completions/docker.fish --create-dirs https://raw.github.com/barnybug/docker-fish-completion/master/docker.fish
 
 ###
 ##############################################################################################################
