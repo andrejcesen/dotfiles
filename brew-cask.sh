@@ -18,8 +18,7 @@ brew cask install transmission
 brew cask install caskroom/versions/dash3
 brew cask install jetbrains-toolbox
 brew cask install paw
-brew cask install visual-studio-code
-brew cask install atom
+brew cask install vscodium
 brew cask install docker
 brew cask install fork
 
@@ -27,3 +26,4 @@ brew cask install fork
 brew cask install alfred
 brew cask install google-chrome
 brew cask install caskroom/versions/firefox-esr
+brew cask install lunar
