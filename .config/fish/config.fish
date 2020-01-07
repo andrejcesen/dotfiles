@@ -117,8 +117,8 @@ set -g pure_git_untracked_dirty false
 set pure_threshold_command_duration 1
 # set pure_separate_prompt_on_error true
 # set pure_begin_prompt_with_current_directory false
-set -U pure_color_success (set_color green)
-set -U pure_color_git_dirty (set_color cyan)
+set pure_color_git_dirty cyan
+set pure_color_success green
 
 # Status Chars
 #set __fish_git_prompt_char_dirtystate '*'
