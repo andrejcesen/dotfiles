@@ -42,6 +42,8 @@ cp -Rp \
 # otherwise, just copy over everything
 # info - https://gist.github.com/bcomnes/647477a3a143774069755d672cb395ca
 
+# Backup Bear notes: https://bear.app/faq/Backup%20&%20Restore/
+
 cp -Rp ~/Documents ~/migration
 
 cp -Rp /Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist ~/migration/rootLibrary/Preferences/SystemConfiguration/ # wifi
