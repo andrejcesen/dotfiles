@@ -144,6 +144,15 @@ fi
 ./brew-cask.sh
 ./mas.sh
 
+# install bundler in user space (https://gist.github.com/dstranz/e5fdcf5658510c379c60fe4b9abbe201)
+gem install bundler --user-install
+# then add following lines to ~/.zshrc on Catalina or ~/.bash_profile on older:
+# - to set default bundle install directory
+# export BUNDLE_PATH=$(ls -t -U | ruby -e 'puts Gem.user_dir')
+# - to add user gem directory to $PATH
+# export PATH="$PATH:$BUNDLE_PATH/bin"
+
+
 ### end of homebrew
 ##############################################################################################################
 
