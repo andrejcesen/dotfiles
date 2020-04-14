@@ -11,9 +11,13 @@ function dockerrun --description 'Run Docker Container'
 
     # unifi controller (web UI: https://localhost:8443)
     case unifi
-      docker run -d --init \
+      docker run -d \
         --name unifi \
-        -p 8080:8080 -p 8443:8443 -p 3478:3478/udp -p 10001:10001/udp \
+        --init \
+        -p 3478:3478/udp \
+        -p 8080:8080/tcp \
+        -p 8443:8443/tcp \
+        -p 10001:10001/udp \
         -e TZ='Europe/Ljubljana' \
         -e RUNAS_UID0='false' \
         -e UNIFI_UID=(id -u) \
