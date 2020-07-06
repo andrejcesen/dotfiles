@@ -72,6 +72,7 @@ brew install rename
 brew install tree
 brew install zopfli
 brew install ffmpeg
+brew install httpie
 
 brew install terminal-notifier
 
