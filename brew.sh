@@ -73,6 +73,7 @@ brew install tree
 brew install zopfli
 brew install ffmpeg
 brew install httpie
+brew install borkdude/brew/babashka
 
 brew install terminal-notifier
 
