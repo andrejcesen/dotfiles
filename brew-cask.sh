@@ -24,6 +24,6 @@ brew cask install fork
 
 # General
 brew cask install alfred
-brew cask install google-chrome
+brew cask install brave-browser
 brew cask install caskroom/versions/firefox-esr
 brew cask install lunar
