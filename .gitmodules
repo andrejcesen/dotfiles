@@ -1,3 +1,9 @@
 [submodule ".vim/pack/my-plugins/start/vim-abolish"]
 	path = .vim/pack/my-plugins/start/vim-abolish
 	url = https://github.com/tpope/vim-abolish.git
+[submodule ".vim/pack/my-plugins/start/fzf"]
+	path = .vim/pack/my-plugins/start/fzf
+	url = https://github.com/junegunn/fzf.git
+[submodule ".vim/pack/my-plugins/start/fzf.vim"]
+	path = .vim/pack/my-plugins/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git

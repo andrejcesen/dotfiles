@@ -6,6 +6,8 @@
 
 " Make vim more useful {{{
 set nocompatible
+" map `Ctrl+P` shortcut to :FZF
+nmap <C-P> :FZF<CR>
 " }}}
 
 " Syntax highlighting {{{

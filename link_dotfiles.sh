@@ -169,7 +169,6 @@ link() {
 link_dotfiles() {
   print_info "Creating links in $HOME to your dotfiles..."
   local dotfiles=$(find . -type d \
-    -name bin -prune -o \
     -name docs -prune -o \
     -name init -prune -o \
     -name .git -prune -o \
