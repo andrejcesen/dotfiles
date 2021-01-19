@@ -1,0 +1,3 @@
+[submodule ".vim/pack/my-plugins/start/vim-abolish"]
+	path = .vim/pack/my-plugins/start/vim-abolish
+	url = https://github.com/tpope/vim-abolish.git
