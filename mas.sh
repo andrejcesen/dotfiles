@@ -31,3 +31,5 @@ mas install 414528154
 # Magnet
 mas install 441258766
 
+# Hush for Safari (blocks “cookie notices”, email newsletters etc.)
+mas install 1544743900
