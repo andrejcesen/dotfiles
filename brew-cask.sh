@@ -22,6 +22,10 @@ brew cask install vscodium
 brew cask install docker
 brew cask install fork
 
+# Java (for Clojure)
+brew tap AdoptOpenJDK/openjdk
+brew cask install adoptopenjdk11
+
 # General
 brew cask install alfred
 brew cask install brave-browser

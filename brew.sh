@@ -73,7 +73,6 @@ brew install tree
 brew install zopfli
 brew install ffmpeg
 brew install httpie
-brew install borkdude/brew/babashka
 
 brew install terminal-notifier
 
@@ -81,6 +80,10 @@ brew install fish
 
 # Mac App Store CLI
 brew install mas
+
+# Clojure
+brew install clojure/tools/clojure
+brew install borkdude/brew/babashka
 
 # Remove outdated versions from the cellar
 brew cleanup
