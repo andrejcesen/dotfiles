@@ -48,6 +48,9 @@ brew install entr
 # github util. gotta love `hub fork`, `hub create`, `hub checkout <PRurl>`
 brew install hub
 
+# github.com/git-friendly/git-friendly
+# the `push` command which copies the github compare URL to my clipboard is heaven
+brew install git-friendly/git-friendly/git-friendly
 
 # mtr - ping & traceroute. best.
 # brew install mtr

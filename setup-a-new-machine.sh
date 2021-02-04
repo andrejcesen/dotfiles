@@ -163,10 +163,6 @@ gem install bundler --user-install
 ### install of common things
 ###
 
-# github.com/jamiew/git-friendly
-# the `push` command which copies the github compare URL to my clipboard is heaven
-curl -sS https://raw.githubusercontent.com/jamiew/git-friendly/master/install.sh | bash
-
 # autocompletion for git branch names https://git-scm.com/book/en/v1/Git-Basics-Tips-and-Tricks
 curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
 
