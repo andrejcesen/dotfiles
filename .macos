@@ -710,6 +710,9 @@ defaults write com.apple.TextEdit RichText -int 0
 # Open and save files as UTF-8 in TextEdit
 defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
+# Use `SF Mono, 14pt` font for plain text mode (need to install SF Mono font first)
+defaults write com.apple.TextEdit NSFixedPitchFont -string SFMono-Regular
+defaults write com.apple.TextEdit NSFixedPitchFontSize -int 14
 
 # Enable the debug menu in Disk Utility
 defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
