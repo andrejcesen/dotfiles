@@ -12,8 +12,8 @@ function watermark --description "watermark <text> <file>"
 	set -l extension "$filepath[3]"
 
 	magick convert \
-		-font Arial \
-		-pointsize 50 \
+		-font Helvetica \
+		-pointsize 30 \
 		-size 430x270 xc:none \
 		-fill '#80808080' \
 		-gravity NorthWest \
