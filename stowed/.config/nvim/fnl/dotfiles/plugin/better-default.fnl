@@ -1,0 +1,14 @@
+(module dotfiles.plugin.better-default
+  {autoload {nvim aniseed.nvim}})
+
+(set nvim.g.vim_better_default_persistent_undo true)
+(nvim.ex.runtime_ "plugin/default.vim")
+
+(nvim.ex.set :nocursorline)
+(nvim.ex.set "wildmode=full")
+(nvim.ex.set "wildoptions=pum")
+(nvim.ex.set "listchars-=eol:↵")
+
+(set nvim.o.undodir (.. (nvim.fn.stdpath "data") "/undo"))
+
+(nvim.ex.set "clipboard-=unnamedplus")

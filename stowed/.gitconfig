@@ -1,0 +1,41 @@
+[alias]
+	s = status -sb
+	c = commit -v
+	a = add
+	l = pull
+	p = push
+	f = fetch
+	d = diff
+
+[core]
+	editor = nvim
+	excludesfile = ~/.gitexcludes
+	precomposeUnicode = true
+
+[push]
+	default = simple
+
+[pull]
+	ff = only
+
+[checkout]
+	defaultRemote = origin
+
+# use separate file for username / github token / etc
+[include]
+  path = ~/.gitconfig.local
+
+[fetch]
+	prune = true
+
+[stash]
+	showPatch = true
+
+[log]
+	date = relative
+
+[init]
+	defaultBranch = main
+
+# [commit]
+# 	gpgsign = true
