@@ -10,10 +10,11 @@
                             "--with-filename" "--line-number" "--column"
                             "--smart-case" "--hidden" "--follow"
                             "-g" "!.git/"]}
-       :pickers {:buffers {:mappings {:i {"<c-d>" "delete_buffer"}
+       :pickers {:find_files {:find_command ["rg" "--files" "--iglob" "!.git" "--hidden"]}
+                 :buffers {:mappings {:i {"<c-d>" "delete_buffer"}
                                       :n {"<c-d>" "delete_buffer"}}}}})
 
-    (util.lnnoremap :ff "Telescope find_files hidden=true")
+    (util.lnnoremap :ff "Telescope find_files")
     (util.lnnoremap :f- "Telescope file_browser")
     (util.lnnoremap :fg "Telescope live_grep")
     (util.lnnoremap :* "Telescope grep_string")

@@ -2,4 +2,5 @@
 
 (let [(ok? lualine) (pcall require :lualine)]
   (when ok?
-    (lualine.setup)))
+    (lualine.setup
+      {:options {:theme "16color" }})))

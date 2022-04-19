@@ -1,11 +1,17 @@
 function fish_user_key_bindings
   fish_vi_key_bindings
 
-  if command -s fzf-share >/dev/null
-    source (fzf-share)/key-bindings.fish
+  if test -e "$(brew --prefix)/opt/fzf/shell/key-bindings.fish" >/dev/null
+    source "$(brew --prefix)/opt/fzf/shell/key-bindings.fish"
   end
 
   if type -q fzf_key_bindings
     fzf_key_bindings
   end
+
+  for mode in insert default visual
+    bind -M $mode \cf forward-char          # Enable <C-F> in vi-bindings.
+    bind -M $mode \cp 'tmux-sessionizer'
+  end
+
 end

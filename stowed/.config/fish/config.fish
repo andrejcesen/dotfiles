@@ -12,6 +12,7 @@ fish_add_path --path (/opt/homebrew/opt/ruby/bin/gem env gemdir)/bin \
                      /opt/homebrew/opt/ruby/bin
 
 fish_add_path --path /opt/homebrew/opt/python/libexec/bin
+fish_add_path --path ~/.local/bin
 
 set -gx fish_greeting ""
 
@@ -20,7 +21,7 @@ test -d /opt/homebrew && eval (/opt/homebrew/bin/brew shellenv)
 if type -q nvim
   set -gx EDITOR nvim
   set -gx VISUAL nvim
-  set -gx MANPAGER "nvim +Man! -c ':set signcolumn='"
+  set -gx MANPAGER "nvim +Man!"
   alias vimdiff="nvim -d"
 end
 
