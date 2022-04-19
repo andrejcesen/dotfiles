@@ -57,6 +57,7 @@
   :pangloss/vim-javascript {}
   :prettier/vim-prettier {:ft :javascript}
   :radenling/vim-dispatch-neovim {}
+  :ThePrimeagen/git-worktree.nvim {}
   :tpope/vim-abolish {}
   :tpope/vim-commentary {}
   :tpope/vim-dadbod {}

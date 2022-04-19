@@ -12,7 +12,8 @@
                             "-g" "!.git/"]}
        :pickers {:find_files {:find_command ["rg" "--files" "--iglob" "!.git" "--hidden"]}
                  :buffers {:mappings {:i {"<c-d>" "delete_buffer"}
-                                      :n {"<c-d>" "delete_buffer"}}}}})
+                                      :n {"<c-d>" "delete_buffer"}}}}
+       :extensions {:git_worktree {}}})
 
     (util.lnnoremap :ff "Telescope find_files")
     (util.lnnoremap :f- "Telescope file_browser")
@@ -32,4 +33,6 @@
     (util.lnnoremap :fsi "Telescope lsp_implementations")
     (util.lnnoremap :fsr "Telescope lsp_references")
     (util.lnnoremap :fsS "Telescope lsp_document_symbols")
-    (util.lnnoremap :fss "Telescope lsp_workspace_symbols")))
+    (util.lnnoremap :fss "Telescope lsp_workspace_symbols")
+    (util.lnnoremap :gw "lua require('telescope').extensions.git_worktree.git_worktrees()<CR>")
+    (util.lnnoremap :gm "lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>")))
