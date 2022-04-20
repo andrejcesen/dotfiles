@@ -1,6 +1,25 @@
+# On macOS, the standard set `/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin`
+# gets prepended to PATH on login shell. Because tmux always runs as a login
+# shell, this standard set gets prepended to an already existing PATH 
+# (set by Terminal.app running `config.fish` on login), which results in
+# `/usr/bin:...:/opt/homebrew/bin` -> system paths coming before homebrew.
+#
+# More info:
+# https://superuser.com/questions/544989/does-tmux-sort-the-path-variable
+#
+if set -q TMUX && test -x /usr/libexec/path_helper
+  # If we're in tmux, we want to build PATH from scratch, so that
+  # we control ordering (just as we would in initial login shell).
+  # By unsetting env, path_helper will build us a fresh inital PATH
+  # and MANPATH.
+  eval (env PATH="" MANPATH="" INFOPATH="" /usr/libexec/path_helper -c)
+end
+
+test -d /opt/homebrew && eval (/opt/homebrew/bin/brew shellenv)
+
 set -gx JAVA_HOME (/usr/libexec/java_home)
 
-set -gx ANDROID_HOME $HOME/Library/Android/sdk
+set -gx ANDROID_HOME ~/Library/Android/sdk
 fish_add_path --path $ANDROID_HOME/cmdline-tools/latest/bin \
                      $ANDROID_HOME/emulator \
                      $ANDROID_HOME/tools \
@@ -14,11 +33,9 @@ fish_add_path --path (/opt/homebrew/opt/ruby/bin/gem env gemdir)/bin \
 fish_add_path --path /opt/homebrew/opt/python/libexec/bin
 fish_add_path --path ~/.local/bin
 
-set -gx PITCH_HOME $HOME/Projects/Active/pitch
+set -gx PITCH_HOME ~/Projects/Active/pitch
 
 set -gx fish_greeting ""
-
-test -d /opt/homebrew && eval (/opt/homebrew/bin/brew shellenv)
 
 if type -q nvim
   set -gx EDITOR nvim
