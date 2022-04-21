@@ -3,4 +3,8 @@
 (let [(ok? lualine) (pcall require :lualine)]
   (when ok?
     (lualine.setup
-      {:options {:theme "16color" }})))
+      {:options {:theme "16color" }
+       ;; Show relative path.
+       :sections {:lualine_c [{1 :filename
+                               :filestatus true
+                               :path 1}]}})))
