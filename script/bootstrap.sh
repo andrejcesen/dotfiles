@@ -17,12 +17,12 @@ fi
 
 # Install
 ./script/install-packages.sh
-stow --target=$HOME stowed
+stow --target="$HOME" stowed
 
 # Set fish as a default shell
-FISHPATH=`which fish`
+FISHPATH=$(which fish)
 sudo sh -c "echo $FISHPATH >> /etc/shells"
-chsh -s $FISHPATH
+chsh -s "$FISHPATH"
 
 ~/.config/nvim/sync.sh
 
