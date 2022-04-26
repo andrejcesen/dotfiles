@@ -14,6 +14,7 @@
                  :buffers {:mappings {:i {"<c-d>" "delete_buffer"}
                                       :n {"<c-d>" "delete_buffer"}}}}})
 
+    (telescope.load_extension :ui-select)
     (telescope.load_extension :git_worktree)
 
     (util.lnnoremap :ff "Telescope find_files")
@@ -30,7 +31,7 @@
     (util.lnnoremap :fC "Telescope command_history")
     (util.lnnoremap :fq "Telescope quickfix")
     (util.lnnoremap :fl "Telescope loclist")
-    (util.lnnoremap :fsa "Telescope lsp_code_actions")
+    (util.lnnoremap :fsa "lua vim.lsp.buf.code_action()")
     (util.lnnoremap :fsi "Telescope lsp_implementations")
     (util.lnnoremap :fsr "Telescope lsp_references")
     (util.lnnoremap :fsS "Telescope lsp_document_symbols")
