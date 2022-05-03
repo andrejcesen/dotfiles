@@ -33,7 +33,7 @@ fish_add_path --path (/opt/homebrew/opt/ruby/bin/gem env gemdir)/bin \
 fish_add_path --path /opt/homebrew/opt/python/libexec/bin
 fish_add_path --path ~/.local/bin
 
-set -gx PITCH_HOME ~/Projects/Active/pitch
+set -gx PITCH_HOME ~/Projects/Active/pitch-app
 
 set -gx fish_greeting ""
 
