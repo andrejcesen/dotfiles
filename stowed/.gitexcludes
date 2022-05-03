@@ -2,4 +2,3 @@
 
 # Clojure linting
 .lsp/
-.clj-kondo/
