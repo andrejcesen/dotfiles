@@ -10,8 +10,10 @@ function fish_user_key_bindings
   end
 
   for mode in insert default visual
-    bind -M $mode \cf forward-char          # Enable <C-F> in vi-bindings.
-    bind -M $mode \cp 'tmux-sessionizer'
+    bind -M $mode \cf forward-char # Enable <C-F> in vi-bindings.
+    # If a script produces output, it should finish by calling
+    # `commandline -f repaint` to tell fish that a repaint is in order.
+    bind -M $mode \cp 'tmux-sessionizer; commandline -f repaint'
   end
 
 end
