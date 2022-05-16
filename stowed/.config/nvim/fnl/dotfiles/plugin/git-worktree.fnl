@@ -2,7 +2,11 @@
   {autoload {a aniseed.core
              nvim aniseed.nvim}})
 
-(defn- pitch? [path] (string.find path nvim.env.PITCH_HOME))
+(defn pitch? [path] (string.find
+                      path
+                      nvim.env.PITCH_HOME
+                      nil    ;; Start at index 1 (default).
+                      true)) ;; Turn off pattern-matching: https://stackoverflow.com/a/6077464/18714042
 
 (defn- prepare-pitch [path]
   (let [command (string.format ":silent !prepare-pitch '%s'" path)]
