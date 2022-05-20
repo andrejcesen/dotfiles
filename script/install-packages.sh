@@ -40,6 +40,7 @@ brew install \
   borkdude/brew/babashka \
   neovim \
   tmux \
+  mosh \
   stow \
   mas
 
