@@ -21,8 +21,11 @@ fi
 
 lsp_config="$branch_worktree/.lsp/config.edn" 
 if [[ -f "$lsp_config" ]]; then
-    cp    "$lsp_config" "$lsp_config.bak"
-    # Remove root config.edn to considerably speed up lsp.
+    # Remove `:source-paths` (and use just `:cljfmt-config-path`)
+    # in config.edn to considerably speed up lsp.
+    cp "$lsp_config" "$lsp_config.bak"
+    cat <<-"EOF" > "$lsp_config" 
+{:cljfmt-config-path "cljfmt.edn"}
+EOF
     git -C "$branch_worktree" update-index --assume-unchanged "$lsp_config"
-    rm -f "$lsp_config" 
 fi
