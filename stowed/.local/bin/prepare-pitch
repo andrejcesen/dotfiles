@@ -23,9 +23,13 @@ lsp_config="$branch_worktree/.lsp/config.edn"
 if [[ -f "$lsp_config" ]]; then
     # Remove `:source-paths` (and use just `:cljfmt-config-path`)
     # in config.edn to considerably speed up lsp.
+    # Also specify absolute path to `cljfmt.edn`, otherwise
+    # lsp server might get confused when opening a nested file
+    # in monorepo, causing it to not work correctly
+    # (e.g. `gd` failing on ns from a different subproject etc.).
     cp "$lsp_config" "$lsp_config.bak"
-    cat <<-"EOF" > "$lsp_config" 
-{:cljfmt-config-path "cljfmt.edn"}
+    cat <<-EOF > "$lsp_config" 
+{:cljfmt-config-path "$branch_worktree/cljfmt.edn"}
 EOF
-    git -C "$branch_worktree" update-index --assume-unchanged "$lsp_config"
+    git -C "$branch_worktree" update-index --skip-worktree "$lsp_config"
 fi
