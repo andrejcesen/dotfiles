@@ -6,7 +6,6 @@ if ! [[ -d "$branch_worktree" ]]; then
     exit 1
 fi
 
-
 if ! [[ -f "$branch_worktree/.envrc" ]]; then
     # Add .envrc file.
     cat <<-"EOF" > "$branch_worktree/.envrc" 
@@ -32,4 +31,9 @@ if [[ -f "$lsp_config" ]]; then
 {:cljfmt-config-path "$branch_worktree/cljfmt.edn"}
 EOF
     git -C "$branch_worktree" update-index --skip-worktree "$lsp_config"
+fi
+
+if ! [[ -f "$branch_worktree/node_modules" ]]; then
+    yarn --cwd "$branch_worktree" install
+    yarn --cwd "$branch_worktree" husky install
 fi
