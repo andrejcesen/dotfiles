@@ -25,4 +25,8 @@
                       :<C-e> (cmp.mapping.close)
                       :<CR> (cmp.mapping.confirm {:behavior cmp.ConfirmBehavior.Insert
                                                   :select true})}
-            :sources cmp-srcs})
+            :sources cmp-srcs
+            :snippet {:expand (fn [args]
+                                (let [(ok? luasnip) (pcall require :luasnip)]
+                                  (when ok?
+                                    (luasnip.lsp_expand args.body))))}})
