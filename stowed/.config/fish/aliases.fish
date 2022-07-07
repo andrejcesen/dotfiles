@@ -21,3 +21,5 @@ alias dig="dig +nocmd any +multiline +noall +answer"
 
 # Recursively delete `.DS_Store` files
 alias cleanup_dsstore="find . -name '*.DS_Store' -type f -ls -delete"
+# Purge Xcode cache the right way: https://lapcatsoftware.com/articles/DerivedData.html
+alias cleanup_xcode_deriveddata="osascript -e 'tell application \"Finder\" to move POSIX file \"$HOME/Library/Developer/Xcode/DerivedData\" to trash'"
