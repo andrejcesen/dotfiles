@@ -57,7 +57,7 @@
                                                              [:nvim-telescope/telescope-ui-select.nvim]]}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
   :pangloss/vim-javascript {}
-  :prettier/vim-prettier {:ft :javascript}
+  :prettier/vim-prettier {:ft [:javascript :typescript]}
   :radenling/vim-dispatch-neovim {}
   :ThePrimeagen/git-worktree.nvim {:mod :git-worktree}
   :tpope/vim-abolish {}
