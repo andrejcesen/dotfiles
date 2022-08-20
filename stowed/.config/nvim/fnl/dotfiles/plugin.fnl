@@ -33,7 +33,7 @@
   :Olical/aniseed {:branch :develop}
   :Olical/conjure {:branch :master :mod :conjure}
   :Olical/nvim-local-fennel {}
-  :arcticicestudio/nord-vim {:mod :nord}
+  :arcticicestudio/nord-vim {:branch :main :mod :nord}
   :kyazdani42/nvim-web-devicons {}
   :PeterRincker/vim-argumentative {}
   :airblade/vim-gitgutter {}
