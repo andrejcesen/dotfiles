@@ -23,5 +23,5 @@
     (map :<c-n> "lua vim.lsp.diagnostic.goto_prev()")
     (map :<c-p> "lua vim.lsp.diagnostic.goto_next()")
 
-    (map :<leader>lr "lua vim.lsp.buf.rename()")
-    (map :<leader>lf "lua vim.lsp.buf.formatting()")))
+    (map :<leader>sr "lua vim.lsp.buf.rename()")
+    (map :<leader>sf "lua vim.lsp.buf.formatting()")))

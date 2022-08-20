@@ -60,6 +60,7 @@
   :prettier/vim-prettier {:ft [:javascript :typescript :css :less :scss :graphql :markdown :vue :html]}
   :radenling/vim-dispatch-neovim {}
   :ThePrimeagen/git-worktree.nvim {:mod :git-worktree}
+  :ThePrimeagen/harpoon {:mod :harpoon}
   :tpope/vim-abolish {}
   :tpope/vim-commentary {}
   :tpope/vim-dadbod {}
