@@ -1,6 +1,7 @@
 (module dotfiles.plugin.lspconfig
   {autoload {util dotfiles.util
-             nvim aniseed.nvim}})
+             nvim aniseed.nvim
+             lsp-util lspconfig.util}})
 
 (defn- map [from to]
   (util.nnoremap from to))
@@ -9,6 +10,17 @@
   (when ok?
     (lsp.clojure_lsp.setup {})
     (lsp.tsserver.setup {})
+    (lsp.pyright.setup
+      ;; Default config.
+      ;; https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/pyright.lua
+      {:root_dir (lsp-util.root_pattern "pyproject.toml"
+                                        "setup.py"
+                                        "setup.cfg"
+                                        ;; Removed for correct root folder
+                                        ;; resolution in Pitch project.
+                                        ; "requirements.txt"
+                                        "Pipfile"
+                                        "pyrightconfig.json")})
     (lsp.sumneko_lua.setup
       {:cmd ["lua-language-server"]
        :settings {:Lua {:telemetry {:enable false}}}})
