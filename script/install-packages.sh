@@ -73,6 +73,7 @@ xcversion install "$(xcversion list | grep -E "^[^ ]+\$" | tail -n 1)"
 
 # npm
 npm install --global trash-cli
+npm install --global typescript typescript-language-server
 npm install --global pyright
 
 # VSCode
