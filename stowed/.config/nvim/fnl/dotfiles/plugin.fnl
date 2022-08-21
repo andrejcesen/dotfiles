@@ -44,7 +44,11 @@
   :ggandor/lightspeed.nvim {}
   :guns/vim-sexp {:mod :sexp}
   :habamax/vim-asciidoctor {}
-  :hrsh7th/nvim-cmp {:mod :cmp :requires [:hrsh7th/cmp-buffer :hrsh7th/cmp-nvim-lsp :PaterJason/cmp-conjure :L3MON4D3/LuaSnip]}
+  :hrsh7th/nvim-cmp {:mod :cmp :requires [:hrsh7th/cmp-nvim-lsp
+                                          :hrsh7th/cmp-buffer
+                                          :PaterJason/cmp-conjure
+                                          :saadparwaiz1/cmp_luasnip
+                                          :L3MON4D3/LuaSnip]}
   :jiangmiao/auto-pairs {:mod :auto-pairs}
   :lewis6991/impatient.nvim {}
   :liuchengxu/vim-better-default {:mod :better-default}
