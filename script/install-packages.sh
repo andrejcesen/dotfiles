@@ -72,9 +72,12 @@ gem install xcode-install
 xcversion install "$(xcversion list | grep -E "^[^ ]+\$" | tail -n 1)"
 
 # npm
-npm install --global trash-cli
-npm install --global typescript typescript-language-server
-npm install --global pyright
+npm install --global \
+  trash-cli \
+  typescript \
+  typescript-language-server \
+  pyright \
+  tldr
 
 # VSCode
 code --install-extension arcticicestudio.nord-visual-studio-code
