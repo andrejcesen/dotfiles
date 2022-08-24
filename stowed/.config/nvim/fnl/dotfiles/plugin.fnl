@@ -72,6 +72,7 @@
   :tpope/vim-eunuch {}
   :tpope/vim-fugitive {:mod :fugitive}
   :tpope/vim-repeat {}
+  :tpope/vim-rhubarb {}
   :tpope/vim-sexp-mappings-for-regular-people {}
   :tpope/vim-sleuth {}
   :tpope/vim-surround {}
