@@ -9,14 +9,18 @@
                       true)) ;; Turn off pattern-matching: https://stackoverflow.com/a/6077464/18714042
 
 (defn- prepare-pitch [path]
-  (let [command (string.format ":silent !prepare-pitch '%s'" path)]
-      (nvim.command command)))
+  (string.format ":silent !prepare-pitch '%s'" path path))
+
+(defn- prepare-and-build-pitch [path]
+  (string.format ":silent !prepare-pitch '%s' && tmux-pitch tmux '%s'" path path))
 
 (defn- on-tree-change [op {: prev_path : path}]
-  (if
+  (when
     (and (pitch? path)
-         (or (= op "create")
-             (= op "switch"))) (prepare-pitch path)))
+         (= op "create")) (nvim.command (prepare-and-build-pitch path)))
+  (when
+    (and (pitch? path)
+         (= op "switch")) (nvim.command (prepare-pitch path))))
 
 (let [(ok? git-worktree) (pcall require :git-worktree)]
   (when ok?

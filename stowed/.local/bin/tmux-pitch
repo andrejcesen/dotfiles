@@ -27,6 +27,11 @@ case "$1" in
                 split-window -dt "$clean_arg"
         fi
 
+
+        tmux send-keys -t "$target.0" C-C Enter
+        tmux send-keys -t "$target.1" C-C Enter
+        tmux send-keys -t "$target.2" C-C Enter
+
         log_file="$pitch/pit_dev_log.txt"
         rm -f "$log_file"
         touch "$log_file"
