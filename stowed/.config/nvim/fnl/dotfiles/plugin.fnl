@@ -49,6 +49,9 @@
                                           :PaterJason/cmp-conjure
                                           :saadparwaiz1/cmp_luasnip
                                           :L3MON4D3/LuaSnip]}
+  :iamcco/markdown-preview.nvim {:run "cd app && yarn install"
+                                 :mod :markdown-preview
+                                 :ft [:markdown]}
   :jiangmiao/auto-pairs {:mod :auto-pairs}
   :lewis6991/impatient.nvim {}
   :liuchengxu/vim-better-default {:mod :better-default}
