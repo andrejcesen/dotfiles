@@ -3,5 +3,7 @@
 
 (set nvim.g.ale_linters
   {:javascript [:standard]
+   :typescript []
+   :typescriptreact []
    :clojure []
    :python []})
