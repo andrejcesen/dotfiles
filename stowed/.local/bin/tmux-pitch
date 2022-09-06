@@ -46,8 +46,11 @@ case "$1" in
         pitch="$PITCH_HOME/$branch_name"
         cd "$pitch" || exit 1
 
+        # Specify host ip for webviews to connect to shadow-cljs when running
+        # on a device.
+        local_ip=$(osascript -e "IPv4 address of (system info)")
         # Write output to file for other processes to read.
-        pit dev --re-frisk-events 2>&1 | tee "$3"
+        SHADOW_SERVER_IP_ADDRESS=$local_ip pit dev --re-frisk-events 2>&1 | tee "$3"
         ;;
 
     "ios")
