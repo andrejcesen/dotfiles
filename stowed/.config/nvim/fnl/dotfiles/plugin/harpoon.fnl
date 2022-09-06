@@ -9,11 +9,14 @@
 (util.nnoremap :<leader>tc "lua require(\"harpoon.cmd-ui\").toggle_quick_menu()")
 
 ;; Set :silent to avoid flickering message on navigation.
-(nvim.set_keymap :n "<leader>j" ":lua require(\"harpoon.ui\").nav_file(1)<cr>" {:noremap true
-                                                                                :silent true})
-(nvim.set_keymap :n "<leader>k" ":lua require(\"harpoon.ui\").nav_file(2)<cr>" {:noremap true
-                                                                                :silent true})
-(nvim.set_keymap :n "<leader>l" ":lua require(\"harpoon.ui\").nav_file(3)<cr>" {:noremap true
-                                                                                :silent true})
-(nvim.set_keymap :n "<leader>;" ":lua require(\"harpoon.ui\").nav_file(4)<cr>" {:noremap true
-                                                                                :silent true})
+(nvim.set_keymap :n "<C-j>" ":lua require(\"harpoon.ui\").nav_file(1)<cr>" {:noremap true
+                                                                            :silent true})
+(nvim.set_keymap :n "<C-k>" ":lua require(\"harpoon.ui\").nav_file(2)<cr>" {:noremap true
+                                                                            :silent true})
+(nvim.set_keymap :n "<C-l>" ":lua require(\"harpoon.ui\").nav_file(3)<cr>" {:noremap true
+                                                                            :silent true})
+(nvim.set_keymap :n "<C-h>" ":lua require(\"harpoon.ui\").nav_file(4)<cr>" {:noremap true
+                                                                            :silent true})
+
+;; Remap Nvim's <C-L> mapping. See: https://neovim.io/doc/user/vim_diff.html
+(util.nnoremap :<leader>l "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>")
