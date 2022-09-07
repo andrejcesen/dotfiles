@@ -6,7 +6,8 @@ wait_str() {
     search_term="$2"
     wait_time="${3:-5m}" # 5 minutes default
 
-    (timeout "$wait_time" tail -F "$file" &) | grep -q "$search_term" && return 0
+    # `--lines=+1` outputs from the beginning of file: https://explainshell.com/explain?cmd=tail+-F+-n+%2B1
+    (timeout "$wait_time" tail -F --lines=+1 "$file" &) | grep -q "$search_term" && return 0
     echo "Timeout of $wait_time reached. Unable to find '$search_term' in '$file'"
     return 1
 }
