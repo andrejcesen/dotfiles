@@ -5,4 +5,6 @@
 (set nvim.g.conjure#log#botright true)
 (set nvim.g.conjure#mapping#doc_word "gk")
 
-; (set nvim.g.conjure#extract#tree_sitter#enabled true)
+;; Evaluates an atom with @ prefix
+;; https://clojurians-log.clojureverse.org/conjure/2021-01-20
+(nvim.set_keymap :n :<localleader>ed :<localleader>Eie {})
