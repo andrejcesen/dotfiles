@@ -12,6 +12,9 @@
 (set nvim.g.mapleader " ")
 (set nvim.g.maplocalleader ",")
 
+;; Paste without changing the default register.
+(noremap :x :<leader>p "\"_dP")
+
 ;; jk escape sequences.
 (noremap :i :jk :<esc>)
 (noremap :c :jk :<c-c>)
