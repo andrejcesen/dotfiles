@@ -64,7 +64,8 @@
                                                              [:nvim-telescope/telescope-ui-select.nvim]]}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
   :pangloss/vim-javascript {}
-  :prettier/vim-prettier {:ft [:javascript :typescript :css :less :scss :graphql :markdown :vue :html]}
+  :prettier/vim-prettier {:ft [:javascript :typescript :json :css :less :scss :graphql :markdown :vue :html]
+                          :mod :prettier}
   :radenling/vim-dispatch-neovim {}
   :ThePrimeagen/git-worktree.nvim {:mod :git-worktree}
   :ThePrimeagen/harpoon {:mod :harpoon}
