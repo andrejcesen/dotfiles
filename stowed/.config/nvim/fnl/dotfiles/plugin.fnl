@@ -52,7 +52,6 @@
   :iamcco/markdown-preview.nvim {:run "cd app && yarn install"
                                  :mod :markdown-preview
                                  :ft [:markdown]}
-  :jiangmiao/auto-pairs {:mod :auto-pairs}
   :lewis6991/impatient.nvim {}
   :liuchengxu/vim-better-default {:mod :better-default}
   :maxmellon/vim-jsx-pretty {}
@@ -84,4 +83,5 @@
   :tpope/vim-vinegar {}
   :tweekmonster/startuptime.vim {}
   :w0rp/ale {:mod :ale}
-  :wbthomason/packer.nvim {})
+  :wbthomason/packer.nvim {}
+  :windwp/nvim-autopairs {:mod :autopairs})
