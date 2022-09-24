@@ -62,6 +62,7 @@
                                                              [:nvim-lua/plenary.nvim]
                                                              [:nvim-telescope/telescope-ui-select.nvim]]}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
+  :nvim-treesitter/nvim-treesitter-context {}
   :pangloss/vim-javascript {}
   :prettier/vim-prettier {:ft [:javascript :typescript :json :css :less :scss :graphql :markdown :vue :html]
                           :mod :prettier}
