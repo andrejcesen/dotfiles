@@ -12,3 +12,9 @@
 (set nvim.o.undodir (.. (nvim.fn.stdpath "data") "/undo"))
 
 (nvim.ex.set "clipboard-=unnamedplus")
+
+;; Unmap jj | escaping
+(nvim.del_keymap :i :jj)
+(nvim.del_keymap :c :jj)
+
+(nvim.del_keymap :v :v)
