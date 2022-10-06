@@ -6,7 +6,7 @@
 #
 # More info:
 # https://superuser.com/questions/544989/does-tmux-sort-the-path-variable
-#
+
 if set -q TMUX && test -x /usr/libexec/path_helper
   # If we're in tmux, we want to build PATH from scratch, so that
   # we control ordering (just as we would in initial login shell).
@@ -18,20 +18,23 @@ end
 test -d /opt/homebrew && eval (/opt/homebrew/bin/brew shellenv)
 
 set -gx JAVA_HOME (/usr/libexec/java_home)
-
 set -gx ANDROID_HOME ~/Library/Android/sdk
+
 fish_add_path --path $ANDROID_HOME/cmdline-tools/latest/bin \
                      $ANDROID_HOME/emulator \
                      $ANDROID_HOME/tools \
                      $ANDROID_HOME/tools/bin \
                      $ANDROID_HOME/platform-tools
-
 # https://stackoverflow.com/a/66556339
 fish_add_path --path (/opt/homebrew/opt/ruby/bin/gem env gemdir)/bin \
                      /opt/homebrew/opt/ruby/bin
-
 fish_add_path --path /opt/homebrew/opt/python/libexec/bin
 fish_add_path --path ~/.local/bin
+
+# Add Nix last so that it comes first in PATH
+if test -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish'
+end
 
 set -gx fish_greeting ""
 
