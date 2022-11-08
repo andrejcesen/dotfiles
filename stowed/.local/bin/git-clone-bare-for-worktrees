@@ -20,6 +20,9 @@ name=${2:-${basename%.*}}
 git clone --bare "$url" "$name"
 cd "$name"
 
+# Remove all local branches (remote branches pulled in as local).
+git for-each-ref --format '%(refname:short)' refs/heads | grep -v "master\|main" | xargs git branch -D
+
 # Explicitly sets the remote origin fetch so we can fetch remote branches.
 git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 
