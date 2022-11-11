@@ -19,6 +19,7 @@ test -d /opt/homebrew && eval (/opt/homebrew/bin/brew shellenv)
 
 set -gx JAVA_HOME (/usr/libexec/java_home)
 set -gx ANDROID_HOME ~/Library/Android/sdk
+set -gx CODESCENE_HOME ~/Projects/Active/codescene/codescene-app
 
 fish_add_path --path $ANDROID_HOME/cmdline-tools/latest/bin \
                      $ANDROID_HOME/emulator \

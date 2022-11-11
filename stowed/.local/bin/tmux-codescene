@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+codescene_commands() {
+    branch_worktree="$1"
+    cd "$branch_worktree" || exit
+
+    cd ui || exit
+    npm install
+    npx playwright install
+    make start
+}
+
+case "$1" in
+     "tmux")
+         branch_name=$(basename "$2")
+         clean_arg=$(echo "$branch_name" | tr '/.' '__')
+         session_name=$(tmux display-message -p '#S');
+         target="$session_name:$clean_arg"
+
+         codescene="$CODESCENE_HOME/$branch_name"
+         cd "$codescene" || exit 1 # Check if it exists and set $PWD for tmux's new-window.
+
+         if ! tmux has-session -t "$target" 2>/dev/null; then
+             tmux new-window -dn "$clean_arg" 
+         fi
+
+         tmux send-keys -t "$target.0" "tmux-codescene $2" Enter 
+         ;;
+
+     *)
+         codescene_commands "$1"
+         ;;
+ esac
