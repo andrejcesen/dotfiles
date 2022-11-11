@@ -41,7 +41,7 @@
   :clojure-vim/vim-jack-in {}
   :dag/vim-fish {}
   :folke/which-key.nvim {:mod :which-key}
-  :ggandor/lightspeed.nvim {}
+  :ggandor/leap.nvim {:mod :leap}
   :guns/vim-sexp {:mod :sexp}
   :habamax/vim-asciidoctor {}
   :hrsh7th/nvim-cmp {:mod :cmp :requires [:hrsh7th/cmp-nvim-lsp
