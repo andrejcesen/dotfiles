@@ -25,7 +25,7 @@ brew install \
   git \
   git-delta \
   gh \
-  node@14 \
+  node@16 \
   ruby \
   imagemagick \
   youtube-dl \
@@ -43,8 +43,6 @@ brew install \
   mosh \
   stow \
   mas
-
-brew link node@14
 
 # brew cask
 brew install --cask \

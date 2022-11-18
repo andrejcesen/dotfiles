@@ -30,6 +30,7 @@ fish_add_path --path $ANDROID_HOME/cmdline-tools/latest/bin \
 fish_add_path --path (/opt/homebrew/opt/ruby/bin/gem env gemdir)/bin \
                      /opt/homebrew/opt/ruby/bin
 fish_add_path --path /opt/homebrew/opt/python/libexec/bin
+fish_add_path --path /opt/homebrew/opt/node@16/bin
 fish_add_path --path ~/.local/bin
 
 # Add Nix last so that it comes first in PATH
