@@ -50,6 +50,7 @@ brew install --cask \
   alfred \
   android-studio \
   brave-browser \
+  dash \
   docker \
   fork \
   intellij-idea-ce \
