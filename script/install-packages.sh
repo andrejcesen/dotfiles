@@ -18,6 +18,7 @@ brew install \
   fzf \
   z \
   bat \
+  tldr \
   entr \
   tree \
   gnupg \
@@ -74,8 +75,7 @@ npm install --global \
   trash-cli \
   typescript \
   typescript-language-server \
-  pyright \
-  tldr
+  pyright
 
 # VSCode
 code --install-extension arcticicestudio.nord-visual-studio-code
