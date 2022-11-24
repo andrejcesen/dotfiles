@@ -54,7 +54,6 @@
                                  :ft [:markdown]}
   :lewis6991/impatient.nvim {}
   :liuchengxu/vim-better-default {:mod :better-default}
-  :maxmellon/vim-jsx-pretty {}
   :mbbill/undotree {:mod :undotree}
   :neovim/nvim-lspconfig {:mod :lspconfig}
   :nvim-lualine/lualine.nvim {:mod :lualine}
@@ -63,7 +62,6 @@
                                                              [:nvim-telescope/telescope-ui-select.nvim]]}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
   :nvim-treesitter/nvim-treesitter-context {}
-  :pangloss/vim-javascript {}
   :prettier/vim-prettier {:ft [:javascript :typescript :json :css :less :scss :graphql :markdown :vue :html]
                           :mod :prettier}
   :radenling/vim-dispatch-neovim {}
