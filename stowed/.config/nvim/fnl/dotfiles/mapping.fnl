@@ -15,22 +15,17 @@
 ;; Paste without changing the default register.
 (noremap :x :<leader>p "\"_dP")
 
-;; Spacemacs style leader mappings.
-(noremap :n :<leader>wm ":tab sp<cr>")
-(noremap :n :<leader>wc ":only<cr>")
-(noremap :n :<leader>bd ":bdelete!<cr>")
-(noremap :n :<leader>to ":tabonly<cr>")
-(noremap :n :<leader>sw ":mksession! .quicksave.vim<cr>")
-(noremap :n :<leader>sr ":source .quicksave.vim<cr>")
-
-;; Delete hidden buffers.
-(noremap :n :<leader>bo ":call DeleteHiddenBuffers()<cr>")
+;; Copy absolute path of the current buffer.
+(noremap :n :<leader>c ":let @+=expand('%:p')<cr>")
 
 ;; Correct to first spelling suggestion.
 (noremap :n :<leader>zz ":normal! 1z=<cr>")
 
 ;; Trim trialing whitespace.
 (noremap :n :<leader>bt ":%s/\\s\\+$//e<cr>")
+
+;; Delete hidden buffers.
+(noremap :n :<leader>bo ":call DeleteHiddenBuffers()<cr>")
 
 (nu.fn-bridge
   :DeleteHiddenBuffers
