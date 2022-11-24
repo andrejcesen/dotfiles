@@ -32,8 +32,8 @@
     (map :gi "lua vim.lsp.buf.implementation()")
     (map :K "lua vim.lsp.buf.hover()")
     (map :<leader>k "lua vim.lsp.buf.signature_help()")
-    (map :<c-n> "lua vim.lsp.diagnostic.goto_prev()")
-    (map :<c-p> "lua vim.lsp.diagnostic.goto_next()")
+    (map :<c-n> "lua vim.diagnostic.goto_next()")
+    (map :<c-p> "lua vim.diagnostic.goto_prev()")
 
     (map :<leader>sr "lua vim.lsp.buf.rename()")
     (map :<leader>sf "lua vim.lsp.buf.formatting()")))
