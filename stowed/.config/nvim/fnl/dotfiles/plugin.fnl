@@ -55,7 +55,7 @@
   :lewis6991/impatient.nvim {}
   :liuchengxu/vim-better-default {:mod :better-default}
   :mbbill/undotree {:mod :undotree}
-  :neovim/nvim-lspconfig {:mod :lspconfig}
+  :neovim/nvim-lspconfig {:mod :lspconfig :requires [[:jose-elias-alvarez/typescript.nvim]]}
   :nvim-lualine/lualine.nvim {:mod :lualine}
   :nvim-telescope/telescope.nvim {:mod :telescope :requires [[:nvim-lua/popup.nvim]
                                                              [:nvim-lua/plenary.nvim]

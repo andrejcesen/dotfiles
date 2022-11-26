@@ -6,19 +6,21 @@
 (defn- map [from to]
   (util.nnoremap from to))
 
-;; Add tsserver's OrganizeImport command.
-;; https://www.reddit.com/r/neovim/comments/lwz8l7/how_to_use_tsservers_organize_imports_with_nvim/
-(defn- organize-imports []
-  (let [params {:command "_typescript.organizeImports"
-                :arguments [ (nvim.buf_get_name 0) ]
-                :title ""}]
-    (vim.lsp.buf.execute_command params)))
+(def- capabilities 
+  (let [(ok? cmp-lsp) (pcall require "cmp_nvim_lsp")]
+    (when ok?
+      (cmp-lsp.default_capabilities))))
+
+;; Enables tsserver automatically, no need to call lsp.tsserver.setup
+(let [(ok? typescript) (pcall require :typescript) ]
+  (when ok?
+    (typescript.setup
+      ;; LSP config options
+      {:server {:capabilities capabilities}})))
 
 (let [(ok? lsp) (pcall require :lspconfig)]
   (when ok?
     (lsp.clojure_lsp.setup {})
-    (lsp.tsserver.setup {:commands
-                         {:OrganizeImports [organize-imports "Organize Imports"]}})
     (lsp.pyright.setup
       ;; Default config.
       ;; https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/pyright.lua
@@ -37,6 +39,9 @@
     ;; https://www.chrisatmachine.com/Neovim/27-native-lsp/
     (map :gd "lua vim.lsp.buf.definition()")
     (map :gD "lua vim.lsp.buf.declaration()")
+    ;; Tries to find implementation file — even if those files are normally
+    ;; shadowed by .d.ts files.
+    (map :gsd "TypescriptGoToSourceDefinition")
     (map :gr "lua vim.lsp.buf.references()")
     (map :gi "lua vim.lsp.buf.implementation()")
     (map :K "lua vim.lsp.buf.hover()")
@@ -46,4 +51,4 @@
 
     (map :<leader>sr "lua vim.lsp.buf.rename()")
     (map :<leader>sf "lua vim.lsp.buf.formatting()")
-    (map :<leader>so "OrganizeImports<cr>")))
+    (map :<leader>so "TypescriptOrganizeImports<cr>")))
