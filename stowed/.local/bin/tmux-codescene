@@ -5,7 +5,7 @@ codescene_commands() {
     cd "$branch_worktree" || exit
 
     cd ui || exit
-    make deps
+    npm install
     npx playwright install
     make start
 }
