@@ -21,6 +21,12 @@
 (let [(ok? lsp) (pcall require :lspconfig)]
   (when ok?
     (lsp.clojure_lsp.setup {})
+    (lsp.cssls.setup {})
+    (lsp.eslint.setup
+      {:on_attach (fn [client]
+                    (tset client.server_capabilities :documentFormattingProvider true))})
+    (lsp.html.setup {})
+    (lsp.jsonls.setup {})
     (lsp.pyright.setup
       ;; Default config.
       ;; https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/pyright.lua
@@ -50,5 +56,5 @@
     (map :<c-p> "lua vim.diagnostic.goto_prev()")
 
     (map :<leader>sr "lua vim.lsp.buf.rename()")
-    (map :<leader>sf "lua vim.lsp.buf.formatting()")
+    (map :<leader>sf "lua vim.lsp.buf.format { async = true }")
     (map :<leader>so "TypescriptOrganizeImports<cr>")))

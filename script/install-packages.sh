@@ -76,6 +76,7 @@ npm install --global \
   trash-cli \
   typescript \
   typescript-language-server \
+  vscode-langservers-extracted \
   pyright
 
 # VSCode
