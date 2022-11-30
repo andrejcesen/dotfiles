@@ -4,6 +4,8 @@
 (set nvim.g.vim_better_default_persistent_undo true)
 (nvim.ex.runtime_ "plugin/default.vim")
 
+; (nvim.ex.set :nonumber)
+; (nvim.ex.set :norelativenumber)
 (nvim.ex.set :nocursorline)
 (nvim.ex.set "wildmode=full")
 (nvim.ex.set "wildoptions=pum")

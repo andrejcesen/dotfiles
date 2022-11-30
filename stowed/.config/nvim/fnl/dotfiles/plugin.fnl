@@ -54,18 +54,18 @@
                                  :ft [:markdown]}
   :lewis6991/impatient.nvim {}
   :liuchengxu/vim-better-default {:mod :better-default}
-  :mbbill/undotree {:mod :undotree}
+  ; :mbbill/undotree {:mod :undotree}
   :neovim/nvim-lspconfig {:mod :lspconfig :requires [[:jose-elias-alvarez/typescript.nvim]]}
   :nvim-lualine/lualine.nvim {:mod :lualine}
   :nvim-telescope/telescope.nvim {:mod :telescope :requires [[:nvim-lua/popup.nvim]
                                                              [:nvim-lua/plenary.nvim]
                                                              [:nvim-telescope/telescope-ui-select.nvim]]}
+  :ThePrimeagen/git-worktree.nvim {:mod :git-worktree}
+  :ThePrimeagen/harpoon {:mod :harpoon}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
   :nvim-treesitter/nvim-treesitter-context {}
   :prettier/vim-prettier {:mod :prettier}
   :radenling/vim-dispatch-neovim {}
-  :ThePrimeagen/git-worktree.nvim {:mod :git-worktree}
-  :ThePrimeagen/harpoon {:mod :harpoon}
   :tpope/vim-abolish {}
   :tpope/vim-commentary {}
   :tpope/vim-dadbod {}
