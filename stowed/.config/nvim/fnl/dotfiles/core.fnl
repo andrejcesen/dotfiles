@@ -9,7 +9,7 @@
 
 ;; this causes some intermittent underlinings
 ;(nvim.ex.set :spell)
-;(nvim.ex.set :list)
+(nvim.ex.set :list)
 
 ;; Reserve column for signs to prevent indenting while editing.
 (nvim.ex.set "signcolumn=yes:1")
