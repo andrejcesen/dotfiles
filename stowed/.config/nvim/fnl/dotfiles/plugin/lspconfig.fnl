@@ -20,17 +20,19 @@
 
 (let [(ok? lsp) (pcall require :lspconfig)]
   (when ok?
-    (lsp.clojure_lsp.setup {})
-    (lsp.cssls.setup {})
+    (lsp.clojure_lsp.setup {:capabilities capabilities})
+    (lsp.cssls.setup {:capabilities capabilities})
     (lsp.eslint.setup
-      {:on_attach (fn [client]
+      {:capabilities capabilities
+       :on_attach (fn [client]
                     (tset client.server_capabilities :documentFormattingProvider true))})
-    (lsp.html.setup {})
-    (lsp.jsonls.setup {})
+    (lsp.html.setup {:capabilities capabilities})
+    (lsp.jsonls.setup {:capabilities capabilities})
     (lsp.pyright.setup
       ;; Default config.
       ;; https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/pyright.lua
-      {:root_dir (lsp-util.root_pattern "pyproject.toml"
+      {:capabilities capabilities
+       :root_dir (lsp-util.root_pattern "pyproject.toml"
                                         "setup.py"
                                         "setup.cfg"
                                         ;; Removed for correct root folder
@@ -39,7 +41,8 @@
                                         "Pipfile"
                                         "pyrightconfig.json")})
     (lsp.sumneko_lua.setup
-      {:cmd ["lua-language-server"]
+      {:capabilities capabilities
+       :cmd ["lua-language-server"]
        :settings {:Lua {:telemetry {:enable false}}}})
 
     ;; https://www.chrisatmachine.com/Neovim/27-native-lsp/
