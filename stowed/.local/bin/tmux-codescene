@@ -25,7 +25,7 @@ case "$1" in
          fi
 
          sleep 1
-         tmux send-keys -t "$target.0" C-C Enter
+         # tmux send-keys -t "$target.0" C-C Enter
          tmux send-keys -t "$target.0" "tmux-codescene $2" Enter 
          ;;
 
