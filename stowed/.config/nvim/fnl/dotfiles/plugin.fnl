@@ -48,7 +48,8 @@
                                           :hrsh7th/cmp-buffer
                                           :PaterJason/cmp-conjure
                                           :saadparwaiz1/cmp_luasnip
-                                          :L3MON4D3/LuaSnip]}
+                                          :L3MON4D3/LuaSnip
+                                          :rafamadriz/friendly-snippets]}
   :iamcco/markdown-preview.nvim {:run "cd app && yarn install"
                                  :mod :markdown-preview
                                  :ft [:markdown]}
