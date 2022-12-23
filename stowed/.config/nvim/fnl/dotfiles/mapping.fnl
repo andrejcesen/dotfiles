@@ -12,6 +12,9 @@
 (set nvim.g.mapleader " ")
 (set nvim.g.maplocalleader ",")
 
+;; Remap original `,` behaviour to `\`, since it's now localleader.
+(noremap :n :\ ",")
+
 ;; Paste without changing the default register.
 (noremap :x :<leader>p "\"_dP")
 
