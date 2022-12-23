@@ -6,7 +6,7 @@ fi
 
 read -rp "Enter Query: " query
 
-if grep -qs "$selected" ~/.tmux-cht-languages; then
+if grep -wqs "$selected" ~/.tmux-cht-languages; then
     query=`echo "$query" | tr ' ' '+'`
     curl -s "cht.sh/$selected/$query?T" | bat --paging=always --language "$selected"
 else
