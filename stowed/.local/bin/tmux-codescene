@@ -7,7 +7,7 @@ codescene_commands() {
     cd ui || exit
     npm install
     npx playwright install
-    make start
+    npm start
 }
 
 case "$1" in
