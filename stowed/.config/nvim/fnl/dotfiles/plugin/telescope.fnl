@@ -17,10 +17,11 @@
     (telescope.load_extension :ui-select)
     (telescope.load_extension :git_worktree)
 
-    (util.lnnoremap :ff "Telescope find_files")
-    (util.lnnoremap :f- "Telescope file_browser")
+    (util.lnnoremap :ff "Telescope find_files hidden=true")
+    (util.lnnoremap :fF "Telescope git_files")
     (util.lnnoremap :fg "Telescope live_grep")
     (util.lnnoremap :* "Telescope grep_string")
+    ; (nvim.set_keymap :n :<leader>fS (fn [] (.. "Telescope grep_string search=" (nvim.fn.input ("Grep >")))) {:noremap true})
     (util.lnnoremap :fb "Telescope buffers")
     (util.lnnoremap :fH "Telescope help_tags")
     (util.lnnoremap :fm "Telescope keymaps")
@@ -38,4 +39,3 @@
     (util.lnnoremap :fss "Telescope lsp_workspace_symbols")
     (util.lnnoremap :gw "Telescope git_worktree git_worktrees")
     (util.lnnoremap :gm "Telescope git_worktree create_git_worktree")))
-
