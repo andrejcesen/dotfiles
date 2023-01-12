@@ -12,7 +12,7 @@
       (cmp-lsp.default_capabilities))))
 
 ;; Enables tsserver automatically, no need to call lsp.tsserver.setup
-(let [(ok? typescript) (pcall require :typescript) ]
+(let [(ok? typescript) (pcall require :typescript)]
   (when ok?
     (typescript.setup
       ;; LSP config options
@@ -60,4 +60,7 @@
 
     (map :<leader>sr "lua vim.lsp.buf.rename()")
     (map :<leader>sf "lua vim.lsp.buf.format { async = true }")
-    (map :<leader>so "TypescriptOrganizeImports<cr>")))
+    (map :<leader>sta "TypescriptFixAll<cr>")
+    (map :<leader>sti "TypescriptAddMissingImports<cr>")
+    (map :<leader>sto "TypescriptOrganizeImports<cr>")
+    (map :<leader>str "TypescriptRemoveUnused<cr>")))
