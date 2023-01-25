@@ -5,7 +5,8 @@ codescene_commands() {
     cd "$branch_worktree" || exit
 
     cd ui || exit
-    npm install
+    # Prepare all dependecies (including bootstrap).
+    make deps
     npx playwright install
     npm start
 }
