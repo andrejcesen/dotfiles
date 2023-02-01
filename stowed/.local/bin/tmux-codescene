@@ -4,6 +4,11 @@ codescene_commands() {
     branch_worktree="$1"
     cd "$branch_worktree" || exit
 
+    if [ "$2" != "just-build" ]; then
+        cp "$CODESCENE_HOME/../config/web-profiles.clj" "$branch_worktree/cloud/web/profiles.clj" 
+        cp "$CODESCENE_HOME/../config/worker-profiles.clj" "$branch_worktree/cloud/worker/profiles.clj" 
+    fi
+
     cd ui || exit
     # Prepare all dependecies (including bootstrap).
     make deps
@@ -27,10 +32,10 @@ case "$1" in
 
          sleep 1
          # tmux send-keys -t "$target.0" C-C Enter
-         tmux send-keys -t "$target.0" "tmux-codescene $2" Enter 
+         tmux send-keys -t "$target.0" "tmux-codescene $2 $3" Enter 
          ;;
 
      *)
-         codescene_commands "$1"
+         codescene_commands "$1" "$2"
          ;;
  esac

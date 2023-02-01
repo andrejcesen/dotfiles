@@ -10,14 +10,18 @@
 (defn codescene? [path]
   (starts-with? path nvim.env.CODESCENE_HOME))
 
-(defn- build-codescene [path]
-   (string.format ":silent !tmux-codescene tmux '%s'" path))
+(defn- build-codescene-cmd [path param]
+  (let [cmd (string.format ":silent !tmux-codescene tmux '%s'" path)]
+    (if param
+      (.. cmd " " param)
+      cmd)))
 
 (defn- on-tree-change [op {: prev_path : path}]
-  (when
-    (and (codescene? path)
-         (or (= op "create")
-             (= op "switch"))) (nvim.command (build-codescene path))))
+  (when (codescene? path)
+    (when (= op "create")
+      (nvim.command (build-codescene-cmd path)))
+    (when (= op "switch")
+      (nvim.command (build-codescene-cmd path "just-build")))) )
 
 (let [(ok? git-worktree) (pcall require :git-worktree)]
   (when ok?
