@@ -56,8 +56,10 @@ source ~/.config/fish/theme.fish
 source ~/.config/fish/aliases.fish
 
 # Local config.
-if [ -f ~/.config.fish ]
-  source ~/.config.fish
+if [ -f ~/.local-config.fish ]
+  source ~/.local-config.fish
 end
 
-direnv hook fish | source
+if type -q direnv
+  direnv hook fish | source
+end

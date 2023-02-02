@@ -5,7 +5,7 @@ mkdir -p ~/migration/home/
 
 # Backup some dotfiles likely not under source control
 cp -Rp \
-  ~/.extra.fish \
+  ~/.local-config.fish \
   ~/.gitconfig.local \
   ~/.gitignore \
   ~/.gnupg \
