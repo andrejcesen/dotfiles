@@ -38,5 +38,6 @@
                           :scss
                           :swift
                           :typescript
+                          :tsx
                           :vim
                           :yaml]})))
