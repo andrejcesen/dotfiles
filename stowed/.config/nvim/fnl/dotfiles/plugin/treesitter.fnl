@@ -3,7 +3,8 @@
 (let [(ok? ts) (pcall require :nvim-treesitter.configs)]
   (when ok?
     (ts.setup
-      {:indent {:enable true}
+      {:context_commentstring {:enable true} ;; JoosepAlviste/nvim-ts-context-commentstring
+       :indent {:enable true}
        :highlight {:enable true
                    :additional_vim_regex_highlighting false}
        :ensure_installed [:bash

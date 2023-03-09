@@ -55,7 +55,6 @@
                                  :ft [:markdown]}
   :lewis6991/impatient.nvim {}
   :liuchengxu/vim-better-default {:mod :better-default}
-  :maxmellon/vim-jsx-pretty {}
   ; :mbbill/undotree {:mod :undotree}
   :neovim/nvim-lspconfig {:mod :lspconfig :requires [[:jose-elias-alvarez/typescript.nvim]]}
   :nvim-lualine/lualine.nvim {:mod :lualine}
@@ -64,8 +63,9 @@
                                                              [:nvim-telescope/telescope-ui-select.nvim]]}
   :ThePrimeagen/git-worktree.nvim {:mod :git-worktree}
   :ThePrimeagen/harpoon {:mod :harpoon}
+  :JoosepAlviste/nvim-ts-context-commentstring {}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
-  :nvim-treesitter/nvim-treesitter-context {}
+  :nvim-treesitter/nvim-treesitter-context {:tag "compat/0.7"} ;; master dropped lots of languages
   :prettier/vim-prettier {:mod :prettier}
   :radenling/vim-dispatch-neovim {}
   :tpope/vim-abolish {}
