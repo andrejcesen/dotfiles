@@ -40,7 +40,7 @@
                                         ; "requirements.txt"
                                         "Pipfile"
                                         "pyrightconfig.json")})
-    (lsp.sumneko_lua.setup
+    (lsp.lua_ls.setup
       {:capabilities capabilities
        :cmd ["lua-language-server"]
        :settings {:Lua {:telemetry {:enable false}}}})
