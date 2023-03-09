@@ -53,8 +53,6 @@ brew install --cask \
   dash \
   docker \
   fork \
-  intellij-idea-ce \
-  jetbrains-toolbox \
   paw \
   spotify \
   transmission \
