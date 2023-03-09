@@ -8,6 +8,9 @@
 # * Remove exclusions
 # * Automating via cron
 
+# Run every hour
+# (crontab -l 2>/dev/null || true; echo "0 * * * * /Users/andrejcesen/.local/bin/time-machine-exclusions.sh") | crontab -
+
 find "$HOME/Projects" \
     -type d \( -name node_modules -o \
                -name Pods -o \
@@ -17,4 +20,5 @@ find "$HOME/Projects" \
     -exec tmutil addexclusion {} \; \
     -exec tmutil isexcluded {} \;
 
-tmutil addexclusion "/Users/andrejcesen/Library/Application Support/Spotify/PersistentCache"
+tmutil addexclusion "$HOME/Library/Application Support/Spotify/PersistentCache"
+tmutil isexcluded   "$HOME/Library/Application Support/Spotify/PersistentCache"
