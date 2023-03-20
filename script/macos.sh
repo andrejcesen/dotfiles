@@ -78,6 +78,13 @@ defaults write com.apple.dock wvous-tr-modifier -int 0
 # Use the new Compact Tab layout
 defaults write com.apple.Safari ShowStandaloneTabBar -bool false
 
+# Disable Spotlight Suggestions
+defaults write com.apple.Safari UniversalSearchEnabled -bool false
+# Suppress search engine suggestions
+defaults write com.apple.Safari SuppressSearchSuggestions -bool true
+# Disable Preload Top Hit in the background
+defaults write com.apple.Safari PreloadTopHit -bool false
+
 # Show the full URL in the address bar (note: this still hides the scheme)
 defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
 
