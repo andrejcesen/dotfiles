@@ -42,3 +42,6 @@
 
 [commit]
 	gpgsign = true
+
+[advice]
+	setUpstreamFailure = false
