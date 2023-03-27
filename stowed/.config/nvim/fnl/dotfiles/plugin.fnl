@@ -65,7 +65,7 @@
   :ThePrimeagen/harpoon {:mod :harpoon}
   :JoosepAlviste/nvim-ts-context-commentstring {}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
-  :nvim-treesitter/nvim-treesitter-context {:tag "compat/0.7"} ;; master dropped lots of languages
+  :nvim-treesitter/nvim-treesitter-context {}
   :prettier/vim-prettier {:mod :prettier}
   :radenling/vim-dispatch-neovim {}
   :tpope/vim-abolish {}
