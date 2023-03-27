@@ -10,6 +10,8 @@
        {:vimgrep_arguments ["rg" "--color=never" "--no-heading"
                             "--with-filename" "--line-number" "--column"
                             "--smart-case" "--follow"
+                            ; Trim whitespace at the beginning of a preview.
+                            "--trim"
                             ; Search in hidden/dot files.
                             "--hidden"
                             ; Don't search in the `.git` folder.
