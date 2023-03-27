@@ -6,18 +6,24 @@
   (when ok?
     (telescope.setup
       {:defaults
+       ; `hidden = true` is not supported in text grep commands.
        {:vimgrep_arguments ["rg" "--color=never" "--no-heading"
                             "--with-filename" "--line-number" "--column"
-                            "--smart-case" "--hidden" "--follow"
-                            "-g" "!.git/"]}
-       :pickers {:find_files {:find_command ["rg" "--files" "--iglob" "!.git" "--hidden"]}
+                            "--smart-case" "--follow"
+                            ; Search in hidden/dot files.
+                            "--hidden"
+                            ; Don't search in the `.git` folder.
+                            "--iglob" "!**/.git/*"]}
+       ; `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+       :pickers {:find_files {:find_command ["rg" "--files" "--hidden"
+                                             "--iglob" "!**/.git/*"]}
                  :buffers {:mappings {:i {"<c-d>" "delete_buffer"}
                                       :n {"<c-d>" "delete_buffer"}}}}})
 
     (telescope.load_extension :ui-select)
     (telescope.load_extension :git_worktree)
 
-    (util.lnnoremap :ff "Telescope find_files hidden=true")
+    (util.lnnoremap :ff "Telescope find_files")
     (util.lnnoremap :fF "Telescope git_files")
     (util.lnnoremap :fg "Telescope live_grep")
     (util.lnnoremap :* "Telescope grep_string")
