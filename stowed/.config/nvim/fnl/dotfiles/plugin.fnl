@@ -64,6 +64,7 @@
   :ThePrimeagen/git-worktree.nvim {:mod :git-worktree}
   :ThePrimeagen/harpoon {:mod :harpoon}
   :JoosepAlviste/nvim-ts-context-commentstring {}
+  :neomake/neomake {:mod :neomake}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate" :mod :treesitter}
   :nvim-treesitter/nvim-treesitter-context {}
   :prettier/vim-prettier {:mod :prettier}
