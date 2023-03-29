@@ -1,9 +1,10 @@
 (module dotfiles.plugin.neomake
   {autoload {nvim aniseed.nvim}})
 
-(nvim.ex.autocmd "BufNewFile,BufRead $CODESCENE_HOME/* call neomake#configure#automake('rw', 1000)")
-
 (when (= 1 (nvim.fn.executable "cs"))
+  ;; Configure Neomake when entering $CODESCENE_HOME
+  (nvim.ex.autocmd "BufNewFile,BufRead $CODESCENE_HOME/* call neomake#configure#automake('rw', 1000)")
+
   (set nvim.g.neomake_codescene_maker
        {:exe "cs"
         :args ["check"]
