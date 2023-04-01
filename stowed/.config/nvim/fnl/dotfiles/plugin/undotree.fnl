@@ -3,7 +3,7 @@
 
 (nvim.set_keymap
   :n
-  :<leader>ut
+  :<leader>u
   ":UndotreeShow<cr>:UndotreeFocus<cr>"
   {:noremap true
    :silent true})

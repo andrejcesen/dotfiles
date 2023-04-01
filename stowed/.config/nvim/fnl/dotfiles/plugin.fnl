@@ -25,13 +25,9 @@
 
 ;; Plugins to be managed by packer.
 (use
-  ; "~/repos/Olical/conjure" {:mod :conjure}
-  ; "~/repos/Olical/aniseed" {}
-  ; "~/repos/Olical/nvim-local-fennel" {}
-
   :Olical/AnsiEsc {}
-  :Olical/aniseed {:branch :develop}
-  :Olical/conjure {:branch :master :mod :conjure}
+  :Olical/aniseed {}
+  :Olical/conjure {:mod :conjure}
   :Olical/nvim-local-fennel {}
   :arcticicestudio/nord-vim {:branch :main :mod :nord}
   :kyazdani42/nvim-web-devicons {}
@@ -55,7 +51,7 @@
                                  :ft [:markdown]}
   :lewis6991/impatient.nvim {}
   :liuchengxu/vim-better-default {:mod :better-default}
-  ; :mbbill/undotree {:mod :undotree}
+  :mbbill/undotree {:mod :undotree}
   :neovim/nvim-lspconfig {:mod :lspconfig :requires [[:jose-elias-alvarez/typescript.nvim]]}
   :nvim-lualine/lualine.nvim {:mod :lualine}
   :nvim-telescope/telescope.nvim {:mod :telescope :requires [[:nvim-lua/popup.nvim]
