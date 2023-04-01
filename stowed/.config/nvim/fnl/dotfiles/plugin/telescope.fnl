@@ -1,6 +1,15 @@
 (module dotfiles.plugin.telescope
   {autoload {nvim aniseed.nvim
+             nu aniseed.nvim.util
              util dotfiles.util}})
+(nu.fn-bridge
+  :GrepSearch
+  :dotfiles.plugin.telescope :grep-search)
+
+(defn grep-search []
+  (let [builtin (require :telescope.builtin)]
+    (builtin.grep_string {:search (.. "Telescope grep_string search="
+                                      (nvim.fn.input "Grep > "))})))
 
 (let [(ok? telescope) (pcall require :telescope)]
   (when ok?
@@ -33,7 +42,7 @@
     (util.lnnoremap :fF "Telescope git_files")
     (util.lnnoremap :fg "Telescope live_grep")
     (util.lnnoremap :* "Telescope grep_string")
-    ; (nvim.set_keymap :n :<leader>fS (fn [] (.. "Telescope grep_string search=" (nvim.fn.input ("Grep >")))) {:noremap true})
+    (util.lnnoremap :8 ":call GrepSearch()")
     (util.lnnoremap :fb "Telescope buffers")
     (util.lnnoremap :fH "Telescope help_tags")
     (util.lnnoremap :fm "Telescope keymaps")
