@@ -19,7 +19,6 @@
                           :fennel
                           :fish
                           :graphql
-                          :help
                           :html
                           :http
                           :java

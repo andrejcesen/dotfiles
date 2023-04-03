@@ -31,7 +31,6 @@
   :Olical/nvim-local-fennel {}
   :arcticicestudio/nord-vim {:branch :main :mod :nord}
   :kyazdani42/nvim-web-devicons {}
-  :PeterRincker/vim-argumentative {}
   :airblade/vim-gitgutter {}
   :clojure-vim/clojure.vim {}
   :clojure-vim/vim-jack-in {}
@@ -39,7 +38,6 @@
   :folke/which-key.nvim {:mod :which-key}
   :ggandor/leap.nvim {:mod :leap}
   :guns/vim-sexp {:mod :sexp}
-  :habamax/vim-asciidoctor {}
   :hrsh7th/nvim-cmp {:mod :cmp :requires [:hrsh7th/cmp-nvim-lsp
                                           :hrsh7th/cmp-buffer
                                           :PaterJason/cmp-conjure
@@ -50,7 +48,6 @@
                                  :mod :markdown-preview
                                  :ft [:markdown]}
   :lewis6991/impatient.nvim {}
-  :liuchengxu/vim-better-default {:mod :better-default}
   :mbbill/undotree {:mod :undotree}
   :neovim/nvim-lspconfig {:mod :lspconfig :requires [[:jose-elias-alvarez/typescript.nvim]]}
   :nvim-lualine/lualine.nvim {:mod :lualine}
@@ -78,7 +75,7 @@
   :tpope/vim-surround {}
   :tpope/vim-unimpaired {}
   :tpope/vim-vinegar {}
-  :tweekmonster/startuptime.vim {}
   :w0rp/ale {:mod :ale}
   :wbthomason/packer.nvim {}
-  :windwp/nvim-autopairs {:mod :autopairs})
+  :windwp/nvim-autopairs {:mod :autopairs}
+  )
