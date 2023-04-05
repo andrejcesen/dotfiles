@@ -54,6 +54,7 @@ brew install --cask \
   docker \
   fork \
   paw \
+  sloth \
   spotify \
   transmission \
   visual-studio-code \
