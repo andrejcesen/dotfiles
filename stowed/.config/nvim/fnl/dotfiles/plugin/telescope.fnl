@@ -8,8 +8,7 @@
 
 (defn grep-search []
   (let [builtin (require :telescope.builtin)]
-    (builtin.grep_string {:search (.. "Telescope grep_string search="
-                                      (nvim.fn.input "Grep > "))})))
+    (builtin.grep_string {:search (nvim.fn.input "Grep > ")})))
 
 (let [(ok? telescope) (pcall require :telescope)]
   (when ok?
@@ -41,8 +40,8 @@
     (util.lnnoremap :ff "Telescope find_files")
     (util.lnnoremap :fF "Telescope git_files")
     (util.lnnoremap :fg "Telescope live_grep")
+    (util.lnnoremap :fG ":call GrepSearch()")
     (util.lnnoremap :* "Telescope grep_string")
-    (util.lnnoremap :8 ":call GrepSearch()")
     (util.lnnoremap :fb "Telescope buffers")
     (util.lnnoremap :fH "Telescope help_tags")
     (util.lnnoremap :fm "Telescope keymaps")
