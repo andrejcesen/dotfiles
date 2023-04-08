@@ -45,7 +45,8 @@
 (nvim.ex.set "winminheight=0")
 (nvim.ex.set "wildmode=longest:full,full") ; Expand to the longest, then to the next full match
 
-(nvim.ex.set "listchars=trail:·,extends:↷,precedes:↶")
+; https://stackoverflow.com/a/54786409
+(nvim.ex.let "&listchars=\"tab:→ ,trail:·,extends:↷,precedes:↶\"")
 
 (nvim.ex.set "whichwrap+=<,>,h,l") ; Allow backspace and cursor keys to cross line boundaries
 
