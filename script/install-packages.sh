@@ -54,6 +54,7 @@ brew install --cask \
   docker \
   fork \
   paw \
+  rectangle \
   sloth \
   spotify \
   transmission \
@@ -89,7 +90,6 @@ mas install 403504866 # PCalc
 mas install 1365531024 # 1Blocker
 mas install 1055273043 # PDF expert
 mas install 414528154 # Screenfloat
-mas install 441258766 # Magnet
 mas install 409201541 # Pages
 mas install 409203825 # Numbers
 mas install 409183694 # Keynote
