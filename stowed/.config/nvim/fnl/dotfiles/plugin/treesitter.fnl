@@ -6,7 +6,8 @@
       {:context_commentstring {:enable true} ;; JoosepAlviste/nvim-ts-context-commentstring
        :indent {:enable true}
        :highlight {:enable true
-                   :additional_vim_regex_highlighting false}
+                   ;; https://github.com/guns/vim-sexp/issues/31#issuecomment-1240936851
+                   :additional_vim_regex_highlighting [:clojure :fennel :lisp :scheme]}
        :ensure_installed [:bash
                           :c
                           :clojure
