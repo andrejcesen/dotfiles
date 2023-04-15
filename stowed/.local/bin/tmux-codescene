@@ -2,16 +2,14 @@
 
 codescene_commands() {
     branch_worktree="$1"
-    cd "$branch_worktree" || exit
 
     if [ "$2" != "just-build" ]; then
         cp "$CODESCENE_HOME/../config/web-profiles.clj" "$branch_worktree/cloud/web/profiles.clj" 
         cp "$CODESCENE_HOME/../config/worker-profiles.clj" "$branch_worktree/cloud/worker/profiles.clj" 
     fi
 
-    cd ui || exit
-    # Prepare all dependecies (including bootstrap).
-    make deps
+    cd "$branch_worktree/ui" || exit
+    npm install
     npx playwright install
     npm start
 }
