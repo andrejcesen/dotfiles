@@ -10,10 +10,10 @@ function fish_user_key_bindings
 
   if test -e "$(brew --prefix)/opt/fzf/shell/key-bindings.fish" >/dev/null
     source "$(brew --prefix)/opt/fzf/shell/key-bindings.fish"
-  end
 
-  if type -q fzf_key_bindings
-    fzf_key_bindings
+    if type -q fzf_key_bindings
+      fzf_key_bindings
+    end
   end
 
   for mode in insert default visual
