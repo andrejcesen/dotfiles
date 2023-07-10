@@ -57,6 +57,7 @@ brew install --cask \
   rectangle \
   sloth \
   spotify \
+  tomatobar \
   transmission \
   visual-studio-code \
   vlc \
