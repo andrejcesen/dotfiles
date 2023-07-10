@@ -53,6 +53,7 @@ brew install --cask \
   dash \
   docker \
   fork \
+  kitty \
   paw \
   rectangle \
   sloth \
