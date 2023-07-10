@@ -1,17 +1,61 @@
 #!/usr/bin/env bash
 
-codescene_commands() {
+codescene_dev() {
     branch_worktree="$1"
-
-    if [ "$2" != "just-build" ]; then
-        cp "$CODESCENE_HOME/../config/web-profiles.clj" "$branch_worktree/cloud/web/profiles.clj" 
-        cp "$CODESCENE_HOME/../config/worker-profiles.clj" "$branch_worktree/cloud/worker/profiles.clj" 
-    fi
 
     cd "$branch_worktree/ui" || exit
     npm install
     npx playwright install
+
+    cd "$branch_worktree/ui/clj-shared" || exit
+    npm install
+    npm run build
+
+    cp "$CODESCENE_HOME/../config/web-profiles.clj" "$branch_worktree/cloud/web/profiles.clj" 
+    cp "$CODESCENE_HOME/../config/worker-profiles.clj" "$branch_worktree/cloud/worker/profiles.clj" 
+
+    cd "$branch_worktree/analysis" || exit
+    lein with-profile production install
+
+    cd "$branch_worktree/features" || exit
+    lein with-profile production install
+
+    cd "$branch_worktree/ui" || exit
     npm start
+}
+
+codescene_cloud_web() {
+    branch_worktree="$1"
+
+    cd "$branch_worktree/cloud/web" || exit
+    npm install
+    make bootstrap
+    npm run watch:dev
+}
+
+codescene_cloud_repl() {
+    branch_worktree="$1"
+
+    cd "$branch_worktree/cloud/web" || exit
+    lein deps
+    lein repl
+}
+
+codescene_onprem_web() {
+    branch_worktree="$1"
+
+    cd "$branch_worktree/onprem" || exit
+    npm install
+    make ./resources/public/vendor/codescene-bootstrap
+    npm run watch:dev
+}
+
+codescene_onprem_repl() {
+    branch_worktree="$1"
+
+    cd "$branch_worktree/onprem" || exit
+    lein deps
+    lein repl
 }
 
 case "$1" in
@@ -24,16 +68,42 @@ case "$1" in
          codescene="$CODESCENE_HOME/$branch_name"
          cd "$codescene" || exit 1 # Check if it exists and set $PWD for tmux's new-window.
 
-         if ! tmux has-session -t "$target" 2>/dev/null; then
-             tmux new-window -dn "$clean_arg" 
+         if tmux has-session -t "$target" 2>/dev/null; then
+             exit 0
          fi
 
-         sleep 1
-         # tmux send-keys -t "$target.0" C-C Enter
-         tmux send-keys -t "$target.0" "tmux-codescene $2 $3" Enter 
+         tmux new-window -dn "$clean_arg" ';' \
+             split-window -dht "$clean_arg" ';' \
+             split-window -dvt "$clean_arg.1" ';' \
+             split-window -dvt "$clean_arg.2" ';' \
+             split-window -dvt "$clean_arg.1"
+
+         # sleep 1
+
+         tmux send-keys -t "$target.0" "tmux-codescene dev         $2 $3" Enter
+         tmux send-keys -t "$target.1" "tmux-codescene cloud-web   $2 $3"
+         tmux send-keys -t "$target.2" "tmux-codescene cloud-repl  $2 $3"
+         tmux send-keys -t "$target.3" "tmux-codescene onprem-web  $2 $3"
+         tmux send-keys -t "$target.4" "tmux-codescene onprem-repl $2 $3"
          ;;
 
-     *)
-         codescene_commands "$1" "$2"
+     "dev")
+         codescene_dev "$2" "$3"
+         ;;
+
+     "cloud-web")
+         codescene_cloud_web "$2" "$3"
+         ;;
+
+     "cloud-repl")
+         codescene_cloud_repl "$2" "$3"
+         ;;
+
+     "onprem-web")
+         codescene_onprem_web "$2" "$3"
+         ;;
+
+     "onprem-repl")
+         codescene_onprem_repl "$2" "$3"
          ;;
  esac
