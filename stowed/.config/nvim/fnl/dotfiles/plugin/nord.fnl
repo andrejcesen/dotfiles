@@ -10,4 +10,5 @@
     autocmd ColorScheme * highlight NormalFloat ctermbg=NONE | highlight TreesitterContext ctermbg=0
     augroup END")
 
+(set nvim.g.nord_uniform_diff_background 1)
 (vim.cmd "colorscheme nord")
