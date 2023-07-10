@@ -13,6 +13,10 @@ cp -Rp \
   ~/.z \
     ~/migration/home
 
+cd ~ || exit
+rsync -R .local/state/nvim/shada/main.shada ~/migration/home
+rsync -R .local/share/fish/fish_history ~/migration/home
+
 cp -Rp \
   ~/Documents \
   ~/Projects \
