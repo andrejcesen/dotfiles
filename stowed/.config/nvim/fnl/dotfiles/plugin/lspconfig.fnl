@@ -19,19 +19,39 @@
       {:server {:capabilities capabilities}})))
 
 (let [(ok? lsp) (pcall require :lspconfig)]
-  (when ok?
-    (lsp.clojure_lsp.setup {:capabilities capabilities})
-    (lsp.cssls.setup {:capabilities capabilities})
+  (when (not ok?) nil)
+  ;server features
+  (let [handlers {"textDocument/publishDiagnostics"
+                  (vim.lsp.with
+                    vim.lsp.diagnostic.on_publish_diagnostics
+                    {:severity_sort true})}]
+
+    ;; Show error codes (a rule that caused it).
+    ;; `open_flaot` resolves only global options, hence we need to specify it in `vim.diagnostic`
+    ;; https://github.com/neovim/neovim/issues/17651
+    (vim.diagnostic.config {:float {:format (fn [diagnostic] 
+                                              (string.format "%s [%s]"
+                                                             diagnostic.message
+                                                             diagnostic.code))}})
+
+    (lsp.clojure_lsp.setup {:capabilities capabilities
+                            :handlers handlers})
+    (lsp.cssls.setup {:capabilities capabilities
+                      :handlers handlers})
     (lsp.eslint.setup
       {:capabilities capabilities
+       :handlers handlers
        :on_attach (fn [client]
                     (tset client.server_capabilities :documentFormattingProvider true))})
-    (lsp.html.setup {:capabilities capabilities})
-    (lsp.jsonls.setup {:capabilities capabilities})
+    (lsp.html.setup {:capabilities capabilities
+                     :handlers handlers})
+    (lsp.jsonls.setup {:capabilities capabilities
+                       :handlers handlers})
     (lsp.pyright.setup
       ;; Default config.
       ;; https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/pyright.lua
       {:capabilities capabilities
+       :handlers handlers
        :root_dir (lsp-util.root_pattern "pyproject.toml"
                                         "setup.py"
                                         "setup.cfg"
@@ -43,6 +63,7 @@
     (lsp.lua_ls.setup
       {:capabilities capabilities
        :cmd ["lua-language-server"]
+       :handlers handlers
        :settings {:Lua {:telemetry {:enable false}}}})
 
     ;; https://www.chrisatmachine.com/Neovim/27-native-lsp/
