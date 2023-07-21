@@ -1,1 +1,9 @@
 /stowed/.local/bin/cs
+
+# OrbStack adds these to ~/.local/bin
+/stowed/.local/bin/docker-buildx
+/stowed/.local/bin/docker-compose
+/stowed/.local/bin/docker-credential-osxkeychain
+/stowed/.local/bin/docker
+/stowed/.local/bin/orb
+/stowed/.local/bin/orbctl

@@ -27,6 +27,7 @@ brew install \
   git-delta \
   gh \
   node@16 \
+  orbstack \
   ruby \
   imagemagick \
   youtube-dl \
@@ -51,7 +52,6 @@ brew install --cask \
   android-studio \
   brave-browser \
   dash \
-  docker \
   fork \
   kitty \
   paw \
