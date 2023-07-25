@@ -11,13 +11,6 @@
     (when ok?
       (cmp-lsp.default_capabilities))))
 
-;; Enables tsserver automatically, no need to call lsp.tsserver.setup
-(let [(ok? typescript) (pcall require :typescript)]
-  (when ok?
-    (typescript.setup
-      ;; LSP config options
-      {:server {:capabilities capabilities}})))
-
 (let [(ok? lsp) (pcall require :lspconfig)]
   (when (not ok?) nil)
   ;server features
@@ -33,6 +26,15 @@
                                               (string.format "%s [%s]"
                                                              diagnostic.message
                                                              diagnostic.code))}})
+
+    (let [(ok? typescript-tools) (pcall require :typescript-tools)]
+      (when (not ok?) nil)
+      (typescript-tools.setup {:capabilities capabilities
+                               :handlers handlers
+                               :on_attach (fn [client bufnr]
+                                            (map :<leader>sa "TSToolsFixAll")
+                                            (map :<leader>so "TSToolsOrganizeImports")
+                                            (map :<leader>sc "TSToolsRemoveUnusedImports"))}))
 
     (lsp.clojure_lsp.setup {:capabilities capabilities
                             :handlers handlers})
@@ -66,22 +68,16 @@
        :handlers handlers
        :settings {:Lua {:telemetry {:enable false}}}})
 
-    ;; https://www.chrisatmachine.com/Neovim/27-native-lsp/
     (map :gd "lua vim.lsp.buf.definition()")
     (map :gD "lua vim.lsp.buf.declaration()")
-    ;; Tries to find implementation file — even if those files are normally
-    ;; shadowed by .d.ts files.
-    (map :gsd "TypescriptGoToSourceDefinition")
     (map :gr "lua vim.lsp.buf.references()")
     (map :gi "lua vim.lsp.buf.implementation()")
+
     (map :K "lua vim.lsp.buf.hover()")
     (map :<leader>k "lua vim.lsp.buf.signature_help()")
+
     (map :<c-n> "lua vim.diagnostic.goto_next()")
     (map :<c-p> "lua vim.diagnostic.goto_prev()")
 
     (map :<leader>sr "lua vim.lsp.buf.rename()")
-    (map :<leader>sf "lua vim.lsp.buf.format { async = true }")
-    (map :<leader>sta "TypescriptFixAll<cr>")
-    (map :<leader>sti "TypescriptAddMissingImports<cr>")
-    (map :<leader>sto "TypescriptOrganizeImports<cr>")
-    (map :<leader>str "TypescriptRemoveUnused<cr>")))
+    (map :<leader>sf "lua vim.lsp.buf.format { async = true }")))
