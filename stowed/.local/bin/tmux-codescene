@@ -20,6 +20,11 @@ codescene_dev() {
     cd "$branch_worktree/features" || exit
     lein with-profile production install
 
+    if [ "$2" != "just-build" ]; then
+        # Update exclusions for newly created worktree.
+        time-machine-exclusions.sh > /dev/null &
+    fi
+
     cd "$branch_worktree/ui" || exit
     npm start
 }
