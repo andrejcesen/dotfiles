@@ -40,6 +40,7 @@ brew install \
   clojure/tools/clojure \
   clojure-lsp/brew/clojure-lsp-native \
   borkdude/brew/babashka \
+  efm-langserver \
   neovim \
   tmux \
   mosh \
@@ -75,6 +76,7 @@ xcversion install "$(xcversion list | grep -E "^[^ ]+\$" | tail -n 1)"
 
 # npm
 npm install --global \
+  @fsouza/prettierd \
   trash-cli \
   typescript \
   typescript-language-server \

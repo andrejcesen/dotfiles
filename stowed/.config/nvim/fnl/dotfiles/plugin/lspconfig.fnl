@@ -1,5 +1,6 @@
 (module dotfiles.plugin.lspconfig
   {autoload {util dotfiles.util
+             a aniseed.core
              nvim aniseed.nvim
              lsp-util lspconfig.util}})
 
@@ -32,6 +33,9 @@
       (typescript-tools.setup {:capabilities capabilities
                                :handlers handlers
                                :on_attach (fn [client bufnr]
+                                            ;; Disable tsserver formatting.
+                                            (tset client.server_capabilities :documentFormattingProvider false)
+                                            (tset client.server_capabilities :documentRangeFormattingProvider false)
                                             (map :<leader>sa "TSToolsFixAll")
                                             (map :<leader>so "TSToolsOrganizeImports")
                                             (map :<leader>sc "TSToolsRemoveUnusedImports"))}))
@@ -67,6 +71,29 @@
        :cmd ["lua-language-server"]
        :handlers handlers
        :settings {:Lua {:telemetry {:enable false}}}})
+
+    ;; https://github.com/lukas-reineke/dotfiles/blob/master/vim/lua/lsp/init.lua#L444
+    (let [prettierd-config {:formatCommand (.. "prettierd ${INPUT} ${--range-start=charStart} ${--range-end=charEnd} "
+                                              "${--tab-width=tabSize} ${--use-tabs=!insertSpaces}")
+                           :formatStdin true}
+          languages {:javascript [prettierd-config]
+                     :typescript [prettierd-config]
+                     :javascriptreact [prettierd-config]
+                     :typescriptreact [prettierd-config]
+                     :yaml [prettierd-config]
+                     :json [prettierd-config]
+                     :html [prettierd-config]
+                     :scss [prettierd-config]
+                     :less [prettierd-config]
+                     :css [prettierd-config]
+                     :markdown [prettierd-config]}]
+      (lsp.efm.setup {:capabilities capabilities
+                      :handlers handlers
+                      :init_options {:documentFormatting true}
+                      :root_dir vim.loop.cwd
+                      :languages (a.keys languages)
+                      :settings {:rootMarkers [".git/"]
+                                 :languages languages}}))
 
     (map :gd "lua vim.lsp.buf.definition()")
     (map :gD "lua vim.lsp.buf.declaration()")

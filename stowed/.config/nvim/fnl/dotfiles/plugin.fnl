@@ -64,7 +64,6 @@
                                     :mod :treesitter
                                     :requires [[:windwp/nvim-ts-autotag]]}
   :nvim-treesitter/nvim-treesitter-context {}
-  :prettier/vim-prettier {:mod :prettier}
   :radenling/vim-dispatch-neovim {}
   :tpope/vim-abolish {}
   :tpope/vim-commentary {}
