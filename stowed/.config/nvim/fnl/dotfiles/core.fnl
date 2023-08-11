@@ -84,3 +84,7 @@
 (nvim.set_keymap :c :<C-a> :<Home> {:noremap true})
 (nvim.set_keymap :c :<C-e> :<End> {:noremap true})
 (nvim.set_keymap :c :<C-d> :<Delete> {:noremap true})
+
+;; Create a file as soon as you edit it. This also fixes ESLint errors on newly created files.
+;; https://learnvimscriptthehardway.stevelosh.com/chapters/12.html
+(nvim.ex.autocmd "BufNewFile * :write")
