@@ -17,18 +17,21 @@ end
 
 test -d /opt/homebrew && eval (/opt/homebrew/bin/brew shellenv)
 
+set -gx CODESCENE_HOME ~/Projects/Active/codescene/codescene-app
+
 set -gx JAVA_HOME (/usr/libexec/java_home)
 set -gx ANDROID_HOME ~/Library/Android/sdk
-set -gx CODESCENE_HOME ~/Projects/Active/codescene/codescene-app
 
 fish_add_path --path $ANDROID_HOME/cmdline-tools/latest/bin \
                      $ANDROID_HOME/emulator \
                      $ANDROID_HOME/tools \
                      $ANDROID_HOME/tools/bin \
                      $ANDROID_HOME/platform-tools
+
 # https://stackoverflow.com/a/66556339
 fish_add_path --path (/opt/homebrew/opt/ruby/bin/gem env gemdir)/bin \
                      /opt/homebrew/opt/ruby/bin
+
 fish_add_path --path /opt/homebrew/opt/python/libexec/bin
 fish_add_path --path /opt/homebrew/opt/node@16/bin
 fish_add_path --path ~/.local/bin

@@ -57,15 +57,7 @@
       ;; Default config.
       ;; https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/pyright.lua
       {:capabilities capabilities
-       :handlers handlers
-       :root_dir (lsp-util.root_pattern "pyproject.toml"
-                                        "setup.py"
-                                        "setup.cfg"
-                                        ;; Removed for correct root folder
-                                        ;; resolution in Pitch project.
-                                        ; "requirements.txt"
-                                        "Pipfile"
-                                        "pyrightconfig.json")})
+       :handlers handlers})
     (lsp.lua_ls.setup
       {:capabilities capabilities
        :cmd ["lua-language-server"]
