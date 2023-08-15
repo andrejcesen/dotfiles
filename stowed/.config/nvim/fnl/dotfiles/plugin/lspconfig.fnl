@@ -30,6 +30,7 @@
 
     (let [(ok? typescript-tools) (pcall require :typescript-tools)]
       (when (not ok?) nil)
+
       (typescript-tools.setup {:capabilities capabilities
                                :handlers handlers
                                :on_attach (fn [client bufnr]
@@ -42,22 +43,25 @@
 
     (lsp.clojure_lsp.setup {:capabilities capabilities
                             :handlers handlers})
+
     (lsp.cssls.setup {:capabilities capabilities
                       :handlers handlers})
+    
     (lsp.eslint.setup
       {:capabilities capabilities
        :handlers handlers
        :on_attach (fn [client]
                     (tset client.server_capabilities :documentFormattingProvider true))})
+
     (lsp.html.setup {:capabilities capabilities
                      :handlers handlers})
+
     (lsp.jsonls.setup {:capabilities capabilities
                        :handlers handlers})
-    (lsp.pyright.setup
-      ;; Default config.
-      ;; https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/pyright.lua
-      {:capabilities capabilities
-       :handlers handlers})
+
+    (lsp.pyright.setup {:capabilities capabilities
+                        :handlers handlers})
+
     (lsp.lua_ls.setup
       {:capabilities capabilities
        :cmd ["lua-language-server"]
@@ -66,8 +70,8 @@
 
     ;; https://github.com/lukas-reineke/dotfiles/blob/master/vim/lua/lsp/init.lua#L444
     (let [prettierd-config {:formatCommand (.. "prettierd ${INPUT} ${--range-start=charStart} ${--range-end=charEnd} "
-                                              "${--tab-width=tabSize} ${--use-tabs=!insertSpaces}")
-                           :formatStdin true}
+                                               "${--tab-width=tabSize} ${--use-tabs=!insertSpaces}")
+                            :formatStdin true}
           languages {:javascript [prettierd-config]
                      :typescript [prettierd-config]
                      :javascriptreact [prettierd-config]
@@ -83,7 +87,7 @@
                       :handlers handlers
                       :init_options {:documentFormatting true}
                       :root_dir vim.loop.cwd
-                      :languages (a.keys languages)
+                      :filetypes (a.keys languages)
                       :settings {:rootMarkers [".git/"]
                                  :languages languages}}))
 
