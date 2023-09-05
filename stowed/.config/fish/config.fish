@@ -1,6 +1,6 @@
 # On macOS, the standard set `/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin`
 # gets prepended to PATH on login shell. Because tmux always runs as a login
-# shell, this standard set gets prepended to an already existing PATH 
+# shell, this standard set gets prepended to an already existing PATH
 # (set by Terminal.app running `config.fish` on login), which results in
 # `/usr/bin:...:/opt/homebrew/bin` -> system paths coming before homebrew.
 #
