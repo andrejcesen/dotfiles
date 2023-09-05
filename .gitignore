@@ -1,4 +1,5 @@
 /stowed/.local/bin/cs
+/stowed/.local/bin/rust-analyzer
 
 # OrbStack adds these to ~/.local/bin
 /stowed/.local/bin/docker-buildx

@@ -105,6 +105,9 @@ mas signout; echo "Sign in to App Store and press any key..."; read -n 1
 mas install 1289583905 # Pixelmator Pro
 mas install 1136220934 # Infuse 7
 
-# YNAB 4 (64-bit)
-echo | /bin/sh -c "$(curl -fsSL https://gitlab.com/bradleymiller/Y64/raw/master/install)"
-
+# rustup
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# rust-analyzer
+# https://rust-analyzer.github.io/manual.html#installation
+curl -L https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-aarch64-apple-darwin.gz | gunzip -c - > ~/.local/bin/rust-analyzer
+chmod +x ~/.local/bin/rust-analyzer

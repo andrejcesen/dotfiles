@@ -78,7 +78,6 @@
   :tpope/vim-surround {}
   :tpope/vim-unimpaired {}
   :tpope/vim-vinegar {}
-  :w0rp/ale {:mod :ale}
   :wbthomason/packer.nvim {}
   :windwp/nvim-autopairs {:mod :autopairs}
   )

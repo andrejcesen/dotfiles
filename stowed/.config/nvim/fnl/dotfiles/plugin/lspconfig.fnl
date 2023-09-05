@@ -68,6 +68,10 @@
        :handlers handlers
        :settings {:Lua {:telemetry {:enable false}}}})
 
+    (lsp.rust_analyzer.setup {:capabilities capabilities
+                              :handlers handlers
+                              :settings {:rust-analyzer {:checkOnSave {:command :clippy}}}})
+
     ;; https://github.com/lukas-reineke/dotfiles/blob/master/vim/lua/lsp/init.lua#L444
     (let [prettierd-config {:formatCommand (.. "prettierd ${INPUT} ${--range-start=charStart} ${--range-end=charEnd} "
                                                "${--tab-width=tabSize} ${--use-tabs=!insertSpaces}")

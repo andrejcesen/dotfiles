@@ -34,6 +34,7 @@ fish_add_path --path (/opt/homebrew/opt/ruby/bin/gem env gemdir)/bin \
 
 fish_add_path --path /opt/homebrew/opt/python/libexec/bin
 fish_add_path --path /opt/homebrew/opt/node@16/bin
+fish_add_path --path ~/.cargo/bin
 fish_add_path --path ~/.local/bin
 
 # Add Nix last so that it comes first in PATH
