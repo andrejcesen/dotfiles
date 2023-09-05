@@ -14,4 +14,5 @@
   (set nvim.g.neomake_javascript_enabled_makers ["codescene"])
   (set nvim.g.neomake_typescriptreact_enabled_makers ["codescene"])
   (set nvim.g.neomake_typescript_enabled_makers ["codescene"])
-  (set nvim.g.neomake_java_enabled_makers ["codescene"]))
+  (set nvim.g.neomake_java_enabled_makers ["codescene"])
+  (set nvim.g.neomake_sh_enabled_makers []))

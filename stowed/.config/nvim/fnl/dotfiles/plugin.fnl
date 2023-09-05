@@ -59,7 +59,7 @@
   :ThePrimeagen/git-worktree.nvim {:mod :git-worktree}
   :ThePrimeagen/harpoon {:mod :harpoon}
   :JoosepAlviste/nvim-ts-context-commentstring {}
-  :neomake/neomake {:mod :neomake}
+  ; :neomake/neomake {:mod :neomake}
   :nvim-treesitter/nvim-treesitter {:run ":TSUpdate"
                                     :mod :treesitter
                                     :requires [[:windwp/nvim-ts-autotag]]}
