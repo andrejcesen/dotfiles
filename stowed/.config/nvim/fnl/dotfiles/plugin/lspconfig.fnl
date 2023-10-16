@@ -26,7 +26,7 @@
     (vim.diagnostic.config {:float {:format (fn [diagnostic] 
                                               (string.format "%s [%s]"
                                                              diagnostic.message
-                                                             diagnostic.code))}})
+                                                             (or diagnostic.code "")))}})
 
     (let [(ok? typescript-tools) (pcall require :typescript-tools)]
       (when (not ok?) nil)
