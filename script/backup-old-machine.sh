@@ -16,6 +16,7 @@ cp -Rp \
 cd ~ || exit
 rsync -R .local/state/nvim/shada/main.shada ~/migration/home
 rsync -R .local/share/fish/fish_history ~/migration/home
+rsync -R .m2/settings.xml ~/migration/home
 
 mkdir -p ~/migration/Library/
 cp -Rp ~/Library/Fonts ~/migration/Library/ # all those fonts you've installed
