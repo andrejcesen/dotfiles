@@ -3,7 +3,8 @@
 (let [(ok? ts) (pcall require :nvim-treesitter.configs)]
   (when ok?
     (ts.setup
-      {:autotag {:enable true} ; Enable windwp/nvim-ts-autotag
+      {:autotag {:enable true ; Enable windwp/nvim-ts-autotag
+                 :enable_close_on_slash false}
        :context_commentstring {:enable true} ;; JoosepAlviste/nvim-ts-context-commentstring
        :indent {:enable true}
        :highlight {:enable true
