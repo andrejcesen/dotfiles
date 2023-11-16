@@ -1,4 +1,5 @@
 .DS_Store
 
 # Clojure linting
-.lsp/.cache
+**/.lsp/.cache
+conjure-log*.cljc
