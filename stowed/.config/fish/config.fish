@@ -33,7 +33,7 @@ fish_add_path --path (/opt/homebrew/opt/ruby/bin/gem env gemdir)/bin \
                      /opt/homebrew/opt/ruby/bin
 
 fish_add_path --path /opt/homebrew/opt/python/libexec/bin
-fish_add_path --path /opt/homebrew/opt/node@16/bin
+fish_add_path --path /opt/homebrew/opt/node@18/bin
 fish_add_path --path ~/.cargo/bin
 fish_add_path --path ~/.local/bin
 
