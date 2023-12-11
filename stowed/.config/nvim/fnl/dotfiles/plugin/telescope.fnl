@@ -27,12 +27,15 @@
        ; `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
        :pickers {:find_files {:find_command ["rg" "--files" "--hidden"
                                              "--iglob" "!**/.git/*"]
-                              :mappings {:i {"<M-u>" "results_scrolling_up"
+                              :mappings {:n {"<M-u>" "results_scrolling_up"
+                                             "<M-d>" "results_scrolling_down"}
+                                         :i {"<M-u>" "results_scrolling_up"
                                              "<M-d>" "results_scrolling_down"}}}
-                 :live_grep {:mappings {:i {"<M-u>" "results_scrolling_up"
+                 :live_grep {:mappings {:n {"<M-u>" "results_scrolling_up"
+                                            "<M-d>" "results_scrolling_down"}
+                                        :i {"<M-u>" "results_scrolling_up"
                                             "<M-d>" "results_scrolling_down"}}}
-                 :buffers {:mappings {:i {"<M-d>" "delete_buffer"}
-                                      :n {"<M-d>" "delete_buffer"}}}}})
+                 :buffers {:mappings {:n {"D" "delete_buffer"}}}}})
 
     (telescope.load_extension :ui-select)
     (telescope.load_extension :git_worktree)
