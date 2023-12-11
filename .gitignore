@@ -6,5 +6,6 @@
 /stowed/.local/bin/docker-compose
 /stowed/.local/bin/docker-credential-osxkeychain
 /stowed/.local/bin/docker
+/stowed/.local/bin/kubectl
 /stowed/.local/bin/orb
 /stowed/.local/bin/orbctl
