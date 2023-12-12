@@ -49,9 +49,9 @@
                                  :ft [:markdown]}
   :lewis6991/impatient.nvim {}
   :mbbill/undotree {:mod :undotree}
-  :neovim/nvim-lspconfig {:mod :lspconfig :requires [[:pmizio/typescript-tools.nvim]
-                                                     [:nvim-lua/plenary.nvim]
-                                                     [:neovim/nvim-lspconfig]] }
+  :neovim/nvim-lspconfig {:mod :lspconfig :requires [[:nvim-lua/plenary.nvim]]}
+  :pmizio/typescript-tools.nvim {:requires [[:neovim/nvim-lspconfig] 
+                                            [:nvim-lua/plenary.nvim]]}
   :nvim-lualine/lualine.nvim {:mod :lualine}
   :nvim-telescope/telescope.nvim {:mod :telescope :requires [[:nvim-lua/popup.nvim]
                                                              [:nvim-lua/plenary.nvim]

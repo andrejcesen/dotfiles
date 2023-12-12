@@ -13,26 +13,22 @@
       (cmp-lsp.default_capabilities))))
 
 (let [(ok? lsp) (pcall require :lspconfig)]
-  (when (not ok?) nil)
-  ;server features
-  (let [handlers {"textDocument/publishDiagnostics"
-                  (vim.lsp.with
-                    vim.lsp.diagnostic.on_publish_diagnostics
-                    {:severity_sort true})}]
+  (when ok?
 
     ;; Show error codes (a rule that caused it).
     ;; `open_flaot` resolves only global options, hence we need to specify it in `vim.diagnostic`
     ;; https://github.com/neovim/neovim/issues/17651
-    (vim.diagnostic.config {:float {:format (fn [diagnostic] 
+    (vim.diagnostic.config {:severity_sort true
+                            :float {:format (fn [diagnostic] 
                                               (string.format "%s [%s]"
                                                              diagnostic.message
                                                              (or diagnostic.code "")))}})
 
     (let [(ok? typescript-tools) (pcall require :typescript-tools)]
       (when (not ok?) nil)
-
       (typescript-tools.setup {:capabilities capabilities
-                               :handlers handlers
+                               :settings {;:tsserver_plugins ["@styled/typescript-styled-plugin"]
+                                          }
                                :on_attach (fn [client bufnr]
                                             ;; Disable tsserver formatting.
                                             (tset client.server_capabilities :documentFormattingProvider false)
@@ -42,34 +38,32 @@
                                             (map :<leader>sc "TSToolsRemoveUnusedImports"))}))
 
     (lsp.clojure_lsp.setup {:capabilities capabilities
-                            :handlers handlers})
+                            ; https://www.reddit.com/r/neovim/comments/xqogsu/turning_off_treesitter_and_lsp_for_specific_files/
+                            :on_attach (fn [client bufnr]
+                                         (when (-> (nvim.fn.bufname bufnr)
+                                                   ;; using '%' to escape dash and dot chars
+                                                   (string.match "^conjure%-log%-[0-9]+%.cljc$"))
+                                           (vim.cmd "LspStop")))})
 
-    (lsp.cssls.setup {:capabilities capabilities
-                      :handlers handlers})
-    
+    (lsp.cssls.setup {:capabilities capabilities})
+
     (lsp.eslint.setup
       {:capabilities capabilities
-       :handlers handlers
        :on_attach (fn [client]
                     (tset client.server_capabilities :documentFormattingProvider true))})
 
-    (lsp.html.setup {:capabilities capabilities
-                     :handlers handlers})
+    (lsp.html.setup {:capabilities capabilities})
 
-    (lsp.jsonls.setup {:capabilities capabilities
-                       :handlers handlers})
+    (lsp.jsonls.setup {:capabilities capabilities})
 
-    (lsp.pyright.setup {:capabilities capabilities
-                        :handlers handlers})
+    (lsp.pyright.setup {:capabilities capabilities})
 
     (lsp.lua_ls.setup
       {:capabilities capabilities
        :cmd ["lua-language-server"]
-       :handlers handlers
        :settings {:Lua {:telemetry {:enable false}}}})
 
     (lsp.rust_analyzer.setup {:capabilities capabilities
-                              :handlers handlers
                               :settings {:rust-analyzer {:checkOnSave {:command :clippy}}}})
 
     ;; https://github.com/lukas-reineke/dotfiles/blob/master/vim/lua/lsp/init.lua#L444
@@ -88,7 +82,6 @@
                      :css [prettierd-config]
                      :markdown [prettierd-config]}]
       (lsp.efm.setup {:capabilities capabilities
-                      :handlers handlers
                       :init_options {:documentFormatting true}
                       :root_dir vim.loop.cwd
                       :filetypes (a.keys languages)
