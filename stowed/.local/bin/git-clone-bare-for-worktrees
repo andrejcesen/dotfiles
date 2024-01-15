@@ -28,3 +28,8 @@ git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 
 # Gets all branches from origin.
 git fetch origin
+
+# Create a master worktree
+# Better to do this manually...
+#
+# git worktree add master
