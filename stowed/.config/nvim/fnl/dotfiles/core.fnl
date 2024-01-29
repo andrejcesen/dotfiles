@@ -88,3 +88,7 @@
 ;; Create a file as soon as you edit it. This also fixes ESLint errors on newly created files.
 ;; https://learnvimscriptthehardway.stevelosh.com/chapters/12.html
 (nvim.ex.autocmd "BufNewFile * :write")
+
+;; Fixes `Mark has invalid line number` when jumping back to netrw using CTRL-O.
+;; https://github.com/neovim/neovim/issues/24721
+(set nvim.g.netrw_keepj "keepj")
