@@ -5,6 +5,7 @@ mkdir -p ~/migration/home/
 
 # Backup some dotfiles likely not under source control
 cp -Rp \
+  ~/.aws \
   ~/.local-config.fish \
   ~/.gitconfig.local \
   ~/.gitignore \
