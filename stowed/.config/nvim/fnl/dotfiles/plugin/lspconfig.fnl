@@ -12,6 +12,12 @@
     (when ok?
       (cmp-lsp.default_capabilities))))
 
+;; Opt-out of LSP's |gq| formatting.
+;; This also worked unpredictably, as only the first buffer had `formatexpr` set.
+(vim.api.nvim_create_autocmd [:LspAttach] {:callback (fn [args] 
+                                                       (let [bo (. nvim.bo args.buf)]
+                                                         (tset bo :formatexpr nil)))})
+
 (let [(ok? lsp) (pcall require :lspconfig)]
   (when ok?
 
