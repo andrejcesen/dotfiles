@@ -33,8 +33,6 @@
     (let [(ok? typescript-tools) (pcall require :typescript-tools)]
       (when (not ok?) nil)
       (typescript-tools.setup {:capabilities capabilities
-                               :settings {;:tsserver_plugins ["@styled/typescript-styled-plugin"]
-                                          }
                                :on_attach (fn [client bufnr]
                                             ;; Disable tsserver formatting.
                                             (tset client.server_capabilities :documentFormattingProvider false)
