@@ -4,6 +4,28 @@
 # -e  Exit immediately if a command exits with a non-zero status.
 set -xe
 
+# Downloads cask versions. Allows to target specific version, eg. `brew install --cask temurin21`
+brew tap homebrew/cask-versions
+
+# brew cask
+brew install --cask \
+  temurin21 \
+  alfred \
+  android-studio \
+  brave-browser \
+  dash \
+  fork \
+  kitty \
+  paw \
+  rectangle \
+  sloth \
+  spotify \
+  tomatobar \
+  transmission \
+  visual-studio-code \
+  vlc \
+  zoom
+
 # brew
 brew install \
   fish \
@@ -36,7 +58,6 @@ brew install \
   xmlformat \
   watchman \
   direnv \
-  openjdk@11 \
   clojure/tools/clojure \
   clojure-lsp/brew/clojure-lsp-native \
   borkdude/brew/babashka \
@@ -46,24 +67,6 @@ brew install \
   mosh \
   stow \
   mas
-
-# brew cask
-brew install --cask \
-  alfred \
-  android-studio \
-  brave-browser \
-  dash \
-  fork \
-  kitty \
-  paw \
-  rectangle \
-  sloth \
-  spotify \
-  tomatobar \
-  transmission \
-  visual-studio-code \
-  vlc \
-  zoom
 
 # Xcode
 if ! command -v gem &> /dev/null
