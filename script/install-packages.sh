@@ -52,7 +52,7 @@ brew install \
   orbstack \
   ruby \
   imagemagick \
-  youtube-dl \
+  yt-dlp \
   jq \
   gron \
   xmlformat \
