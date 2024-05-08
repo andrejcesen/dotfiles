@@ -7,21 +7,27 @@ codescene_dev() {
     npm install
     npx playwright install
 
-    cd "$branch_worktree/ui/clj-shared" || exit
-    npm install
-    npm run build
+    if ! [[ -d "$branch_worktree/ui/clj-shared/dist" ]]; then
+        cd "$branch_worktree/ui/clj-shared" || exit
+        npm install
+        npm run build
+    fi
 
-    cp "$CODESCENE_HOME/../config/web-profiles.clj" "$branch_worktree/cloud/web/profiles.clj" 
-    cp "$CODESCENE_HOME/../config/worker-profiles.clj" "$branch_worktree/cloud/worker/profiles.clj" 
+    web_config_path="$branch_worktree/cloud/web/resources/config/local-override.edn" 
+    if ! [[ -f "$web_config_path" ]]; then
+        cp "$CODESCENE_HOME/../config/web-local-override.edn" "$web_config_path" 
+    fi
 
-    cd "$branch_worktree/analysis" || exit
-    lein with-profile production install
+    worker_config_path="$branch_worktree/cloud/worker/resources/config/local-override.edn" 
+    if ! [[ -f "$worker_config_path" ]]; then
+        cp "$CODESCENE_HOME/../config/worker-local-override.edn" "$worker_config_path" 
+    fi
 
-    cd "$branch_worktree/features" || exit
-    lein with-profile production install
+    cd "$branch_worktree" || exit
+    make analysis-build-java
 
     if [ "$2" != "just-build" ]; then
-        # Update exclusions for newly created worktree.
+        # Update exclusions for the newly created worktree.
         time-machine-exclusions.sh > /dev/null &
     fi
 
@@ -35,15 +41,14 @@ codescene_cloud_web() {
     cd "$branch_worktree/cloud/web" || exit
     npm install
     make bootstrap
-    npm run watch:dev
+    npm run watch
 }
 
 codescene_cloud_repl() {
     branch_worktree="$1"
 
     cd "$branch_worktree/cloud/web" || exit
-    lein deps
-    lein repl
+    bb repl
 }
 
 codescene_onprem_web() {
@@ -59,8 +64,15 @@ codescene_onprem_repl() {
     branch_worktree="$1"
 
     cd "$branch_worktree/onprem" || exit
-    lein deps
-    lein repl
+
+    # Copy over db files from `master`.
+    db_folder="$branch_worktree/onprem/resources" 
+    if ! [[ -f "$db_folder/caacs_enterprise.db.mv.db" ]]; then
+        master_db_folder="$branch_worktree/../master/onprem/resources" 
+        cp "$master_db_folder/caacs_enterprise.db.mv.db" "$db_folder"
+    fi
+
+    bb repl
 }
 
 case "$1" in
