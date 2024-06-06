@@ -15,6 +15,7 @@ cp -Rp \
     ~/migration/home
 
 cd ~ || exit
+rsync -R .local/bin_private/aws-rotate.sh ~/migration/home
 rsync -R .local/state/nvim/shada/main.shada ~/migration/home
 rsync -R .local/share/fish/fish_history ~/migration/home
 rsync -R .m2/settings.xml ~/migration/home
