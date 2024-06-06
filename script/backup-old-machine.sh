@@ -24,6 +24,7 @@ mkdir -p ~/migration/Library/
 cp -Rp ~/Library/Fonts ~/migration/Library/ # all those fonts you've installed
 cp -Rp ~/Library/Spelling/*.{aff,dic} ~/migration/Library/Spelling # spelling dictionaries
 
+# Backup Bear Notes:
 # 1. Make sure to close Bear app.
 # 2. Backup Bear notes
 mkdir -p "$HOME/migration/Library/Group Containers/9K33E3U3T4.net.shinyfrog.bear/" 
@@ -31,10 +32,6 @@ cp -Rp   "$HOME/Library/Group Containers/9K33E3U3T4.net.shinyfrog.bear/Applicati
          "$HOME/migration/Library/Group Containers/9K33E3U3T4.net.shinyfrog.bear/"
 # 3. Also backup to .bear2bk file in ~/Documents/2-Areas
 shortcuts run "Backup Bear Notes"
-
-# Editor settings & plugins
-mkdir -p ~/migration/Library/"Application Support"/
-cp -Rp ~/Library/Application\ Support/Code* ~/migration/Library/"Application Support"
 
 cp -Rp \
   ~/Documents \
