@@ -42,7 +42,23 @@
                                             (map :<leader>sc "TSToolsRemoveUnusedImports"))}))
 
     (lsp.clojure_lsp.setup {:capabilities capabilities
-                            ; https://www.reddit.com/r/neovim/comments/xqogsu/turning_off_treesitter_and_lsp_for_specific_files/
+                            ;; Allows running a single LSP under a monorepo.
+                            ;; Eg. if we have `a/deps.edn` and `b/deps.edn`, and you want it to grab the root `deps.edn`.
+                            ;; https://clojurians-log.clojureverse.org/lsp/2023-02-07
+                            ;; https://www.reddit.com/r/neovim/comments/ox93b5/comment/h7l62ty/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+                            :root_dir (fn [filename]
+                                        (let [git-root (lsp-util.find_git_ancestor filename)
+                                              find-root-pattern (lsp-util.root_pattern "project.clj"
+                                                                                       "deps.edn"
+                                                                                       "build.boot"
+                                                                                       "shadow-cljs.edn"
+                                                                                       "bb.edn")]
+                                          ;; First, search from the git root.
+                                          ;; Otherwise, search from the opened file location.
+                                          ;; https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/clojure_lsp.lua
+                                          (or (and git-root (find-root-pattern git-root))
+                                              (find-root-pattern filename))))
+                            ;; https://www.reddit.com/r/neovim/comments/xqogsu/turning_off_treesitter_and_lsp_for_specific_files/
                             :on_attach (fn [client bufnr]
                                          (when (-> (nvim.fn.bufname bufnr)
                                                    ;; using '%' to escape dash and dot chars
