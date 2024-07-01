@@ -22,6 +22,11 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # General UI/UX                                                               #
 ###############################################################################
 
+# Disable mouse acceleration
+# TODO: Update for macOS Sonoma+ (https://apple.stackexchange.com/questions/460992/how-can-i-really-turn-off-mouse-cursor-acceleration-in-macos-14-0-sonoma)
+# Default: 0.875
+defaults write .GlobalPreferences com.apple.mouse.scaling -1
+
 # Disable press-and-hold for keys in favor of key repeat
 # defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false         # For VS Code
