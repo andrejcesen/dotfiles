@@ -17,6 +17,16 @@
 (vim.api.nvim_create_autocmd [:LspAttach] {:callback (fn [args] 
                                                        (let [bo (. nvim.bo args.buf)]
                                                          (tset bo :formatexpr nil)))})
+;; Don't attach LSP to Conjure log files
+;; https://www.reddit.com/r/neovim/comments/168u3e4/how_to_cancel_lsp_attach_to_certain_buffer/
+(vim.api.nvim_create_autocmd [:LspAttach] {:callback (fn [args] 
+                                                       (let [bufname (vim.api.nvim_buf_get_name args.buf)]
+                                                         ;; using '%' to escape dash and dot chars
+                                                         (if (string.match bufname "conjure%-log%-[0-9]+%.cljc$")
+                                                           ;; Defer detaching for a bit, because LspAttach event happens right before
+                                                           ;; the buffer is marked as "attached", thus detaching will result in error.
+                                                           (vim.defer_fn #(vim.lsp.buf_detach_client args.buf args.data.client_id)
+                                                                         100))))})
 
 (let [(ok? lsp) (pcall require :lspconfig)]
   (when ok?
@@ -57,13 +67,7 @@
                                           ;; Otherwise, search from the opened file location.
                                           ;; https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/clojure_lsp.lua
                                           (or (and git-root (find-root-pattern git-root))
-                                              (find-root-pattern filename))))
-                            ;; https://www.reddit.com/r/neovim/comments/xqogsu/turning_off_treesitter_and_lsp_for_specific_files/
-                            :on_attach (fn [client bufnr]
-                                         (when (-> (nvim.fn.bufname bufnr)
-                                                   ;; using '%' to escape dash and dot chars
-                                                   (string.match "^conjure%-log%-[0-9]+%.cljc$"))
-                                           (vim.cmd "LspStop")))})
+                                              (find-root-pattern filename))))})
 
     (lsp.cssls.setup {:capabilities capabilities})
 
