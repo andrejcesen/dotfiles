@@ -1,0 +1,2 @@
+0 * * * * /Users/andrejcesen/.local/bin/time-machine-exclusions.sh
+0 12 * * 1 /Users/andrejcesen/.local/bin_private/aws-rotate.sh

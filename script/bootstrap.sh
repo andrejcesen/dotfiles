@@ -24,6 +24,10 @@ FISHPATH=$(which fish)
 sudo sh -c "echo $FISHPATH >> /etc/shells"
 chsh -s "$FISHPATH"
 
+# Load cron schedules
+crontab ~/.local/crontab.txt
+sudo crontab ~/.local/crontab-sudo.txt
+
 ~/.config/nvim/sync.sh
 
 ./script/macos.sh
