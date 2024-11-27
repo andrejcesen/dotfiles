@@ -29,7 +29,7 @@
   :Olical/aniseed {}
   :Olical/conjure {:mod :conjure}
   :Olical/nvim-local-fennel {}
-  :arcticicestudio/nord-vim {:branch :main :mod :nord}
+  :nordtheme/vim {:branch :main :mod :nord}
   :kyazdani42/nvim-web-devicons {}
   :airblade/vim-gitgutter {}
   :clojure-vim/clojure.vim {}

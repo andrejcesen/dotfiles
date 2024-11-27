@@ -8,7 +8,7 @@
 ;; https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f
 (vim.cmd "augroup MyColors
     autocmd!
-    autocmd ColorScheme * highlight NormalFloat ctermbg=0 | highlight TreesitterContext ctermbg=0
+    autocmd ColorScheme * highlight NormalFloat ctermbg=0 guifg=#d8dee9 guibg=#2e3440 | highlight TreesitterContext ctermbg=0 | highlight WinSeparator ctermfg=8 guifg=#434c5e guibg=#2e3440
     augroup END")
 
 (set nvim.g.nord_uniform_diff_background 1)
