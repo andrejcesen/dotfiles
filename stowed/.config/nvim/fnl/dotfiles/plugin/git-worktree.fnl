@@ -1,6 +1,7 @@
 (module dotfiles.plugin.git-worktree
   {autoload {a aniseed.core
-             nvim aniseed.nvim}})
+             nvim aniseed.nvim
+             plenary plenary}})
 
 (defn starts-with? [s substr]
   ;; http://lua-users.org/wiki/StringLibraryTutorial
@@ -16,16 +17,26 @@
       (.. cmd " " param)
       cmd)))
 
-(defn- on-tree-change [op {: prev_path : path}]
-  (when (codescene? path)
-    (when (= op "create")
-      (nvim.command (build-codescene-cmd path)))
-    (when (= op "switch")
-      (nvim.command (build-codescene-cmd path "just-build")))) )
+(defn get-absolute-path [path]
+  (let [plenary-path (plenary.path:new path)]
+    (if (plenary-path:is_absolute)
+      path
+      (plenary-path:absolute))))
 
-(let [(ok? git-worktree) (pcall require :git-worktree)]
-  (when ok?
-    (git-worktree.on_tree_change (fn [op meta]
-                                   ;; Always resolve to absolute path.
-                                   (let [absolute-path (git-worktree.get_worktree_path meta.path)]
-                                     (on-tree-change op (a.merge meta {:path absolute-path})))))))
+(defn- on-tree-change [type path prev_path]
+  (let [absolute-path (get-absolute-path path)]
+    (when (codescene? absolute-path)
+      (when (= type :create)
+        (nvim.command (build-codescene-cmd absolute-path)))
+      (when (= type :switch)
+        (nvim.command (build-codescene-cmd absolute-path "just-build"))))) )
+
+(let [(hooks-ok? hooks)   (pcall require "git-worktree.hooks")
+      (config-ok? config) (pcall require "git-worktree.config")]
+  (when (and hooks-ok? config-ok?)
+    (hooks.register hooks.type.CREATE (fn [path prev_path]
+                                        (on-tree-change :create path prev_path)))
+    (hooks.register hooks.type.SWITCH (fn [path prev_path]
+                                        (on-tree-change :switch path prev_path)
+                                        ;; `cd` to the new path
+                                        (hooks.builtins.update_current_buffer_on_switch path prev_path)))))

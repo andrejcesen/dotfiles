@@ -56,7 +56,7 @@
   :nvim-telescope/telescope.nvim {:mod :telescope :requires [[:nvim-lua/popup.nvim]
                                                              [:nvim-lua/plenary.nvim]
                                                              [:nvim-telescope/telescope-ui-select.nvim]]}
-  :ThePrimeagen/git-worktree.nvim {:mod :git-worktree}
+  :polarmutex/git-worktree.nvim {:mod :git-worktree}
   :ThePrimeagen/harpoon {:mod :harpoon}
   :JoosepAlviste/nvim-ts-context-commentstring {}
   :neomake/neomake {:mod :neomake}

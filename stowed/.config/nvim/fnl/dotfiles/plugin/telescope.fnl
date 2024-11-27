@@ -60,5 +60,5 @@
     (util.lnnoremap :fsr "Telescope lsp_references")
     (util.lnnoremap :fsS "Telescope lsp_document_symbols")
     (util.lnnoremap :fss "Telescope lsp_workspace_symbols")
-    (util.lnnoremap :gw "Telescope git_worktree git_worktrees")
+    (util.lnnoremap :gw "Telescope git_worktree git_worktree")
     (util.lnnoremap :gm "Telescope git_worktree create_git_worktree")))
