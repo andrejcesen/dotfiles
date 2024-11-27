@@ -23,6 +23,12 @@ codescene_dev() {
         cp "$CODESCENE_HOME/../config/worker-local-override.edn" "$worker_config_path" 
     fi
 
+    # if [ "$2" != "just-build" ]; then
+    #     onprem_config_path="$branch_worktree/onprem/resources/config.edn"
+    #     cp "$CODESCENE_HOME/../config/onprem-config.edn" "$onprem_config_path"
+    #     git -C "$branch_worktree" update-index --skip-worktree "$onprem_config_path"
+    # fi
+
     cd "$branch_worktree" || exit
     make analysis-build-java
 
@@ -57,7 +63,9 @@ codescene_onprem_web() {
     cd "$branch_worktree/onprem" || exit
     npm install
     make ./resources/public/vendor/codescene-bootstrap
-    npm run watch:dev
+    # Need to run both, since webpack-dev-server doesn't write anything to disk
+    # (meaning there's no HtmlWebpackPlugin output HTML).
+    npm run build:dev && npm run watch:dev
 }
 
 codescene_onprem_repl() {
