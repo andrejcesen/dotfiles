@@ -13,14 +13,14 @@ codescene_dev() {
         npm run build
     fi
 
-    web_config_path="$branch_worktree/cloud/web/resources/config/local-override.edn" 
+    web_config_path="$branch_worktree/cloud/web/resources/config/local-override.edn"
     if ! [[ -f "$web_config_path" ]]; then
-        cp "$CODESCENE_HOME/../config/web-local-override.edn" "$web_config_path" 
+        cp "$CODESCENE_HOME/../config/web-local-override.edn" "$web_config_path"
     fi
 
-    worker_config_path="$branch_worktree/cloud/worker/resources/config/local-override.edn" 
+    worker_config_path="$branch_worktree/cloud/worker/resources/config/local-override.edn"
     if ! [[ -f "$worker_config_path" ]]; then
-        cp "$CODESCENE_HOME/../config/worker-local-override.edn" "$worker_config_path" 
+        cp "$CODESCENE_HOME/../config/worker-local-override.edn" "$worker_config_path"
     fi
 
     # if [ "$2" != "just-build" ]; then
@@ -74,9 +74,9 @@ codescene_onprem_repl() {
     cd "$branch_worktree/onprem" || exit
 
     # Copy over db files from `master`.
-    db_folder="$branch_worktree/onprem/resources" 
+    db_folder="$branch_worktree/onprem/resources"
     if ! [[ -f "$db_folder/caacs_enterprise.db.mv.db" ]]; then
-        master_db_folder="$branch_worktree/../master/onprem/resources" 
+        master_db_folder="$branch_worktree/../master/onprem/resources"
         cp "$master_db_folder/caacs_enterprise.db.mv.db" "$db_folder"
     fi
 
