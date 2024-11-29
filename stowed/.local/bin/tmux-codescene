@@ -23,11 +23,9 @@ codescene_dev() {
         cp "$CODESCENE_HOME/../config/worker-local-override.edn" "$worker_config_path"
     fi
 
-    # if [ "$2" != "just-build" ]; then
-    #     onprem_config_path="$branch_worktree/onprem/resources/config.edn"
-    #     cp "$CODESCENE_HOME/../config/onprem-config.edn" "$onprem_config_path"
-    #     git -C "$branch_worktree" update-index --skip-worktree "$onprem_config_path"
-    # fi
+    # Applies Docker DB config to onprem.
+    merge-edn-map.clj "$branch_worktree/onprem/resources/config.edn" \
+                      "$CODESCENE_HOME/../config/onprem-config.edn"
 
     cd "$branch_worktree" || exit
     make analysis-build-java
