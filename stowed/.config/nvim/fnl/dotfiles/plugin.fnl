@@ -80,4 +80,7 @@
   :tpope/vim-vinegar {}
   :wbthomason/packer.nvim {}
   :windwp/nvim-autopairs {:mod :autopairs}
+  :sourcegraph/sg.nvim {:run "nvim -l build/init.lua"
+                        :mod :sourcegraph
+                        :requires [[:nvim-lua/plenary.nvim]]}
   )
