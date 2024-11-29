@@ -77,7 +77,7 @@
   :tpope/vim-sleuth {}
   :tpope/vim-surround {}
   :tpope/vim-unimpaired {}
-  :tpope/vim-vinegar {}
+  :stevearc/oil.nvim {:mod :oil}
   :wbthomason/packer.nvim {}
   :windwp/nvim-autopairs {:mod :autopairs}
   :sourcegraph/sg.nvim {:run "nvim -l build/init.lua"
