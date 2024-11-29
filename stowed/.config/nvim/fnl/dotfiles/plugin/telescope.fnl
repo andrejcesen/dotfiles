@@ -35,7 +35,7 @@
                                             "<M-d>" "results_scrolling_down"}
                                         :i {"<M-u>" "results_scrolling_up"
                                             "<M-d>" "results_scrolling_down"}}}
-                 :buffers {:mappings {:n {"D" "delete_buffer"}}}}})
+                 :buffers {:mappings {:n {"<M-d>" "delete_buffer"}}}}})
 
     (telescope.load_extension :ui-select)
     (telescope.load_extension :git_worktree)
