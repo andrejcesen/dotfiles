@@ -6,7 +6,7 @@
   (when ok?
     (oil.setup)))
 
-(util.nnoremap :- :Oil {:desc "Open parent directory" })
+(nvim.set_keymap :n :- ":Oil<cr>" {:noremap true :silent true})
 
 ; Pressing `G` shows relative path instead of absolute.
 ; Before: ~/path/to/dotfiles/stowed/...
