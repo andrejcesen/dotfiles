@@ -17,17 +17,11 @@
 
   ;; Run Neomake for codescene only, ignoring conjure log.
   ;; https://github.com/neomake/neomake/issues/2312#issuecomment-462319749
-  (vim.api.nvim_create_autocmd [:FileType] {:pattern [:clojure :java
-                                                      :javascriptreact
-                                                      :javascript
-                                                      :typescriptreact
-                                                      :typescript]
-                                            :callback (fn [args]
-                                                        (let [path (vim.fn.expand "%:p")
-                                                              codescene? (string.find path
-                                                                                      nvim.env.CODESCENE_HOME
-                                                                                      nil    ;; Start at index 1 (default).
-                                                                                      true   ;; Turn off pattern-matching: https://stackoverflow.com/a/6077464/18714042])
-                                                                                      )]
-                                                          (when (and codescene? (not (string.match (vim.fn.expand "<afile>") "conjure%-log%-[0-9]+%.cljc$")))
-                                                            (vim.api.nvim_call_function "neomake#configure#automake_for_buffer" ["rw" 1000]))))}))
+  (vim.api.nvim_create_autocmd [:BufWritePost :BufReadPost]
+                               {:pattern [(.. nvim.env.CODESCENE_HOME "/*")]
+                                :group (vim.api.nvim_create_augroup :neomake_in_codescene {:clear true})
+                                :callback (fn [args]
+                                            (let [bufname (vim.api.nvim_buf_get_name args.buf)]
+                                              (when (not (string.match bufname ".*://"))
+                                                ;; Without vim.schedule it runs only once. No clue why...
+                                                (vim.schedule #(vim.cmd "Neomake")))))}))
