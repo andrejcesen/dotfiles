@@ -23,6 +23,11 @@ codescene_dev() {
         cp "$CODESCENE_HOME/../config/worker-local-override.edn" "$worker_config_path"
     fi
 
+    onprem_config_path="$branch_worktree/onprem/my-config.edn"
+    if ! [[ -f "$onprem_config_path" ]]; then
+        cp "$CODESCENE_HOME/../config/onprem-my-config.edn" "$onprem_config_path"
+    fi
+
     # Applies Docker DB config to onprem.
     merge-edn-map.clj "$branch_worktree/onprem/resources/config.edn" \
                       "$CODESCENE_HOME/../config/onprem-config.edn"
@@ -63,7 +68,7 @@ codescene_onprem_web() {
     make ./resources/public/vendor/codescene-bootstrap
     # Need to run both, since webpack-dev-server doesn't write anything to disk
     # (meaning there's no HtmlWebpackPlugin output HTML).
-    npm run build:dev && npm run watch:dev
+    npm run build:dev && npm run watch
 }
 
 codescene_onprem_repl() {
