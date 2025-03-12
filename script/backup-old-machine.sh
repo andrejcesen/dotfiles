@@ -24,6 +24,8 @@ mkdir -p ~/migration/Library/
 cp -Rp ~/Library/Fonts ~/migration/Library/ # all those fonts you've installed
 cp -Rp ~/Library/Spelling/*.{aff,dic} ~/migration/Library/Spelling # spelling dictionaries
 
+# Backup personal certificates
+
 # Backup Bear Notes:
 # 1. Make sure to close Bear app.
 # 2. Backup Bear notes
