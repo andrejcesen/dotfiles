@@ -1,5 +1,8 @@
 .DS_Store
 
-# Clojure linting
-**/.lsp/.cache
-conjure-log*.cljc
+# Clojure
+# Ignore .lsp/.cache and .clj-kondo/.cache
+# https://clojurians-log.clojureverse.org/clj-kondo/2022-03-18
+.cache
+.nrepl-port
+conjure-log*.cljt
