@@ -61,10 +61,11 @@ codescene_onprem_web() {
 
     cd "$branch_worktree/onprem" || exit
     npm install
-    make ./resources/public/vendor/codescene-bootstrap
     # Need to run both, since webpack-dev-server doesn't write anything to disk
     # (meaning there's no HtmlWebpackPlugin output HTML).
-    npm run build:dev && npm run watch
+    npm run build:dev
+    make ./resources/public/vendor/codescene-bootstrap
+    npm run watch
 }
 
 codescene_onprem_repl() {
