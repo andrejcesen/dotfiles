@@ -28,10 +28,6 @@ codescene_dev() {
         cp "$CODESCENE_HOME/../config/onprem-my-config.edn" "$onprem_config_path"
     fi
 
-    # Applies Docker DB config to onprem.
-    merge-edn-map.clj "$branch_worktree/onprem/resources/config.edn" \
-                      "$CODESCENE_HOME/../config/onprem-config.edn"
-
     cd "$branch_worktree" || exit
     make analysis-build-java
 
@@ -57,7 +53,7 @@ codescene_cloud_repl() {
     branch_worktree="$1"
 
     cd "$branch_worktree/cloud/web" || exit
-    bb repl
+    clj -M:dev:repl/conjure
 }
 
 codescene_onprem_web() {
@@ -83,7 +79,7 @@ codescene_onprem_repl() {
         cp "$master_db_folder/caacs_enterprise.db.mv.db" "$db_folder"
     fi
 
-    bb repl
+    clj -M:dev:repl/conjure
 }
 
 case "$1" in
