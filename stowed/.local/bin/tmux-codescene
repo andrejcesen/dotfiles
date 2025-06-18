@@ -15,17 +15,17 @@ codescene_dev() {
 
     web_config_path="$branch_worktree/cloud/web/resources/config/local-override.edn"
     if ! [[ -f "$web_config_path" ]]; then
-        cp "$CODESCENE_HOME/../config/web-local-override.edn" "$web_config_path"
+        cp "$CODESCENE_DEV_HOME/../config/web-local-override.edn" "$web_config_path"
     fi
 
     worker_config_path="$branch_worktree/cloud/worker/resources/config/local-override.edn"
     if ! [[ -f "$worker_config_path" ]]; then
-        cp "$CODESCENE_HOME/../config/worker-local-override.edn" "$worker_config_path"
+        cp "$CODESCENE_DEV_HOME/../config/worker-local-override.edn" "$worker_config_path"
     fi
 
     onprem_config_path="$branch_worktree/onprem/my-config.edn"
     if ! [[ -f "$onprem_config_path" ]]; then
-        cp "$CODESCENE_HOME/../config/onprem-my-config.edn" "$onprem_config_path"
+        cp "$CODESCENE_DEV_HOME/../config/onprem-my-config.edn" "$onprem_config_path"
     fi
 
     cd "$branch_worktree" || exit
@@ -90,7 +90,7 @@ case "$1" in
          session_name=$(tmux display-message -p '#S');
          target="$session_name:$clean_arg"
 
-         codescene="$CODESCENE_HOME/$branch_name"
+         codescene="$CODESCENE_DEV_HOME/$branch_name"
          cd "$codescene" || exit 1 # Check if it exists and set $PWD for tmux's new-window.
 
          if tmux has-session -t "$target" 2>/dev/null; then

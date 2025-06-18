@@ -9,7 +9,7 @@
   (string.find s substr 1 true))
 
 (defn codescene? [path]
-  (starts-with? path nvim.env.CODESCENE_HOME))
+  (starts-with? path nvim.env.CODESCENE_DEV_HOME))
 
 (defn- build-codescene-cmd [path param]
   (let [cmd (string.format ":silent !tmux-codescene tmux '%s'" path)]

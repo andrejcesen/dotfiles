@@ -18,7 +18,7 @@
   ;; Run Neomake for codescene only, ignoring conjure log.
   ;; https://github.com/neomake/neomake/issues/2312#issuecomment-462319749
   (vim.api.nvim_create_autocmd [:BufWritePost :BufReadPost]
-                               {:pattern [(.. nvim.env.CODESCENE_HOME "/*")]
+                               {:pattern [(.. nvim.env.CODESCENE_DEV_HOME "/*")]
                                 :group (vim.api.nvim_create_augroup :neomake_in_codescene {:clear true})
                                 :callback (fn [args]
                                             (let [bufname (vim.api.nvim_buf_get_name args.buf)]

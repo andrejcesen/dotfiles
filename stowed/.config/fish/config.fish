@@ -17,7 +17,7 @@ end
 
 test -d /opt/homebrew && eval (/opt/homebrew/bin/brew shellenv)
 
-set -gx CODESCENE_HOME ~/Projects/Active/codescene/codescene-app
+set -gx CODESCENE_DEV_HOME ~/Projects/Active/codescene/codescene-app
 
 set -gx JAVA_HOME (/usr/libexec/java_home)
 set -gx ANDROID_HOME ~/Library/Android/sdk
