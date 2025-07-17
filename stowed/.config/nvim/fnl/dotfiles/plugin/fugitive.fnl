@@ -4,6 +4,7 @@
 (util.lnnoremap :gs "Git")
 (util.lnnoremap :gb "Git blame")
 (util.lnnoremap :gdv "Gvdiffsplit")
+; https://youtu.be/FrMRyXtiJkc?t=828
 (util.lnnoremap "gd[" "<cmd>diffget //2<CR>")
 (util.lnnoremap "gd]" "<cmd>diffget //3<CR>")
 (util.lnnoremap :gp "Git push")
