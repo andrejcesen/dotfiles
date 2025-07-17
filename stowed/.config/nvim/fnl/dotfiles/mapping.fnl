@@ -27,6 +27,11 @@
 ;; Trim trialing whitespace.
 (noremap :n :<leader>bt ":%s/\\s\\+$//e<cr>")
 
+;; In insert mode you type "word" and hit control+s and you will immediately
+;; have <word_></word> with the cursor at the _
+;; https://www.reddit.com/r/vim/comments/gu5nm0/comment/fsgppz3/
+(noremap :i :<C-s> "<esc>yiwi<lt><esc>ea></><esc>hpF>i")
+
 ;; Delete hidden buffers.
 (noremap :n :<leader>bo ":call DeleteHiddenBuffers()<cr>")
 
