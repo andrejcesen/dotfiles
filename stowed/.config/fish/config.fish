@@ -33,7 +33,6 @@ fish_add_path --path (/opt/homebrew/opt/ruby/bin/gem env gemdir)/bin \
                      /opt/homebrew/opt/ruby/bin
 
 fish_add_path --path /opt/homebrew/opt/python/libexec/bin
-fish_add_path --path /opt/homebrew/opt/node@18/bin
 fish_add_path --path ~/.cargo/bin
 fish_add_path --path ~/.local/bin
 
@@ -67,3 +66,7 @@ end
 if type -q direnv
   direnv hook fish | source
 end
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init2.fish 2>/dev/null || :
