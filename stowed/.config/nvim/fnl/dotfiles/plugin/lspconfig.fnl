@@ -49,7 +49,8 @@
                                             (tset client.server_capabilities :documentRangeFormattingProvider false)
                                             (map :<leader>sa "TSToolsFixAll")
                                             (map :<leader>so "TSToolsOrganizeImports")
-                                            (map :<leader>sc "TSToolsRemoveUnusedImports"))}))
+                                            (map :<leader>sc "TSToolsRemoveUnusedImports"))
+                               :settings {:separate_diagnostic_server false}}))
 
     (lsp.clojure_lsp.setup {:capabilities capabilities
                             ;; Allows running a single LSP under a monorepo.
