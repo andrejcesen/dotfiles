@@ -11,7 +11,7 @@
 (nvim.ex.set :relativenumber)
 
 ;; this causes some intermittent underlinings
-;(nvim.ex.set :spell)
+(nvim.ex.set :spell)
 (nvim.ex.set :list)
 
 ;; Reserve column for signs to prevent indenting while editing.
