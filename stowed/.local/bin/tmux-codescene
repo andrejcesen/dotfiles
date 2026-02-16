@@ -37,7 +37,7 @@ codescene_dev() {
     fi
 
     cd "$branch_worktree/ui" || exit
-    npm start
+    npx storybook dev -p 6006 --no-open
 }
 
 codescene_cloud_web() {
@@ -63,9 +63,9 @@ codescene_onprem_web() {
     npm install
     # Need to run both, since webpack-dev-server doesn't write anything to disk
     # (meaning there's no HtmlWebpackPlugin output HTML).
-    npm run build:dev
+    rm -r ./resources/public/vendor/codescene-bootstrap
     make ./resources/public/vendor/codescene-bootstrap
-    npm run watch
+    npm run build:dev && npm run watch
 }
 
 codescene_onprem_repl() {
