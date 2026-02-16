@@ -5,4 +5,4 @@
 # https://clojurians-log.clojureverse.org/clj-kondo/2022-03-18
 .cache
 .nrepl-port
-conjure-log*.cljt
+conjure-log-*
