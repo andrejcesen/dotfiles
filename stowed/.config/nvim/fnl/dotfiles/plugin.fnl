@@ -79,4 +79,4 @@
   :stevearc/oil.nvim {:mod :oil}
   :wbthomason/packer.nvim {}
   :windwp/nvim-autopairs {:mod :autopairs}
-  )
+  :ThePrimeagen/99 {:branch :master :mod :primeagen99})
