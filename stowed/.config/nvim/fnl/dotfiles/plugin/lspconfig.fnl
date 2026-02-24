@@ -92,10 +92,22 @@
 (vim.lsp.config :pyright {:capabilities capabilities})
 (vim.lsp.enable :pyright)
 
-;; https://github.com/lukas-reineke/dotfiles/blob/master/vim/lua/lsp/init.lua#L444
-(let [prettierd-config {:formatCommand (.. "prettierd ${INPUT} ${--range-start=charStart} ${--range-end=charEnd} "
-                                           "${--tab-width=tabSize} ${--use-tabs=!insertSpaces}")
-                        :formatStdin true}
+;; https://github.com/creativenull/efmls-configs-nvim/blob/main/lua/efmls-configs/formatters/prettier_d.lua
+(let [prettierd-config {:formatCommand "prettierd '${INPUT}' ${--range-start=charStart} ${--range-end=charEnd} --config-precedence=prefer-file"
+                        :formatStdin true
+                        :rootMarkers [".prettierrc"
+                                      ".prettierrc.json"
+                                      ".prettierrc.js"
+                                      ".prettierrc.yml"
+                                      ".prettierrc.yaml"
+                                      ".prettierrc.json5"
+                                      ".prettierrc.mjs"
+                                      ".prettierrc.cjs"
+                                      ".prettierrc.toml"
+                                      "prettier.config.js"
+                                      "prettier.config.cjs"
+                                      "prettier.config.mjs"
+                                      ".git"]}
       languages {:javascript [prettierd-config]
                  :typescript [prettierd-config]
                  :javascriptreact [prettierd-config]
@@ -107,12 +119,14 @@
                  :less [prettierd-config]
                  :css [prettierd-config]
                  :markdown [prettierd-config]}]
+  ;; https://github.com/lukas-reineke/dotfiles/blob/master/vim/lua/lsp/init.lua#L444
   (vim.lsp.config :efm {:capabilities capabilities
-                        :init_options {:documentFormatting true}
-                        :root_dir vim.loop.cwd
+                        :init_options {:documentFormatting true
+                                       :documentRangeFormatting true}
                         :filetypes (a.keys languages)
-                        :settings {:rootMarkers [".git/"]
-                                   :languages languages}})
+                        :root_markers [".git"]
+                        :settings {:languages languages}
+                        })
   (vim.lsp.enable :efm))
 
 
