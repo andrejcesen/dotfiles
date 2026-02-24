@@ -48,7 +48,7 @@ brew install \
   git \
   git-delta \
   gh \
-  node@20 \
+  node@24 \
   orbstack \
   ruby \
   imagemagick \
