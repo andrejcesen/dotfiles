@@ -10,3 +10,8 @@
 /stowed/.local/bin/kubectl
 /stowed/.local/bin/orb
 /stowed/.local/bin/orbctl
+/stowed/.clojure/.cpcache/
+/stowed/.local/bin/claude
+/stowed/.local/bin/clj-nrepl-eval
+/stowed/.local/bin/clj-paren-repair
+/stowed/.local/bin/clj-paren-repair-claude-hook
