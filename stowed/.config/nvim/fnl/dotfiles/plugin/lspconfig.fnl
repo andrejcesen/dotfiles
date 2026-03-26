@@ -55,23 +55,12 @@
 
 
 (vim.lsp.config :clojure_lsp {:capabilities capabilities
-                              ;; Allows running a single LSP under a monorepo.
-                              ;; Eg. if we have `a/deps.edn` and `b/deps.edn`, and you want it to grab the root `deps.edn`.
-                              ;; https://clojurians-log.clojureverse.org/lsp/2023-02-07
-                              ;; https://www.reddit.com/r/neovim/comments/ox93b5/comment/h7l62ty/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
-                              :root_dir (fn [bufnr on_dir]
-                                          ;; Logic similar to :https://github.com/neovim/nvim-lspconfig/blob/master/lsp/ts_ls.lua#L111
-                                          (let [root-markers ["project.clj" "deps.edn" "build.boot" "shadow-cljs.edn" "bb.edn"]
-                                                git-root (vim.fs.root bufnr ".git")
-                                                project-root-from-git-upwards (vim.fs.root git-root root-markers)
-                                                project-root (if (= git-root project-root-from-git-upwards)
-                                                               ;; use git-root if it contains root-markers
-                                                               git-root
-                                                               ;; otherwise, search normally starting from bufnr
-                                                               (vim.fs.root bufnr [root-markers [".git"]]))]
-                                            ;; fallback to the current working directory if no project root is found
-                                            (on_dir (or project-root (vim.fn.getcwd)))))
-                              })
+                              ;; Remove "project.clj"
+                              :root_markers ["deps.edn"
+                                             "build.boot"
+                                             "shadow-cljs.edn"
+                                             ".git"
+                                             "bb.edn"]})
 (vim.lsp.enable :clojure_lsp)
 
 (vim.lsp.config :cssls {:capabilities capabilities})
@@ -143,3 +132,17 @@
 
 (map :<leader>sr "lua vim.lsp.buf.rename()")
 (map :<leader>sf "lua vim.lsp.buf.format { async = true }")
+
+(vim.keymap.set
+  "v"
+  "<leader>sf" 
+  (fn []
+    (let [start-pos (vim.fn.getpos "'<")
+          end-pos   (vim.fn.getpos "'>")]
+      (vim.lsp.buf.format
+        {:range {:start [(- (. start-pos 2) 1)
+                         (- (. start-pos 3) 1)]
+                 :end   [(- (. end-pos 2) 1)
+                         (- (. end-pos 3) 1)]}})))
+  {:desc "Format selection with LSP"
+   :noremap true})
