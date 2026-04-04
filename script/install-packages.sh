@@ -79,6 +79,7 @@ xcversion install "$(xcversion list | grep -E "^[^ ]+\$" | tail -n 1)"
 
 # npm
 npm install --global \
+  @actual-app/sync-server \
   @fsouza/prettierd \
   trash-cli \
   typescript \

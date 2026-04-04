@@ -18,6 +18,7 @@ cd ~ || exit
 rsync -aR .local/bin_private/aws-rotate.sh ~/migration/home
 rsync -aR .local/state/nvim/shada/main.shada ~/migration/home
 rsync -aR .local/share/fish/fish_history ~/migration/home
+rsync -aR .local/share/actual-budget/data ~/migration/home
 rsync -aR .m2/settings.xml ~/migration/home
 rsync -aR Library/Services ~/migration/home
 
