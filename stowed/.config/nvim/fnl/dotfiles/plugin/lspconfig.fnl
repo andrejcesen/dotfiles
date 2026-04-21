@@ -17,21 +17,6 @@
 (vim.api.nvim_create_autocmd [:LspAttach] {:callback (fn [args] 
                                                        (let [bo (. nvim.bo args.buf)]
                                                          (tset bo :formatexpr nil)))})
-;; Don't attach LSP to Conjure log files
-;; https://www.reddit.com/r/neovim/comments/168u3e4/how_to_cancel_lsp_attach_to_certain_buffer/
-(vim.api.nvim_create_autocmd [:LspAttach] {:callback (fn [args] 
-                                                       (let [bufname (vim.api.nvim_buf_get_name args.buf)]
-                                                         ;; using '%' to escape dash and dot chars
-                                                         (if (string.match bufname "conjure%-log%-[0-9]+%.cljc$")
-                                                           ;; Defer detaching for a bit, because LspAttach event happens right before
-                                                           ;; the buffer is marked as "attached", thus detaching will result in error.
-                                                           (vim.defer_fn #(vim.lsp.buf_detach_client args.buf args.data.client_id)
-                                                                         100))))})
-
-
-
-;; TODO: remove
-; let [(ok? lsp) (pcall require :lspconfig)]
 
 ;; Show error codes (a rule that caused it).
 ;; `open_flaot` resolves only global options, hence we need to specify it in `vim.diagnostic`
@@ -54,13 +39,16 @@
                            :settings {:separate_diagnostic_server false}}))
 
 
-(vim.lsp.config :clojure_lsp {:capabilities capabilities
-                              ;; Remove "project.clj"
-                              :root_markers ["deps.edn"
-                                             "build.boot"
-                                             "shadow-cljs.edn"
-                                             ".git"
-                                             "bb.edn"]})
+(vim.lsp.config :clojure_lsp
+                {:capabilities capabilities
+                 :root_dir (fn [bufnr cb]
+                             (let [fname (vim.api.nvim_buf_get_name 0)]
+                               (when (not (string.match fname "conjure%-log%-"))
+                                 (let [markers ["deps.edn" "build.boot" "shadow-cljs.edn" "bb.edn"]
+                                       root (or (vim.fs.root fname markers)
+                                                (vim.fs.root fname [".git"]))]
+                                   (when root (cb root))))))})
+
 (vim.lsp.enable :clojure_lsp)
 
 (vim.lsp.config :cssls {:capabilities capabilities})

@@ -27,7 +27,7 @@
 (use
   :Olical/AnsiEsc {}
   :Olical/aniseed {}
-  :Olical/conjure {:mod :conjure}
+  :Olical/conjure {:branch :main :mod :conjure}
   :Olical/nvim-local-fennel {}
   :gbprod/nord.nvim {:branch :main :mod :nord}
   :kyazdani42/nvim-web-devicons {}
