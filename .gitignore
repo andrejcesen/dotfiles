@@ -1,3 +1,11 @@
+.DS_Store
+.nrepl-port
+
+# These can appear in `.` and `./.stowed/.clojure/`
+**/.clojure/.cpcache/
+**/.clj-kondo/.cache 
+**/.lsp/.cache
+
 /stowed/.local/bin/cs
 /stowed/.local/bin/cs-coverage
 /stowed/.local/bin/rust-analyzer
@@ -10,7 +18,7 @@
 /stowed/.local/bin/kubectl
 /stowed/.local/bin/orb
 /stowed/.local/bin/orbctl
-/stowed/.clojure/.cpcache/
+
 /stowed/.local/bin/claude
 /stowed/.local/bin/clj-nrepl-eval
 /stowed/.local/bin/clj-paren-repair
