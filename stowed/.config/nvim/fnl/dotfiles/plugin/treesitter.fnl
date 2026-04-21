@@ -6,9 +6,7 @@
       {:autotag {:enable true ; Enable windwp/nvim-ts-autotag
                  :enable_close_on_slash false}
        :indent {:enable true}
-       :highlight {:enable true
-                   ;; https://github.com/guns/vim-sexp/issues/31#issuecomment-1240936851
-                   :additional_vim_regex_highlighting [:clojure :fennel :lisp :scheme]}
+       :highlight {:enable true}
        :ensure_installed [:bash
                           :c
                           :clojure
