@@ -38,16 +38,27 @@
                                         (map :<leader>sc "TSToolsRemoveUnusedImports"))
                            :settings {:separate_diagnostic_server false}}))
 
-
 (vim.lsp.config :clojure_lsp
                 {:capabilities capabilities
+                 ;; Allows running a single LSP under a monorepo.
+                 ;; Eg. if we have `a/deps.edn` and `b/deps.edn`, and you want it to grab the root `deps.edn`.
+                 ;; https://clojurians-log.clojureverse.org/lsp/2023-02-07
+                 ;; https://www.reddit.com/r/neovim/comments/ox93b5/comment/h7l62ty/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
                  :root_dir (fn [bufnr cb]
-                             (let [fname (vim.api.nvim_buf_get_name 0)]
+                             (let [fname (vim.api.nvim_buf_get_name bufnr)]
+                               ;; Don't run for conjure-log files
                                (when (not (string.match fname "conjure%-log%-"))
-                                 (let [markers ["deps.edn" "build.boot" "shadow-cljs.edn" "bb.edn"]
-                                       root (or (vim.fs.root fname markers)
-                                                (vim.fs.root fname [".git"]))]
-                                   (when root (cb root))))))})
+                                 ;; Logic similar to :https://github.com/neovim/nvim-lspconfig/blob/master/lsp/ts_ls.lua#L111
+                                 (let [root-markers ["deps.edn" "shadow-cljs.edn" "project.clj" "build.boot" "bb.edn"]
+                                       git-root     (vim.fs.root bufnr [".git"])
+                                       upward-root  (vim.fs.root git-root root-markers)
+                                       project-root (if (= git-root upward-root)
+                                                      ;; use git-root if it contains root-markers
+                                                      git-root
+                                                      ;; otherwise, search normally starting from bufnr
+                                                      (vim.fs.root bufnr [root-markers [".git"]]))]
+                                   ;; fallback to the current working directory if no project root is found
+                                   (cb (or project-root (vim.fn.getcwd)))))))})
 
 (vim.lsp.enable :clojure_lsp)
 
