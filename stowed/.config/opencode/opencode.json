@@ -1,30 +1,45 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "agent": {
-    "build": {
-      "mode": "primary",
-      "model": "github-copilot/claude-sonnet-4.6",
-      "tools": {
-        "write": true,
-        "edit": true,
-        "bash": true
-      }
-    },
-    "plan": {
-      "mode": "primary",
-      "model": "github-copilot/claude-opus-4.6",
-      "tools": {
-        "write": false,
-        "edit": false,
-        "bash": false
-      }
-    }
-  },
   "mcp": {
     "cs-mcp": {
+      "enabled": true,
       "type": "local",
       "command": [
         "cs-mcp"
+      ]
+    },
+    "clojure-mcp": {
+      "enabled": false,
+      "type": "local",
+      "command": [
+        "clojure",
+        "-Tmcp",
+        "start",
+        ":config-profile",
+        ":cli-assist"
+      ]
+    },
+    "clickup": {
+      "type": "remote",
+      "url": "https://mcp.clickup.com/mcp",
+      "enabled": false
+    },
+    "figma": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://mcp.figma.com/mcp",
+      "oauth": {
+        "clientId": "{env:FIGMA_CLIENT_ID}",
+        "clientSecret": "{env:FIGMA_CLIENT_SECRET}"
+      }
+    },
+    "chrome-devtools": {
+      "enabled": false,
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "chrome-devtools-mcp@latest"
       ]
     }
   }
