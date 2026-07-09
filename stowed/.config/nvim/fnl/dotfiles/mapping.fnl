@@ -20,9 +20,9 @@
 
 ;; Open folder of a current file in Finder
 (noremap :n :<leader>o ":!open %:p:h<CR>")
-
-;; Copy absolute path of the current buffer.
-(noremap :n :<leader>c ":let @+=expand('%:p')<cr>")
+;; Copy path of the current buffer.
+(noremap :n :<leader>cg  ":let @+=expand('%')<cr>")
+(noremap :n :<leader>c1g ":let @+=expand('%:p')<cr>")
 
 ;; Correct to first spelling suggestion.
 (noremap :n :<leader>zz ":normal! 1z=<cr>")
