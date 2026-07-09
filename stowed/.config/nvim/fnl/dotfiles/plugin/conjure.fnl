@@ -18,4 +18,12 @@
 
 ;; Evaluates an atom with @ prefix
 ;; https://clojurians-log.clojureverse.org/conjure/2021-01-20
-(nvim.set_keymap :n :<localleader>ed :<localleader>Eie {})
+(vim.keymap.set :n :<localleader>ed :<localleader>Eie {})
+
+(let [(ok? conjure-eval) (pcall require :conjure.eval)]
+  (when ok?
+    (vim.keymap.set :n :<localleader>re
+                    (fn [] (conjure-eval.eval-str {:code "(reset)"
+                                                   :context "user"
+                                                   :origin "user-reset"}))
+                    {:desc "Conjure: Eval Reset"})))
