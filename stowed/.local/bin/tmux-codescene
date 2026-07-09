@@ -3,9 +3,13 @@
 codescene_dev() {
     branch_worktree="$1"
 
+    cd "$branch_worktree" || exit
+    make analysis-build-java
+    make install-cs-ui
+
     cd "$branch_worktree/ui" || exit
     npm install
-    npx playwright install
+    npm run prepare
 
     if ! [[ -d "$branch_worktree/ui/clj-shared/dist" ]]; then
         cd "$branch_worktree/ui/clj-shared" || exit
@@ -28,16 +32,17 @@ codescene_dev() {
         cp "$CODESCENE_DEV_HOME/../config/onprem-my-config.edn" "$onprem_config_path"
     fi
 
-    cd "$branch_worktree" || exit
-    make analysis-build-java
-
     if [ "$2" != "just-build" ]; then
         # Update exclusions for the newly created worktree.
         time-machine-exclusions.sh > /dev/null &
     fi
 
-    cd "$branch_worktree/ui" || exit
-    npx storybook dev -p 6006 --no-open
+    cd "$branch_worktree/cs-ui" || exit
+
+    # npx playwright install
+    npm run storybook
+    # cd "$branch_worktree/ui" || exit
+    # npx storybook dev -p 6006 --no-open
 }
 
 codescene_cloud_web() {
@@ -46,7 +51,8 @@ codescene_cloud_web() {
     cd "$branch_worktree/cloud/web" || exit
     npm install
     make bootstrap
-    npm run watch
+    npm run build:dev
+    npm run vite:build
 }
 
 codescene_cloud_repl() {
@@ -65,6 +71,7 @@ codescene_onprem_web() {
     # (meaning there's no HtmlWebpackPlugin output HTML).
     rm -r ./resources/public/vendor/codescene-bootstrap
     make ./resources/public/vendor/codescene-bootstrap
+    npm run vite:build
     npm run build:dev && npm run watch
 }
 
@@ -80,7 +87,7 @@ codescene_onprem_repl() {
         cp "$master_db_folder/caacs_enterprise.db.mv.db" "$db_folder"
     fi
 
-    clj -M:dev:repl/conjure
+    clj -M:dev:test:repl/conjure
 }
 
 case "$1" in
@@ -98,18 +105,20 @@ case "$1" in
          fi
 
          tmux new-window -dn "$clean_arg" ';' \
-             split-window -dht "$clean_arg" ';' \
-             split-window -dvt "$clean_arg.1" ';' \
+             split-window -dht "$clean_arg.0" ';' \
+             split-window -dvt "$clean_arg.0" ';' \
              split-window -dvt "$clean_arg.2" ';' \
-             split-window -dvt "$clean_arg.1"
+             split-window -dvt "$clean_arg.3" ';' \
+             split-window -dvt "$clean_arg.2"
 
          # sleep 1
 
-         tmux send-keys -t "$target.0" "tmux-codescene dev         $2 $3" Enter
-         tmux send-keys -t "$target.1" "tmux-codescene cloud-web   $2 $3"
-         tmux send-keys -t "$target.2" "tmux-codescene cloud-repl  $2 $3"
-         tmux send-keys -t "$target.3" "tmux-codescene onprem-web  $2 $3"
-         tmux send-keys -t "$target.4" "tmux-codescene onprem-repl $2 $3"
+         tmux send-keys -t "$target.0" "tmux-codescene dev                                 $2 $3" Enter
+         tmux send-keys -t "$target.1" "OPENCODE_CONFIG=${CODESCENE_DEV_HOME}/../config/opencode.json  opencode" Enter
+         tmux send-keys -t "$target.2" "tmux-codescene cloud-web                           $2 $3"
+         tmux send-keys -t "$target.3" "codescene_no_init_dev=1 tmux-codescene cloud-repl  $2 $3"
+         tmux send-keys -t "$target.4" "tmux-codescene onprem-web                          $2 $3"
+         tmux send-keys -t "$target.5" "codescene_no_init_dev=1 tmux-codescene onprem-repl $2 $3"
          ;;
 
      "dev")
